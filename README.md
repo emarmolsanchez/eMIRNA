@@ -243,7 +243,7 @@ Once the FASTA file with pre-miRNA candidates has been generated, users must pro
 
 &nbsp;
 
-##eMIRNA.Hunter_denovo
+## eMIRNA.Hunter_denovo
 
 The eMIRNA.Hunter_denovo module is a modified versión of eMIRNA.Hunter module, developed to obtain pre-miRNA candidate sequences to perform a de novo discovery of novel putative miRNAs from smallRNA-seq files.
 
@@ -331,9 +331,9 @@ Input:
  -x	                                      Desired Name string for output files
  -h	                                      Display help page
 Output:
-<x>_Predicted_miRNAs_annotated.bed		      BED file output with eMIRNA Predicted already Annotated miRNAs
-<x>_Predicted_miRNAs_NON_annotated.bed    BED file output with eMIRNA Predicted Novel miRNAs
-<x>_Putative_Predicted_miRNAs.txt		       TXT file output with Putative miRNA Candidates filtered by Neighbouring Score
+<x>_Predicted_miRNAs_annotated.bed           BED file output with eMIRNA Predicted already Annotated miRNAs
+<x>_Predicted_miRNAs_NON_annotated.bed       BED file output with eMIRNA Predicted Novel miRNAs
+<x>_Putative_Predicted_miRNAs.txt            TXT file output with Putative miRNA Candidates filtered by Neighbouring Score
 
 ```
 
