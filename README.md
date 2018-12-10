@@ -32,11 +32,15 @@ All the executables should be stored at computer $PATH in order to be run proper
 ## Positive and Negative Datasets
 
 Training the eMIRNA Classifier requires two FASTA files with **Positive** and **Negative** sequences.
+
 The **Positive Sequences** must correspond to those sequences annotated as microRNA genes in the available Reference Genome for the species under study. GTF annotation and FASTA files for corresponding transcripts can be downloaded from the Ensembl repositories available at http://www.ensembl.org/info/data/ftp/index.html.
+
 The **Negative Sequences** must correspond to non-coding sequences other than microRNA genes in the available Reference Genome for the species under study. GTF annotation and FASTA files for corresponding transcripts cand be downloaded from the Ensembl repositories available at http://www.ensembl.org/info/data/ftp/index.html.
+
 In the event that no Reference Genome or no good microRNA or non-coding transcripts are available for downloading, we strongly recommend to choose sequences from the closer phylogenetically related reference species for training the model, otherwise the results can suffer from low reliability.
 
 Both Positive and Negative datasets must be in linear FASTA format. Should you have multilinear FASTA files, they should be converted to linear FASTA files. Users can use the following perl command:
+
 `perl -pe '/^>/ ? print "\n" : chomp' in.fa | tail -n +2 > out.fa`
 
 where `in.fa` corresponds to multilinear FASTA file, and `out.fa` is the resulting linearized FASTA file ready to use.
@@ -47,15 +51,18 @@ where `in.fa` corresponds to multilinear FASTA file, and `out.fa` is the resulti
 The first eMIRNA module makes use of previous Positive and Negative FASTA files, to perform an initial filtering process based on sequence length. Tipically, microRNA genes range from 50 to 150 nucleotides long. Our first aim would be to filter the selected sequences based on expected microRNA genes length. We will apply this function to both Positive and Negative FASTA files. The Positive sequences should not experience any filtering upon this process, if correctly generated. For Negative sequences, all long non-coding sequences will be removed from our Negative FASTA file, retaining only those sequences resembling microRNA genes in length, according to estabished thresholds.
 
 This function requires four arguments:
-PATH to Positive or Negative FASTA file.
-String with desired output prefix name.
-Lower length filtering threshold.
-Upper length filtering threshold.
+
++ PATH to Positive or Negative FASTA file.
++ String with desired output prefix name.
++ Lower length filtering threshold.
++ Upper length filtering threshold.
+
 We recomend to set 50 nucleotides for lower length threshold, and 150 for the upper, but users can define their own limit thresholds.
 
 Example of usage:
-> eMIRNA.Filter.by.Size("PATH to Positive FASTA file", "Pos", 50, 100)
-> eMIRNA.Filter.by.Size("PATH to Negative FASTA file", "Neg", 50, 100)
+
+`eMIRNA.Filter.by.Size("PATH to Positive FASTA file", "Pos", 50, 100)`
+`eMIRNA.Filter.by.Size("PATH to Negative FASTA file", "Neg", 50, 100)`
 
 Once the eMIRNA.Filter.by.Size function has run, a new folder named eMIRNA will have been created at your computer $HOME, with a subfolder, inside eMIRNA/ folder, called FilterSize_Results/, in which a FASTA file named Pos/Neg_filter_size.fa will be generated with the results of running the function.
 
