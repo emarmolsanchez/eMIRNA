@@ -2,6 +2,8 @@
 
 eMIRNA is a comprehensive and user-friendly R-based pipeline for predicting and annotating the presence of known and novel microRNAs. This document is intended to give a technical supplementary description about how to run the eMIRNA pipeline through a detailed explanation of all the modules that form part of this program.
 
+&nbsp
+
 ## Introduction
 
 The eMIRNA pipeline makes use of a Machine Learning approach based on Support Vector Machine (SVM) algorithm to assess whether putative candidate sequences can be predicted as pre-miRNA-like structures. First, the eMIRNA model must be trained by making use of positive (microRNAs) and negative (other ncRNAs) sequence datasets. Once the SVM model has been trained, putative pre-miRNA candidates can be subjected to prediction.
