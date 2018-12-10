@@ -70,6 +70,7 @@ We recomend to set 50 nucleotides for lower length threshold, and 150 for the up
 Example of usage:
 
 `eMIRNA.Filter.by.Size("PATH to Positive FASTA file", "Pos", 50, 100)`
+
 `eMIRNA.Filter.by.Size("PATH to Negative FASTA file", "Neg", 50, 100)`
 
 Once the eMIRNA.Filter.by.Size function has run, a new folder named eMIRNA will have been created at your computer $HOME, with a subfolder, inside eMIRNA/ folder, called FilterSize_Results/, in which a FASTA file named Pos/Neg_filter_size.fa will be generated with the results of running the function.
@@ -87,6 +88,7 @@ This function requires two arguments:
 Example of usage:
 
 `eMIRNA.Filter.by.Structure("~/eMIRNA/FilterSize_Results/Pos_filter_size.fa", "Pos")`
+
 `eMIRNA.Filter.by.Structure("~/eMIRNA/FilterSize_Results/Neg_filter_size.fa", "Neg")`
 
 Once the eMIRNA.Filter.by.Structure has run, a new folder named FilterSstructure_Results/ will be created inside eMIRNA/ folder, in which a FASTA file called Pos/Neg_filter_nloop.fa will be generated with the results of running the function.
@@ -105,6 +107,7 @@ The function requires two arguments:
 Example of usage:
 
 `Pos = eMIRNA.Features("~/eMIRNA/FilterStructure_Results/Pos_filter_nloop.fa”, "Pos")`
+
 `Neg = eMIRNA.Features("~/eMIRNA/FilterStructure_Results/Neg_filter_nloop.fa”, "Neg")`
 
 Once the eMIRNA.Features has run, a new folder named Features_Results/ will be created inside eMIRNA/ folder, in which a .csv file called Pos/Neg.csv will be generated with the results of running the function.
