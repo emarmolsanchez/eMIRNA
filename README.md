@@ -221,10 +221,10 @@ Input:
  -b	                                  Backwards number of bases for pre-miRNA reconstruction (1-10 bp recommended)
  -h	                                  Display help page
 Output:
- <x>.sam                                SAM file output from Bowtie miRNA alignment
- <x>.log                                LOG file output from Bowtie miRNA alignment
- <x>_homolog_miRNAs.bed                 BED file output with candidate pre-miRNAs for prediction
- <x>_homolog_miRNAs.fa                  FASTA file output with candidate pre-miRNAs for prediction
+ <x>.sam                                  SAM file output from Bowtie miRNA alignment
+ <x>.log                                  LOG file output from Bowtie miRNA alignment
+ <x>_homolog_miRNAs.bed                   BED file output with candidate pre-miRNAs for prediction
+ <x>_homolog_miRNAs.fa                    FASTA file output with candidate pre-miRNAs for prediction
  
  ```
 
