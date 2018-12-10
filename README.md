@@ -213,18 +213,18 @@ A detailed explanation of each variable can be accessed with -h (help) option:
 eMIRNA.Hunter Usage Instructions:
 eMIRNA.Hunter [options]
 Input:
- -r	                             PATH to Referenfe Genome Bowtie Index
- -f	                             PATH to Reference Genome FASTA file
- -o	                             PATH to desired output folder
- -x	                             Desired Name string for output files
- -u	                             Upwards number of bases for pre-miRNA reconstruction (30-60 bp recommended)
- -b	                             Backwards number of bases for pre-miRNA reconstruction (1-10 bp recommended)
- -h	                             Display help page
+ -r	                                  PATH to Referenfe Genome Bowtie Index
+ -f	                                  PATH to Reference Genome FASTA file
+ -o	                                  PATH to desired output folder
+ -x	                                  Desired Name string for output files
+ -u	                                  Upwards number of bases for pre-miRNA reconstruction (30-60 bp recommended)
+ -b	                                  Backwards number of bases for pre-miRNA reconstruction (1-10 bp recommended)
+ -h	                                  Display help page
 Output:
- <x>.sam			                      SAM file output from Bowtie miRNA alignment
- <x>.log				                     LOG file output from Bowtie miRNA alignment
- <x>_homolog_miRNAs.bed	         BED file output with candidate pre-miRNAs for prediction
- <x>_homolog_miRNAs.fa	          FASTA file output with candidate pre-miRNAs for prediction
+ <x>.sam                              SAM file output from Bowtie miRNA alignment
+ <x>.log				                          LOG file output from Bowtie miRNA alignment
+ <x>_homolog_miRNAs.bed	              BED file output with candidate pre-miRNAs for prediction
+ <x>_homolog_miRNAs.fa	               FASTA file output with candidate pre-miRNAs for prediction
  
  ```
 
