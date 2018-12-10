@@ -367,9 +367,9 @@ Input:
   -x                                             Desired Name string for output files
   -h                                             Display help page
 Output:
-  <x>_Predicted_miRNAs_annotated.bed                 BED file output with eMIRNA Predicted already Annotated miRNAs
-  <x>_Predicted_miRNAs_NON_annotated.bed             BED file output with eMIRNA Predicted Novel miRNAs
-  <x>_Predicted_miRNAs_NON_annotated.fa              FASTA file output with eMIRNA Predicted Novel miRNAs
+  <x>_Predicted_miRNAs_annotated.bed             BED file output with eMIRNA Predicted already Annotated miRNAs
+  <x>_Predicted_miRNAs_NON_annotated.bed         BED file output with eMIRNA Predicted Novel miRNAs
+  <x>_Predicted_miRNAs_NON_annotated.fa          FASTA file output with eMIRNA Predicted Novel miRNAs
   
   ```
 
