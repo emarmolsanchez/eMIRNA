@@ -243,7 +243,8 @@ Once the FASTA file with pre-miRNA candidates has been generated, users must pro
 
 &nbsp;
 
-eMIRNA.Hunter_denovo
+##eMIRNA.Hunter_denovo
+
 The eMIRNA.Hunter_denovo module is a modified versión of eMIRNA.Hunter module, developed to obtain pre-miRNA candidate sequences to perform a de novo discovery of novel putative miRNAs from smallRNA-seq files.
 
 Users should provide a properly collapsed FASTA file with smallRNA-seq sequences from canonical FASTQ sequence files. The FASTQ files should be quality-check filtered and sequencing adaptors trimmed before running the collapser tool from FASTX-toolkit (http://hannonlab.cshl.edu/fastx_toolkit/index.html) for collapsing FASTQ files into FASTA files with uniquely represented sequences.
