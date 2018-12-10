@@ -331,7 +331,7 @@ Input:
  -h	                                      Display help page
 Output:
 <x>_Predicted_miRNAs_annotated.bed		      BED file output with eMIRNA Predicted already Annotated miRNAs
-<x>_Predicted_miRNAs_NON_annotated.bed	   BED file output with eMIRNA Predicted Novel miRNAs
+<x>_Predicted_miRNAs_NON_annotated.bed    BED file output with eMIRNA Predicted Novel miRNAs
 <x>_Putative_Predicted_miRNAs.txt		       TXT file output with Putative miRNA Candidates filtered by Neighbouring Score
 
 ```
