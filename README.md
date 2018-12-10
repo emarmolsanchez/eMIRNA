@@ -155,7 +155,7 @@ Structural Statistics:
 + MFEadj / BP (MFEadj.BP).
 + MFE estimated by UNAFold [2] (dG).
 + dG / Length (dGadj).
-+ Structural Entropy estimated by Melt function from UNAFold [2] dS).
++ Structural Entropy estimated by Melt function from UNAFold [2] (dS).
 + dS / Length (dSadj).
 + Structural Enthalpy estimated by Melt function (dH).
 + dH / Length (dHadj).
