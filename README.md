@@ -396,3 +396,21 @@ By default, eMIRNA.Structural.Pvalues will perform 100 random shuffling interati
 
 Once the eMIRNA.Structural.Pvalues has run, a new .csv file called `Candidates_Structural_Pvalues.csv` will be generated at `/Prediction_Results` folder, containing calculated MFE and EFE Structural Pvalues for each candidates sequence. Users can then select those sequences with a significantly stable secondary structure folding as sequences having higher probability of have been properly profiled and predicted.
 
+&nbsp;
+
+## References
+
+1. Lorenz R, Bernhart SH, Höner zu Siederdissen C, Tafer H, Flamm C, Stadler PF, et al. ViennaRNA Package 2.0. Algorithms Mol Biol. 2011;6:26. doi:10.1186/1748-7188-6-26.
+2. Markham NR, Zuker M. UNAFold: software for nucleic acid folding and hybridization. Methods Mol Biol. 2008;453:3–31. doi:10.1007/978-1-60327-429-6_1.
+3. Xue C, Li F, He T, Liu G-P, Li Y, Zhang X. Classification of real and pseudo microRNA precursors using local structure-sequence features and support vector machine. BMC Bioinformatics. 2005;6:310. doi:10.1186/1471-2105-6-310.
+4. Quinlan AR, Hall IM. BEDTools: a flexible suite of utilities for comparing genomic features. Bioinformatics. 2010;26:841–2. doi:10.1093/bioinformatics/btq033.
+5. Langmead B, Trapnell C, Pop M, Salzberg SL. Ultrafast and memory-efficient alignment of short DNA sequences to the human genome. Genome Biol. 2009;10:R25. doi:10.1186/gb-2009-10-3-r25.
+6. Rivera WA. Noise Reduction A Priori Synthetic Over-Sampling for class imbalanced data sets. Inf Sci (Ny). 2017;408:146–61. doi:10.1016/J.INS.2017.04.046.
+7. Haibo He, Yang Bai, Garcia EA, Shutao Li. ADASYN: Adaptive synthetic sampling approach for imbalanced learning. In: 2008 IEEE International Joint Conference on Neural Networks (IEEE World Congress on Computational Intelligence). IEEE; 2008. p. 1322–8. doi:10.1109/IJCNN.2008.4633969.
+8. Han H, Wang W-Y, Mao B-H. Borderline-SMOTE: A New Over-Sampling Method in Imbalanced Data Sets Learning. Springer, Berlin, Heidelberg; 2005. p. 878–87. doi:10.1007/11538059_91.
+9. Barua S, Islam MM, Yao X, Murase K. MWMOTE--Majority Weighted Minority Oversampling Technique for Imbalanced Data Set Learning. IEEE Trans Knowl Data Eng. 2014;26:405–25. doi:10.1109/TKDE.2012.232.
+10. Zhang H, Li M. RWO-Sampling: A random walk over-sampling approach to imbalanced data classification. Inf Fusion. 2014;20:99–116. doi:10.1016/J.INFFUS.2013.12.003.
+11. Bunkhumpornpat C, Sinapiromsaran K, Lursinsap C. Safe-Level-SMOTE: Safe-Level-Synthetic Minority Over-Sampling TEchnique for Handling the Class Imbalanced Problem. Springer, Berlin, Heidelberg; 2009. p. 475–82. doi:10.1007/978-3-642-01307-2_43.
+12. Chawla N V., Bowyer KW, Hall LO, Kegelmeyer WP. SMOTE: Synthetic Minority Over-sampling Technique. J Artif Intell Res. 2011. doi:10.1613/jair.953.
+13. Jiang M, Anderson J, Gillespie J, Mayne M. uShuffle: A useful tool for shuffling biological sequences while preserving the k-let counts. BMC Bioinformatics. 2008;9:192. doi:10.1186/1471-2105-9-192.
+
