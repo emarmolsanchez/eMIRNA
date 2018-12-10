@@ -362,7 +362,7 @@ Input:
   -g                                             PATH to Referenfe Genome GTF Annotation file
   -p                                             PATH to List of Predicted microRNA candidates by eMIRNA
   -b                                             PATH to BED microRNAs output file from eMIRNA.Hunter_denovo
-  -f                                      PATH to FASTA microRNAs output file from eMIRNA.Hunter_denovo
+  -f                                             PATH to FASTA microRNAs output file from eMIRNA.Hunter_denovo
   -o                                             PATH to desired output folder
   -x                                             Desired Name string for output files
   -h                                             Display help page
