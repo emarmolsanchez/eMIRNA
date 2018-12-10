@@ -75,6 +75,7 @@ Example of usage:
 
 Once the eMIRNA.Filter.by.Size function has run, a new folder named eMIRNA will have been created at your computer $HOME, with a subfolder, inside eMIRNA/ folder, called FilterSize_Results/, in which a FASTA file named Pos/Neg_filter_size.fa will be generated with the results of running the function.
 
+&nbsp;
 
 ## eMIRNA.Filter.by.Structure
 
@@ -136,7 +137,7 @@ Secondary Structure Features:
 
 Structural Statistics:
 
-+ Minimum Free Energy estimated by RNAfold [1] (MFE).
++ Minimum Free Energy estimated by RNAfold [1] (MFE).
 + Ensemble Free Energy (EFE).
 + Centroid Free Energy (CFE).
 + Centroid Distance to Ensemble (CDE).
@@ -154,7 +155,7 @@ Structural Statistics:
 + MFEadj / BP (MFEadj.BP).
 + MFE estimated by UNAFold [2] (dG).
 + dG / Length (dGadj).
-+ Structural Entropy estimated by Melt function from UNAFold [2](dS).
++ Structural Entropy estimated by Melt function from UNAFold [2] dS).
 + dS / Length (dSadj).
 + Structural Enthalpy estimated by Melt function (dH).
 + dH / Length (dHadj).
