@@ -359,13 +359,13 @@ A detailed explanation of each variable can be accessed with -h (help) option:
 eMIRNA.Refiner_novel Usage Instructions:
 eMIRNA.Refiner_novel [options]
 Input:
-  -g                                             PATH to Referenfe Genome GTF Annotation file
-  -p                                             PATH to List of Predicted microRNA candidates by eMIRNA
-  -b                                             PATH to BED microRNAs output file from eMIRNA.Hunter_denovo
-  -f                                             PATH to FASTA microRNAs output file from eMIRNA.Hunter_denovo
-  -o                                             PATH to desired output folder
-  -x                                             Desired Name string for output files
-  -h                                             Display help page
+  -g                                                     PATH to Referenfe Genome GTF Annotation file
+  -p                                                     PATH to List of Predicted microRNA candidates by eMIRNA
+  -b                                                     PATH to BED microRNAs output file from eMIRNA.Hunter_denovo
+  -f                                                     PATH to FASTA microRNAs output file from eMIRNA.Hunter_denovo
+  -o                                                     PATH to desired output folder
+  -x                                                     Desired Name string for output files
+  -h                                                     Display help page
 Output:
   <x>_Predicted_miRNAs_annotated.bed             BED file output with eMIRNA Predicted already Annotated miRNAs
   <x>_Predicted_miRNAs_NON_annotated.bed         BED file output with eMIRNA Predicted Novel miRNAs
