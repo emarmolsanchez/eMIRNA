@@ -73,7 +73,7 @@ Example of usage:
 
 `eMIRNA.Filter.by.Size("PATH to Negative FASTA file", "Neg", 50, 100)`
 
-Once the eMIRNA.Filter.by.Size function has run, a new folder named eMIRNA will have been created at your computer $HOME, with a subfolder, inside eMIRNA/ folder, called FilterSize_Results/, in which a FASTA file named Pos/Neg_filter_size.fa will be generated with the results of running the function.
+Once the eMIRNA.Filter.by.Size function has run, a new folder named `eMIRNA` will have been created at your computer `$HOME`, with a subfolder, inside `eMIRNA/` folder, called `FilterSize_Results/`, in which a FASTA file named `Pos/Neg_filter_size.fa` will be generated with the results of running the function.
 
 &nbsp;
 
