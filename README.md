@@ -213,18 +213,18 @@ A detailed explanation of each variable can be accessed with -h (help) option:
 eMIRNA.Hunter Usage Instructions:
 eMIRNA.Hunter [options]
 Input:
- -r	PATH to Referenfe Genome Bowtie Index
- -f	PATH to Reference Genome FASTA file
- -o	PATH to desired output folder
- -x	Desired Name string for output files
- -u	Upwards number of bases for pre-miRNA reconstruction (30-60 bp recommended)
- -b	Backwards number of bases for pre-miRNA reconstruction (1-10 bp recommended)
- -h	Display help page
+ -r	                             PATH to Referenfe Genome Bowtie Index
+ -f	                             PATH to Reference Genome FASTA file
+ -o	                             PATH to desired output folder
+ -x	                             Desired Name string for output files
+ -u	                             Upwards number of bases for pre-miRNA reconstruction (30-60 bp recommended)
+ -b	                             Backwards number of bases for pre-miRNA reconstruction (1-10 bp recommended)
+ -h	                             Display help page
 Output:
- <x>.sam			SAM file output from Bowtie miRNA alignment
- <x>.log				LOG file output from Bowtie miRNA alignment
- <x>_homolog_miRNAs.bed	BED file output with candidate pre-miRNAs for prediction
- <x>_homolog_miRNAs.fa	FASTA file output with candidate pre-miRNAs for prediction
+ <x>.sam			                      SAM file output from Bowtie miRNA alignment
+ <x>.log				                     LOG file output from Bowtie miRNA alignment
+ <x>_homolog_miRNAs.bed	         BED file output with candidate pre-miRNAs for prediction
+ <x>_homolog_miRNAs.fa	          FASTA file output with candidate pre-miRNAs for prediction
  
  ```
 
@@ -319,20 +319,20 @@ A detailed explanation of each variable can be accessed with -h (help) option:
 eMIRNA.Seeker Usage Instructions:
 eMIRNA.Seeker [options]
 Input:
- -g	PATH to Referenfe Genome GTF Annotation file
- -i	PATH to Model Organism microRNA GFF Annotation file
- -p	PATH to List of Predicted microRNA candidates by eMIRNA
- -b	PATH to BED Homolog microRNAs output file from eMIRNA.Hunter
- -d	Mb window for between-species Neighbouring Genes Contrast (2-5 recommended)
- -s	Name of species of interest (scientific name in lower case, e.g. hsapiens)
- -m	Name of model species for contrast (scientific name in lower case, e.g. hsapiens)
- -o	PATH to desired output folder
- -x	Desired Name string for output files
- -h	Display help page
+ -g	                                      PATH to Referenfe Genome GTF Annotation file
+ -i	                                      PATH to Model Organism microRNA GFF Annotation file
+ -p	                                      PATH to List of Predicted microRNA candidates by eMIRNA
+ -b	                                      PATH to BED Homolog microRNAs output file from eMIRNA.Hunter
+ -d	                                      Mb window for between-species Neighbouring Genes Contrast (2-5 recommended)
+ -s	                                      Name of species of interest (scientific name in lower case, e.g. sscrofa)
+ -m	                                      Name of reference species for contrast (scientific name in lower case, e.g. hsapiens)
+ -o	                                      PATH to desired output folder
+ -x	                                      Desired Name string for output files
+ -h	                                      Display help page
 Output:
-<x>_Predicted_miRNAs_annotated.bed		BED file output with eMIRNA Predicted already Annotated miRNAs
-<x>_Predicted_miRNAs_NON_annotated.bed	BED file output with eMIRNA Predicted Novel miRNAs
-<x>_Putative_Predicted_miRNAs.txt		TXT file output with Putative miRNA Candidates filtered by Neighbouring Score
+<x>_Predicted_miRNAs_annotated.bed		      BED file output with eMIRNA Predicted already Annotated miRNAs
+<x>_Predicted_miRNAs_NON_annotated.bed	   BED file output with eMIRNA Predicted Novel miRNAs
+<x>_Putative_Predicted_miRNAs.txt		       TXT file output with Putative miRNA Candidates filtered by Neighbouring Score
 
 ```
 
@@ -362,7 +362,7 @@ Input:
   -g                                             PATH to Referenfe Genome GTF Annotation file
   -p                                             PATH to List of Predicted microRNA candidates by eMIRNA
   -b                                             PATH to BED microRNAs output file from eMIRNA.Hunter_denovo
-  -f		                                         PATH to FASTA microRNAs output file from eMIRNA.Hunter_denovo
+  -f		                                           PATH to FASTA microRNAs output file from eMIRNA.Hunter_denovo
   -o                                             PATH to desired output folder
   -x                                             Desired Name string for output files
   -h                                             Display help page
