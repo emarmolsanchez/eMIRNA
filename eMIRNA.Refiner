@@ -1,0 +1,160 @@
+#! usr/bin/sh
+
+while getopts :g:i:p:b:d:s:m:o:x:h option
+
+do
+
+case "${option}"
+
+in
+
+g) GTF=${OPTARG};;
+i) miRNA=${OPTARG};;
+p) PRED=${OPTARG};;
+b) HOM=${OPTARG};;
+d) DIST=$OPTARG;;
+s) SP=${OPTARG};;
+m) MODEL=${OPTARG};;
+o) OUT=${OPTARG};;
+x) X=$OPTARG;;
+
+\?) echo ""
+echo "Invalid option -$OPTARG, please use -h to see instructions"
+    exit 1;;
+h|\?) echo ""
+echo "eMIRNA.Refiner Usage Instructions:
+
+eMIRNA.Refiner [options]
+
+Input:
+  -g                                        PATH to Referenfe Genome GTF Annotation file
+  -i                                        PATH to Contrast Organism microRNA GFF Annotation file
+  -p                                        PATH to List of Predicted microRNA candidates by eMIRNA
+  -b                                        PATH to BED Homolog microRNAs output file from eMIRNA.Hunter
+  -d                                        Mb window for between-species Neighbouring Genes Contrast (2-5 recommended)
+  -s                                        Name of species of interest (scientific name in lower case, e.g. hsapiens)
+  -m                                        Name of contrast species (scientific name in lower case, e.g. hsapiens)
+  -o                                        PATH to desired output folder
+  -x                                        Desired Name string for output files
+  -h                                        Display help page
+
+Output:
+  <x>_Predicted_miRNAs_annotated.bed        BED file output with eMIRNA Predicted already Annotated miRNAs
+  <x>_Predicted_miRNAs_NON_annotated.bed    BED file output with eMIRNA Predicted Novel miRNAs
+  <x>_Putative_Predicted_miRNAs.txt         TXT file output with Putative miRNA Candidates filtered by Neighbouring Score"
+
+      exit 0;;
+:) echo ""
+   echo "Error while executing eMiRNA.Hunter!! Option -$OPTARG requires an argument."
+   exit 1;;
+
+esac
+
+done
+
+
+#Prepare GTF reference
+
+grep miRNA $GTF > $OUT${X}_temp1.gtf
+awk '$3 == "gene" {print $0}' $OUT${X}_temp1.gtf > $OUT${X}_temp2.gtf
+awk '{FS="\t"}{OFS="\t"}{print $1,$4,$5,$9,1,$7}' $OUT${X}_temp2.gtf > $OUT${X}_temp3.bed
+
+
+# Generate .bed from predicted miRNAs
+
+awk 'NR==FNR{c[$1]++;next};c[$4]>0' $PRED $HOM | sort -k1,1V -k2,2n > $OUT${X}_temp4.bed
+
+
+# Generate .bed for annotated and unannotated predicted miRNAs
+
+bedtools intersect -wa -s -a $OUT${X}_temp4.bed -b $OUT${X}_temp3.bed | sort -k1,1V -k2,2n > $OUT${X}_Predicted_miRNAs_annotated.bed
+
+bedtools intersect -wa -s -v -a $OUT${X}_temp4.bed -b $OUT${X}_temp3.bed | sort -k1,1V -k2,2n > $OUT${X}_Predicted_miRNAs_NON_annotated.bed
+
+
+# Elongate positions in no annotated miRNAs for neighbourhood seeking
+
+awk -vd="$DIST"000000 '{FS="\t"}{OFS="\t"}{if($2 > d) print $1,$2-d,$3+d,$4; else print $1,1,$3+d,$4}' $OUT${X}_Predicted_miRNAs_NON_annotated.bed | sed 's/-mock3p//g' | sed 's/-mock5p//' > $OUT${X}_temp6.bed
+
+sort-bed $OUT${X}_temp6.bed > $OUT${X}_temp7.bed
+
+awk 'NR==FNR {a[$4]++} NR!=FNR && a[$4]==1' $OUT${X}_temp7.bed $OUT${X}_temp7.bed > $OUT${X}_temp7.2.bed
+
+
+# Prepare reference model miRNA annotation
+
+sed 's/;/\t/g' $miRNA | sed 's/Name=//g' | grep -v "#" | awk '{FS="\t"}{OFS="\t"}{print $1,$2,$3,$4,$5,$6,$7,$8,$11}' > $OUT${X}_temp9.bed
+
+
+awk '{FS="\t"}{OFS="\t"}{if($3 == "miRNA") print $0}' $OUT${X}_temp9.bed | awk '{FS="\t"}{OFS="\t"}{print $1,$4,$5,$9}' | sed 's/chr//g' > $OUT${X}_temp10.bed
+
+
+# Elongate positions in model miRNAs annotation for neighbourhood seeking
+
+awk -vd="$DIST"000000 '{FS="\t"}{OFS="\t"}{if($2 > d) print $1,$2-d,$3+d,$4; else print $1,1,$3+d,$4}' $OUT${X}_temp10.bed > $OUT${X}_temp11.bed
+
+sort-bed $OUT${X}_temp11.bed > $OUT${X}_temp12.bed
+
+
+# Contrast predicted unannotated miRNAs with model miRNA annotation
+
+awk '{print $4}' $OUT${X}_temp7.2.bed | sed 's/_homolog//g' > $OUT${X}_temp13.txt
+
+awk 'NR==FNR{c[$1]++;next};c[$4]>0' $OUT${X}_temp13.txt $OUT${X}_temp12.bed > $OUT${X}_temp14.bed
+
+awk 'NR==FNR { a[$4]++ } NR!=FNR && a[$4]==1' $OUT${X}_temp14.bed $OUT${X}_temp14.bed > $OUT${X}_temp14.2.bed
+
+sed 's/_homolog//g' $OUT${X}_temp7.2.bed > $OUT${X}_temp7.3.bed
+
+awk 'NR==FNR{c[$4]++;next};c[$4]>0' $OUT${X}_temp14.2.bed $OUT${X}_temp7.3.bed > $OUT${X}_temp7.4.bed
+
+
+
+
+# Extract genes in predicted miRNAs neighbourhood and in model miRNA annotation
+
+Rscript eMIRNA_biomaRt_calc.R $OUT $X $SP $MODEL
+
+sed 's/_homolog//g' $OUT${X}_temp15.txt | sed 's/RF[0-9]*,//g' | sed 's/,RF[0-9]*//g' | sed 's/,,/,/g' > $OUT${X}_temp17.txt
+
+
+# Count matching genes in neighbourhoods
+
+awk -v s="," '{OFS="\t"} NR==FNR {a[$1]=s $2 s; next} {c=0; n=split($2,b,s); for(i=1;i<=n;i++) c+=(a[$1] ~ s b[i] s); print $1,c}' $OUT${X}_temp16.txt $OUT${X}_temp17.txt > $OUT${X}_temp18.txt
+
+
+# Select predicted miRNAs with common model miRNA neighbourhood 
+
+awk '{FS="\t"}{OFS="\t"}{if($2 > 1) print $1}' $OUT${X}_temp18.txt | sed 's/r/R/g' > $OUT${X}_temp19.txt
+
+
+# Count gene number in interval
+
+awk -F '[\t,]' '{print $1, NF-1}' $OUT${X}_temp17.txt | sed 's/r/R/g' | sed 's/ /\t/g' > $OUT${X}_temp19.2.txt
+
+paste $OUT${X}_temp18.txt $OUT${X}_temp19.2.txt | awk '{FS=OFS="\t"}{print $1,$2,$4}' > $OUT${X}_temp19.3.txt
+
+awk '{FS="\t"}{OFS="\t"}{if($2 > 1) print $1,$2/$3}' $OUT${X}_temp19.3.txt > $OUT${X}_temp19.4.txt
+
+
+# Extract predicted miRNAs with coincidential neighbouring genes
+
+awk '{FS="\t"}{OFS="\t"}{print $1,$2,$3,$4,$6}' $OUT${X}_Predicted_miRNAs_NON_annotated.bed | sed 's/-mock3p//g' | sed 's/-mock5p//g' | sed 's/_homolog//g' > $OUT${X}_temp20.txt
+
+echo -e "Chr\tStart\tEnd\tStrand\tmiRNA\tNeighbourhood_Score" > $OUT${X}_temp21.txt
+
+awk 'NR==FNR{c[$1]++;next};c[$4]>0' $OUT${X}_temp19.4.txt $OUT${X}_temp20.txt > $OUT${X}_temp22.txt
+
+sort $OUT${X}_temp19.4.txt > $OUT${X}_temp23.txt
+
+sort -k4,4 $OUT${X}_temp22.txt > $OUT${X}_temp24.txt
+
+paste $OUT${X}_temp23.txt $OUT${X}_temp24.txt | awk '{FS=OFS="\t"}{print $3,$4,$5,$7,$6,$2}' | sort -V > $OUT${X}_temp25.txt
+
+cat $OUT${X}_temp21.txt $OUT${X}_temp25.txt > $OUT${X}_temp26.txt
+
+sed 's/hsa/ssc/g' $OUT${X}_temp26.txt | sed 's/-5p//g' | sed 's/-3p//' > $OUT${X}_Putative_Predicted_miRNAs.txt
+
+
+rm $OUT*temp*
+
