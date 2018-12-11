@@ -11,6 +11,10 @@ The eMIRNA pipeline makes use of a Machine Learning approach based on Support Ve
 
 &nbsp;
 
+![alt text](https://github.com/emarmolsanchez/eMIRNA/bin/Diagrama_eMIRNA.png)
+
+&nbsp;
+
 ## Prerequisites
 
 The following R libraries are required for running the eMIRNA pipeline:
