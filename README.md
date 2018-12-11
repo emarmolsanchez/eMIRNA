@@ -402,6 +402,12 @@ Once the eMIRNA.Structural.Pvalues has run, a new .csv file called `Candidates_S
 
 &nbsp;
 
+## Contact
+
+emilio.marmol@cragenomica.es
+
+&nbsp;
+
 ## References
 
 **[1]** Lorenz R, Bernhart SH, Höner zu Siederdissen C, Tafer H, Flamm C, Stadler PF, et al. ViennaRNA Package 2.0. Algorithms Mol Biol. 2011;6:26. doi:10.1186/1748-7188-6-26.
@@ -429,11 +435,4 @@ Once the eMIRNA.Structural.Pvalues has run, a new .csv file called `Candidates_S
 **[12]** Chawla N V., Bowyer KW, Hall LO, Kegelmeyer WP. SMOTE: Synthetic Minority Over-sampling Technique. J Artif Intell Res. 2011. doi:10.1613/jair.953.
 
 **[13]** Jiang M, Anderson J, Gillespie J, Mayne M. uShuffle: A useful tool for shuffling biological sequences while preserving the k-let counts. BMC Bioinformatics. 2008;9:192. doi:10.1186/1471-2105-9-192.
-
-
-&nbsp;
-
-## Contact
-
-emilio.marmol@cragenomica.es
 
