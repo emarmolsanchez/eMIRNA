@@ -430,3 +430,10 @@ Once the eMIRNA.Structural.Pvalues has run, a new .csv file called `Candidates_S
 
 **[13]** Jiang M, Anderson J, Gillespie J, Mayne M. uShuffle: A useful tool for shuffling biological sequences while preserving the k-let counts. BMC Bioinformatics. 2008;9:192. doi:10.1186/1471-2105-9-192.
 
+
+&nbsp;
+
+## Contact
+
+emilio.marmol@cragenomica.es
+
