@@ -200,16 +200,18 @@ Once the function has run, eMIRNA.Train will create a SVM classifier capable to 
 
 ## eMIRNA.Hunter
 
-Once we have trained our model for predicting new microRNA candidates, we will have to test its performance and discovery ability to classify non previously annotated microRNAs in our species of interest. The eMIRNA.Hunter module is an auxiliar BASH script developed to obtain pre-miRNA candidate sequences to classify, by making use of an homology-based recovery from previously annotated microRNAs in reference species, in order to find orthologous sequences in our less annotated species under study.
+Once we have trained our model for predicting new microRNA candidates, we will have to test its performance and discovery ability to classify non previously annotated microRNAs in our species of interest. The eMIRNA.Hunter module is an auxiliar BASH script developed to obtain pre-miRNA candidate sequences to classify, making use of an homology-based recovery from previously annotated microRNAs in reference species, in order to find orthologous sequences in our less annotated species under study.
 
 The eMIRNA.Hunter script implements Bowtie [5] for the alignment of mature microRNA annotated sequences in reference species like humans or rodents, to find orthologous regions in the genome of our species of interest, reconstructing pre-miRNA sequences from mature microRNAs and generating a FASTA and BED files for the candidates to be classified by the previously trained SVM algorithm.
 
-This module requires four arguments:
+This module requires six arguments:
 
 + PATH to Reference Genome Bowtie Index of our species of interest.
 + PATH to FASTA file of selected reference organism mature microRNAs.
 + PATH to desired output.
 + Desired output prefix name.
++ Upwards number of bases for pre-miRNA reconstruction
++ Backwards number of bases for pre-miRNA reconstruction
 
 A detailed explanation of each variable can be accessed with -h (help) option:
 
