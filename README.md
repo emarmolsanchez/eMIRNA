@@ -36,7 +36,7 @@ The following programs are required for running the eMIRNA pipeline:
 + Fasta_ushuffle (https://github.com/agordon/fasta_ushuffle)
 
 
-All the executables should be stored at computer $PATH in order to be run properly.
+All the executables should be stored at computer `$PATH` in order to be run properly.
 
 &nbsp;
 
