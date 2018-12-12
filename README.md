@@ -182,7 +182,7 @@ Example of usage:
 
 `SVM = eMIRNA.Train(Pos, Neg, imbalance=”smote”)`
 
-It is important that when running the SVM training process, both Positive and Negative matrices have a balanced number of sequences to evaluate, keeping the number of positive and negative sequences to be similar, in order to avoid an overrepresentation of one of the two classes. To overcome this problem, eMIRNA.Trains implements a series of imbalance correction methods available. If required, eMIRNA.Train will first perform a Noise Reduction A Priori Synthetic correction (NRAS) of input features, as reported by Rivera W [6], followed by the preferred method to over-sampling the minority class to correct class-imbalance biases. Available methods are (adasyn, bdlsmote1, bdlsmote2, mwmote, ros, rwo, slsmote, smote):
+It is important that when running the SVM training process, both Positive and Negative matrices have a balanced number of sequences to evaluate, keeping the number of positive and negative sequences to be similar, in order to avoid an overrepresentation of one of the two classes. To overcome this problem, eMIRNA.Train implements a series of imbalance correction methods available. If required, eMIRNA.Train will first perform a Noise Reduction A Priori Synthetic correction (NRAS) of input features, as reported by Rivera W [6], followed by the preferred method to over-sampling the minority class to correct class-imbalance biases. Available methods are (adasyn, bdlsmote1, bdlsmote2, mwmote, ros, rwo, slsmote, smote):
 
 + ADASYN: Adaptive Synthetic Sampling [7]
 + BDLSMOTE: borderline-SMOTE1 and borderline-SMOTE2 [8]
