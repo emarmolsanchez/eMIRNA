@@ -363,8 +363,8 @@ This module requires six arguments:
 A detailed explanation of each variable can be accessed with -h (help) option:
 
 ```
-eMIRNA.Refiner_novel Usage Instructions:
-eMIRNA.Refiner_novel [options]
+eMIRNA.Refiner_denovo Usage Instructions:
+eMIRNA.Refiner_denovo [options]
 Input:
   -g                                             PATH to Referenfe Genome GTF Annotation file
   -p                                             PATH to List of Predicted microRNA candidates by eMIRNA
@@ -400,7 +400,7 @@ Example of usage:
 
 By default, eMIRNA.Structural.Pvalues will perform 100 random shuffling iterations over each provided sequence. Users can set their desired number of iterations, but should be aware of computing times required for iterating and folding of secondary structures for each sequence. As computing costs can exponentially increase with higher number of iterations, we encourge users to set their desired range of iterations between 100 and 1000, depending on the number of candidate sequences to be analysed.
 
-Once the eMIRNA.Structural.Pvalues has run, a new .csv file called `Candidates_Structural_Pvalues.csv` will be generated at `/Prediction_Results` folder, containing calculated MFE and EFE Structural Pvalues for each candidates sequence. Users can then select those sequences with a significantly stable secondary structure folding as sequences having higher probability of have been properly profiled and predicted (i.e. *P*-values < 0.05).
+Once the eMIRNA.Structural.Pvalues has run, a new .csv file called `Candidates_Structural_Pvalues.csv` will be generated at `/Prediction_Results` folder, containing calculated MFE and EFE Structural *P*-values for each candidates sequence. Users can then select those sequences with a significantly stable secondary structure folding as sequences having higher probability to have been properly profiled and predicted (i.e. *P*-values < 0.05).
 
 &nbsp;
 
