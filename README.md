@@ -241,7 +241,7 @@ eMIRNA.Hunter Usage Instructions:
 eMIRNA.Hunter [options]
 Input:
  -r	                                  PATH to Referenfe Genome Bowtie Index
- -f	                                  PATH to Reference Genome FASTA file
+ -f	                                  PATH to Reference FASTA file
  -o	                                  PATH to desired output folder
  -x	                                  Desired Name string for output files
  -u	                                  Upwards number of bases for pre-miRNA reconstruction (30-60 bp recommended)
