@@ -5,6 +5,10 @@ eMIRNA is a comprehensive and user-friendly R-based pipeline for predicting and 
 &nbsp;
 &nbsp;
 
+-------------------------------
+
+# Index
+
 - [Introduction](https://github.com/emarmolsanchez/eMIRNA#Introduction)
 - [Prerrequisites](https://github.com/emarmolsanchez/eMIRNA#Prerrequisites)
 - [Positive and Negative Datasets](https://github.com/emarmolsanchez/eMIRNA#Positive#and#Negative#Datasets)
