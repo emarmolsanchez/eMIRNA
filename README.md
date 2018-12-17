@@ -22,6 +22,8 @@ eMIRNA is a comprehensive and user-friendly R-based pipeline for predicting and 
 - [eMIRNA.Refiner](https://github.com/emarmolsanchez/eMIRNA/#emirnarefiner)
 - [eMIRNA.Refiner_denovo](https://github.com/emarmolsanchez/eMIRNA/#emirnarefiner_denovo)
 - [eMIRNA.Structural.Pvalues](https://github.com/emarmolsanchez/eMIRNA/#emirnastructuralpvalues)
+- [References](https://github.com/emarmolsanchez/eMIRNA/#references)
+- [Contact](https://github.com/emarmolsanchez/eMIRNA/#contact)
 
 &nbsp;
 &nbsp;
