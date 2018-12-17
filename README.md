@@ -9,10 +9,10 @@ eMIRNA is a comprehensive and user-friendly R-based pipeline for predicting and 
 
 ## Index
 
-- [Introduction](https://github.com/emarmolsanchez/eMIRNA/##Introduction)
-- [Prerrequisites](https://github.com/emarmolsanchez/eMIRNA/##Prerrequisites)
-- [Positive and Negative Datasets](https://github.com/emarmolsanchez/eMIRNA#Positive#and#Negative#Datasets)
-- [eMIRNA.Filter.by.Size](https://github.com/emarmolsanchez/eMIRNA#eMIRNA.Filter.by.Size)
+- [Introduction](https://github.com/emarmolsanchez/eMIRNA/#introduction)
+- [Prerrequisites](https://github.com/emarmolsanchez/eMIRNA/#prerrequisites)
+- [Positive and Negative Datasets](https://github.com/emarmolsanchez/eMIRNA/#positive-and-negative-datasets)
+- [eMIRNA.Filter.by.Size](https://github.com/emarmolsanchez/eMIRNA/#emirnafilterbysize)
 - [eMIRNA.Filter.by.Structure](https://github.com/emarmolsanchez/eMIRNA#eMIRNA.Filter.by.Structure)
 - [eMIRNA.Features](https://github.com/emarmolsanchez/eMIRNA#eMIRNA.Features)
 - [eMIRNA.Train](https://github.com/emarmolsanchez/eMIRNA#eMIRNA.Train)
