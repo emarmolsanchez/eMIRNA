@@ -5,7 +5,22 @@ eMIRNA is a comprehensive and user-friendly R-based pipeline for predicting and 
 &nbsp;
 &nbsp;
 
-[Introduction](https://github.com/emarmolsanchez/eMIRNA#Introduction)
+- [Introduction](https://github.com/emarmolsanchez/eMIRNA#Introduction)
+- [Prerrequisites](https://github.com/emarmolsanchez/eMIRNA#Prerrequisites)
+- [Positive and Negative Datasets](https://github.com/emarmolsanchez/eMIRNA#Positive and Negative Datasets)
+- [eMIRNA.Filter.by.Size](https://github.com/emarmolsanchez/eMIRNA#eMIRNA.Filter.by.Size)
+- [eMIRNA.Filter.by.Structure](https://github.com/emarmolsanchez/eMIRNA#eMIRNA.Filter.by.Structure)
+- [eMIRNA.Features](https://github.com/emarmolsanchez/eMIRNA#eMIRNA.Features)
+- [eMIRNA.Train](https://github.com/emarmolsanchez/eMIRNA#eMIRNA.Train)
+- +MIRNA.Hunter](https://github.com/emarmolsanchez/eMIRNA#eMIRNA.Hunter)
+[eMIRNA.Hunter_denovo](https://github.com/emarmolsanchez/eMIRNA#eMIRNA.Hunter_denovo)
+[eMIRNA.Predict](https://github.com/emarmolsanchez/eMIRNA#eMIRNA.Predict)
+[eMIRNA.Refiner](https://github.com/emarmolsanchez/eMIRNA#eMIRNA.Refiner)
+[eMIRNA.Refiner_denovo](https://github.com/emarmolsanchez/eMIRNA#eMIRNA.Refiner_denovo)
+[eMIRNA.Structural.Pvalues](https://github.com/emarmolsanchez/eMIRNA#eMIRNA.Structural.Pvalues)
+
+&nbsp;
+&nbsp;
 
 ## Introduction
 
