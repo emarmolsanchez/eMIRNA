@@ -10,18 +10,18 @@ eMIRNA is a comprehensive and user-friendly R-based pipeline for predicting and 
 ## Index
 
 - [Introduction](https://github.com/emarmolsanchez/eMIRNA/#introduction)
-- [Prerrequisites](https://github.com/emarmolsanchez/eMIRNA/#prerrequisites)
+- [Prerrequisites](https://github.com/emarmolsanchez/eMIRNA/#prerequisites)
 - [Positive and Negative Datasets](https://github.com/emarmolsanchez/eMIRNA/#positive-and-negative-datasets)
 - [eMIRNA.Filter.by.Size](https://github.com/emarmolsanchez/eMIRNA/#emirnafilterbysize)
-- [eMIRNA.Filter.by.Structure](https://github.com/emarmolsanchez/eMIRNA#eMIRNA.Filter.by.Structure)
-- [eMIRNA.Features](https://github.com/emarmolsanchez/eMIRNA#eMIRNA.Features)
-- [eMIRNA.Train](https://github.com/emarmolsanchez/eMIRNA#eMIRNA.Train)
-- [eMIRNA.Hunter](https://github.com/emarmolsanchez/eMIRNA#eMIRNA.Hunter)
-- [eMIRNA.Hunter_denovo](https://github.com/emarmolsanchez/eMIRNA#eMIRNA.Hunter_denovo)
-- [eMIRNA.Predict](https://github.com/emarmolsanchez/eMIRNA#eMIRNA.Predict)
-- [eMIRNA.Refiner](https://github.com/emarmolsanchez/eMIRNA#eMIRNA.Refiner)
-- [eMIRNA.Refiner_denovo](https://github.com/emarmolsanchez/eMIRNA#eMIRNA.Refiner_denovo)
-- [eMIRNA.Structural.Pvalues](https://github.com/emarmolsanchez/eMIRNA#eMIRNA.Structural.Pvalues)
+- [eMIRNA.Filter.by.Structure](https://github.com/emarmolsanchez/eMIRNA/#emirnafilterbystructure)
+- [eMIRNA.Features](https://github.com/emarmolsanchez/eMIRNA/#emirnafeatures)
+- [eMIRNA.Train](https://github.com/emarmolsanchez/eMIRNA/#emirnatrain)
+- [eMIRNA.Hunter](https://github.com/emarmolsanchez/eMIRNA/#emirnahunter)
+- [eMIRNA.Hunter_denovo](https://github.com/emarmolsanchez/eMIRNA/#emirnahunter_denovo)
+- [eMIRNA.Predict](https://github.com/emarmolsanchez/eMIRNA/#emirnapredict)
+- [eMIRNA.Refiner](https://github.com/emarmolsanchez/eMIRNA/#emirnarefiner)
+- [eMIRNA.Refiner_denovo](https://github.com/emarmolsanchez/eMIRNA/#emirnarefiner_denovo)
+- [eMIRNA.Structural.Pvalues](https://github.com/emarmolsanchez/eMIRNA/#emirnastructuralpvalues)
 
 &nbsp;
 &nbsp;
