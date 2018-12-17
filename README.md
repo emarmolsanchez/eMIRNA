@@ -7,7 +7,7 @@ eMIRNA is a comprehensive and user-friendly R-based pipeline for predicting and 
 
 -------------------------------
 
-# Index
+## Index
 
 - [Introduction](https://github.com/emarmolsanchez/eMIRNA#Introduction)
 - [Prerrequisites](https://github.com/emarmolsanchez/eMIRNA#Prerrequisites)
