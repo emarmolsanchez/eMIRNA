@@ -65,7 +65,7 @@ All the executables should be stored at computer `$PATH` in order to be run prop
 
 ## Positive and Negative Datasets
 
-Training the eMIRNA Classifier requires two FASTA files with **Positive** and **Negative** sequences.
+Training the **eMIRNA** Classifier requires two FASTA files with **Positive** and **Negative** sequences.
 
 The **Positive Sequences** must correspond to those sequences annotated as microRNA genes in the available Reference Genome for the species under study. GTF annotation and FASTA files for corresponding transcripts can be downloaded from the Ensembl repositories available at http://www.ensembl.org/info/data/ftp/index.html.
 
@@ -100,7 +100,7 @@ Example of usage:
 
 `eMIRNA.Filter.by.Size("PATH to Negative FASTA file", "Neg", 50, 100)`
 
-Once the eMIRNA.Filter.by.Size function has run, a new folder named `eMIRNA` will have been created at your computer `$HOME`, with a subfolder, inside `eMIRNA/` folder, called `FilterSize_Results/`, in which a FASTA file named `Pos/Neg_filter_size.fa` will be generated with the results of running the function.
+Once the eMIRNA.Filter.by.Size function has run, a new folder named `eMIRNA/` will have been created at your computer `$HOME`, with a subfolder, inside `eMIRNA/` folder, called `FilterSize_Results/`, in which a FASTA file named `Pos/Neg_filter_size.fa` will be generated with the results of running the function.
 
 &nbsp;
 
