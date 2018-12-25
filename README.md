@@ -278,7 +278,7 @@ The eMIRNA.Hunter_denovo module is a modified versión of eMIRNA.Hunter module, 
 
 Users should provide a properly collapsed FASTA file with smallRNA-seq sequences from canonical FASTQ sequence files. The FASTQ files should be quality-check filtered and sequencing adaptor trimmed before running any available collapser tool, e.g. FASTQ collapser from FASTX-toolkit (http://hannonlab.cshl.edu/fastx_toolkit/index.html) for collapsing FASTQ files into FASTA files with uniquely represented sequences.
 
-Users are encouraged to perform a pre-filtering process of the collapsed FASTA file to retain sequences between 18-25 nucleotides in length, corresponding to the average length of mature miRNAs. The eMIRNA.Filter.by.Size function could be use for this purpose.
+Users are encouraged to perform a pre-filtering process of the collapsed FASTA file to retain sequences between 18-25 nucleotides in length, corresponding to the average length of mature miRNAs. The eMIRNA.Filter.by.Size function could be used for this purpose.
 
 A detailed explanation of each variable can be accessed with -h (help) option:
 
