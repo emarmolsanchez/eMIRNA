@@ -403,7 +403,7 @@ Output:
   
   ```
 
-After successfully running the eMIRNA.Refiner_denovo script, a BED file will have been created at predefined output PATH, containing the most relevant putative novel non-annotated microRNAs, and their estimated positions. Besides, a BED files containing already annotated detected candidates and FASTA file with correspondent candidate sequences will be generated.
+After successfully running the eMIRNA.Refiner_denovo script, a BED file will have been created at predefined output `PATH`, containing the most relevant putative novel non-annotated microRNAs, and their estimated positions. Besides, a BED files containing already annotated detected candidates and FASTA file with correspondent candidate sequences will be generated.
 
 &nbsp;
 
