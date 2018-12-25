@@ -366,7 +366,7 @@ Output:
 
 ```
 
-After successfully running the eMIRNA.Refiner script, a .txt file will have been created at predefined output PATH, containing the most relevant putative novel non-annotated microRNAs, their estimated positions and corresponding Neighbouring Score. Besides, two BED files, containing novel and annotated candidates will be generated.
+After successfully running the eMIRNA.Refiner script, a .txt file will have been created at predefined output `PATH`, containing the most relevant putative novel non-annotated microRNAs, their estimated positions and corresponding Neighbouring Score. Besides, two BED files, containing novel and annotated candidates will be generated.
 
 &nbsp;
 
