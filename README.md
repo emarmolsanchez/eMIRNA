@@ -419,7 +419,7 @@ This module requires three arguments:
 
 Example of usage:
 
-`eMIRNA.Structural.Pvalues(“Candidates_Predicted_miRNAs_NON_annotated.fa”, “Candidates”, 100)`
+`eMIRNA.Structural.Pvalues(“~/eMIRNA/Candidates_Predicted_miRNAs_NON_annotated.fa”, “Candidates”, 100)`
 
 By default, eMIRNA.Structural.Pvalues will perform 100 random shuffling iterations over each provided sequence. Users can set their desired number of iterations, but should be aware of computing times required for iterating and folding of secondary structures for each sequence. As computing costs can exponentially increase with higher number of iterations, we encourge users to set their desired range of iterations between 100 and 1000, depending on the number of candidate sequences to be analysed.
 
