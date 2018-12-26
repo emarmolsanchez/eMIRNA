@@ -209,11 +209,11 @@ It is important that when running the SVM training process, both Positive and Ne
 
 + ADASYN: Adaptive Synthetic Sampling [7]
 + BDLSMOTE: borderline-SMOTE1 and borderline-SMOTE2 [8]
-+ MWMOTE: Majority Weighted Minority Over-Sampling TEchnique [9]
++ MWMOTE: Majority Weighted Minority Over-Sampling Technique [9]
 + ROS: Random Over-Sampling
 + RWO: Random Walk Over-Sampling [10]
 + SLSMOTE: Safe-Level-SMOTE [11]
-+ SMOTE: Synthetic Minority Over-Sampling TEchnique [12]
++ SMOTE: Synthetic Minority Over-Sampling Technique [12]
 
 By default, eMIRNA.Train will not perform any class-imbalance correction, but users are imperiously advised to do so, otherwise the training process could suffer.
 
