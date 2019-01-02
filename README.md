@@ -246,7 +246,7 @@ Input:
  -f                                     PATH to Reference FASTA file
  -o                                     PATH to desired output folder
  -x                                     Desired Name string for output files
- -u                                     Upwards number of bases for pre-miRNA reconstruction (30-80 bp recommended, 60-80 for CNNC motif correction)
+ -u                                     Upwards number of bases for pre-miRNA reconstruction (30-80 bp recommended, 70-80 for CNNC motif correction)
  -b                                     Backwards number of bases for pre-miRNA reconstruction (1-10 bp recommended, 20-30 for UG motif correction)
  -h                                     Display help page
 Output:
@@ -296,7 +296,7 @@ Input:
   -f                               PATH to Collapsed smallRNA-seq FASTA file
   -o                               PATH to desired output folder
   -x                               Desired Name string for output files
-  -u                               Upwards number of bases for pre-miRNA reconstruction (30-80 bp recommended, 60-80 for CNNC motif correction)
+  -u                               Upwards number of bases for pre-miRNA reconstruction (30-80 bp recommended, 70-80 for CNNC motif correction)
   -b                               Backwards number of bases for pre-miRNA reconstruction (1-10 bp recommended, 20-30 for UG motif correction)
   -h                               Display help page
 Output:
