@@ -28,8 +28,8 @@ Input:
   -f                         PATH to Reference FASTA file
   -o                         PATH to desired output folder
   -x                         Desired Name string for output files
-  -u                         Upwards number of bases for pre-miRNA reconstruction (30-80 bp recommended)
-  -b                         Backwards number of bases for pre-miRNA reconstruction (1-10 bp recommended)
+  -u                         Upwards number of bases for pre-miRNA reconstruction (30-80 bp recommended, 60-80 for CNNC motif correction)
+  -b                         Backwards number of bases for pre-miRNA reconstruction (1-10 bp recommended, 20-30 for UG motif correction)
   -h                         Display help page
 
 Output:
@@ -103,7 +103,25 @@ cat $OUT${X}_miRNAs_+_3p_final.bed $OUT${X}_miRNAs_+_5p_final.bed $OUT${X}_miRNA
 
 bedtools getfasta -fi $REF.fa -bed $OUT${X}_homolog_miRNAs.bed -s -name -fo $OUT${X}_homolog_miRNAs.fa
 
+
+#Correcting positions by UG and CNNC motifs and getting new FASTA and BED
+
+for i in $OUT${X}_homolog_miRNAs.fa; do rev $i | awk '/^[A-Z]/ {print match($1, "C[A-Z][A-Z]")+17}' > $OUT${X}_temp1; done
+
+for i in $OUT${X}_homolog_miRNAs.fa; do awk '/^[A-Z]/ {print match($1, "TG")+14}' $i > $OUT${X}_temp2; done
+
+paste $OUT${X}_homolog_miRNAs.bed $OUT${X}_temp1 $OUT${X}_temp2 > $OUT${X}_temp3
+
+awk '{FS=OFS="\t"}{print $1,$2+$7,$3-$8,$4,$5,$6}' $OUT${X}_temp3 > $OUT${X}_temp4.bed
+
+awk '$3>$2 {print $0}' $OUT${X}_temp4.bed > $OUT${X}_homolog_miRNAs_corrected.bed
+
+bedtools getfasta -fi $REF.fa -bed $OUT${X}_homolog_miRNAs_corrected.bed -s -name -fo $OUT${X}_homolog_miRNAs_corrected.fa
+
+
+
 rm $OUT${X}_miRNAs_*
+rm $OUT${X}_temp*
 
 
 
