@@ -1,0 +1,111 @@
+#! usr/bin/sh
+
+
+while getopts :r:f:o:x:u:b:h option
+
+do
+
+case "${option}"
+
+in
+
+r) REF=${OPTARG};;
+f) FASTA=${OPTARG};;
+o) OUT=${OPTARG};;
+x) X=$OPTARG;;
+u) UP=$OPTARG;;
+b) BACK=$OPTARG;;
+\?) echo ""
+echo "Invalid option -$OPTARG, please use -h to see instructions"
+    exit 1;;
+h|\?) echo ""
+echo "eMIRNA.Hunter_denovo Usage Instructions:
+
+eMIRNA.Hunter_denovo [options]
+
+Input:
+  -r                      PATH to Referenfe Genome Bowtie Index
+  -f                      PATH to Collapsed smallRNA-seq FASTA file
+  -o                      PATH to desired output folder
+  -x                      Desired Name string for output files
+  -u                      Upwards number of bases for pre-miRNA reconstruction (30-80 bp recommended, 60-80 for CNNC motif correction)
+  -b                      Backwards number of bases for pre-miRNA reconstruction (1-10 bp recommended, 20-30 for UG motif correction)
+  -h                      Display help page
+
+Output:
+  <x>.sam                 SAM file output from Bowtie miRNA alignment
+  <x>.log                 LOG file output from Bowtie miRNA alignment
+  <x>_miRNAs.bed          BED file output with candidate pre-miRNAs for prediction
+  <x>_miRNAs.fa           FASTA file output with candidate pre-miRNAs for prediction"
+
+      exit 0;;
+:) echo ""
+   echo "Error while executing eMiRNA.Hunter_denovo!! Option -$OPTARG requires an argument."
+   exit 1;;
+
+esac
+
+done
+
+
+
+#Alignig miRNA sequences with Reference Genome Bowtie Index
+
+bowtie -f -p 16 -n 1 -l 10 -m 100 -k 1 --best --strata $REF $FASTA -S $OUT$X.sam 2>$OUT$X.log
+
+#Filtering aligned sequencies in SAM
+
+awk '{FS="\t"}{OFS="\t"} $2 == 0 {print $1,$3,$4,$4+length($10)}' $OUT$X.sam > $OUT${X}_miRNAs_+.bed
+
+awk '{FS="\t"}{OFS="\t"} $2 == 16 {print $1,$3,$4,$4+length($10)}' $OUT$X.sam > $OUT${X}_miRNAs_-.bed
+
+
+# Adjusting positions
+
+awk '!/5p|3p/{print $0}' $OUT${X}_miRNAs_-.bed > $OUT${X}_miRNAs_-_nobranch.bed
+
+awk '!/5p|3p/{print $0}' $OUT${X}_miRNAs_+.bed > $OUT${X}_miRNAs_+_nobranch.bed
+
+
+awk -vup="$UP" -vback="$BACK" '{FS="\t"}{OFS="\t"}{print $2,$3-up,$4+back,$1"-mock3p","1","+"}' $OUT${X}_miRNAs_+_nobranch.bed > $OUT${X}_miRNAs_+_3p_branched_final.bed
+
+awk -vup="$UP" -vback="$BACK" '{FS="\t"}{OFS="\t"}{print $2,$3-back,$4+up,$1"-mock5p","1","+"}' $OUT${X}_miRNAs_+_nobranch.bed > $OUT${X}_miRNAs_+_5p_branched_final.bed
+
+awk -vup="$UP" -vback="$BACK" '{FS="\t"}{OFS="\t"}{print $2,$3-up,$4+back,$1"-mock5p","1","-"}' $OUT${X}_miRNAs_-_nobranch.bed > $OUT${X}_miRNAs_-_5p_branched_final.bed
+
+awk -vup="$UP" -vback="$BACK" '{FS="\t"}{OFS="\t"}{print $2,$3-back,$4+up,$1"-mock3p","1","-"}' $OUT${X}_miRNAs_-_nobranch.bed > $OUT${X}_miRNAs_-_3p_branched_final.bed
+
+
+
+
+#Generating .bed
+
+cat $OUT${X}_miRNAs_+_3p_branched_final.bed $OUT${X}_miRNAs_+_5p_branched_final.bed $OUT${X}_miRNAs_-_3p_branched_final.bed $OUT${X}_miRNAs_-_5p_branched_final.bed | sort -V > $OUT${X}_miRNAs.bed
+
+
+#Generating FASTA file from .bed
+
+bedtools getfasta -fi $REF.fa -bed $OUT${X}_miRNAs.bed -s -name -fo $OUT${X}_miRNAs.fa
+
+
+#Correcting positions by UG and CNNC motifs and getting new FASTA and BED
+
+for i in $OUT${X}_miRNAs.fa; do rev $i | awk '/^[A-Z]/ {print match($1, "C[A-Z][A-Z]")+17}' > $OUT${X}_temp1; done
+
+for i in $OUT${X}_miRNAs.fa; do awk '/^[A-Z]/ {print match($1, "TG")+14}' $i > $OUT${X}_temp2; done
+
+paste $OUT${X}_miRNAs.bed $OUT${X}_temp1 $OUT${X}_temp2 > $OUT${X}_temp3
+
+awk '{FS=OFS="\t"}{print $1,$2+$7,$3-$8,$4,$5,$6}' $OUT${X}_temp3 > $OUT${X}_temp4.bed
+
+awk '$3>$2 {print $0}' $OUT${X}_temp4.bed > $OUT${X}_miRNAs_corrected.bed
+
+bedtools getfasta -fi $REF.fa -bed $OUT${X}_miRNAs_corrected.bed -s -name -fo $OUT${X}_miRNAs_corrected.fa
+
+
+
+rm $OUT${X}_miRNAs_+_*
+rm $OUT${X}_miRNAs_-_*
+
+
+
