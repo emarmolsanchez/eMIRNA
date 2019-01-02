@@ -242,20 +242,20 @@ A detailed explanation of each variable can be accessed with -h (help) option:
 eMIRNA.Hunter Usage Instructions:
 eMIRNA.Hunter [options]
 Input:
- -r	                                  PATH to Referenfe Genome Bowtie Index
- -f	                                  PATH to Reference FASTA file
- -o	                                  PATH to desired output folder
- -x	                                  Desired Name string for output files
- -u	                                  Upwards number of bases for pre-miRNA reconstruction (30-80 bp recommended, 60-80 for CNNC motif correction)
- -b	                                  Backwards number of bases for pre-miRNA reconstruction (1-10 bp recommended, 20-30 for UG motif correction)
- -h	                                  Display help page
+ -r                                     PATH to Referenfe Genome Bowtie Index
+ -f                                     PATH to Reference FASTA file
+ -o                                     PATH to desired output folder
+ -x                                     Desired Name string for output files
+ -u                                     Upwards number of bases for pre-miRNA reconstruction (30-80 bp recommended, 60-80 for CNNC motif correction)
+ -b                                     Backwards number of bases for pre-miRNA reconstruction (1-10 bp recommended, 20-30 for UG motif correction)
+ -h                                     Display help page
 Output:
- <x>.sam                                  SAM file output from Bowtie miRNA alignment
- <x>.log                                  LOG file output from Bowtie miRNA alignment
- <x>_homolog_miRNAs.bed                   BED file output with candidate pre-miRNAs for prediction
- <x>_homolog_miRNAs.fa                    FASTA file output with candidate pre-miRNAs for prediction
- <x>_homolog_miRNAs_corrected.bed         BED file output with motif corrected candidate pre-miRNAs for prediction
- <x>_homolog_miRNAs_corrected.fa          FASTA file output with motif corrected candidate pre-miRNAs for prediction
+ <x>.sam                                SAM file output from Bowtie miRNA alignment
+ <x>.log                                LOG file output from Bowtie miRNA alignment
+ <x>_homolog_miRNAs.bed                 BED file output with candidate pre-miRNAs for prediction
+ <x>_homolog_miRNAs.fa                  FASTA file output with candidate pre-miRNAs for prediction
+ <x>_homolog_miRNAs_corrected.bed       BED file output with motif corrected candidate pre-miRNAs for prediction
+ <x>_homolog_miRNAs_corrected.fa        FASTA file output with motif corrected candidate pre-miRNAs for prediction
  
  ```
 
@@ -305,7 +305,7 @@ Output:
   <x>_miRNAs.bed                   BED file output with candidate pre-miRNAs for prediction
   <x>_miRNAs.fa                    FASTA file output with candidate pre-miRNAs for prediction
   <x>_miRNAs_corrected.bed         BED file output with motif corrected candidate pre-miRNAs for prediction
-  <x>_miRNAs_corrected.fa           FASTA file output with motif corrected candidate pre-miRNAs for prediction
+  <x>_miRNAs_corrected.fa          FASTA file output with motif corrected candidate pre-miRNAs for prediction
   
   ```
 
@@ -461,7 +461,7 @@ Once the eMIRNA.Structural.Pvalues has run, a new .csv file called `Candidates_S
 
 **[12]** Chawla N V., Bowyer KW, Hall LO, Kegelmeyer WP. SMOTE: Synthetic Minority Over-sampling Technique. J Artif Intell Res. 2011. doi:10.1613/jair.953.
 
-**[13]** Auyeung VC, Ulitsky I, McGeary SE, Bartel DP. Beyond secondary structure: primary-sequence determinants license pri-miRNA hairpins for processing. Cell. 2013;152:844–58. doi:10.1016/j.cell.2013.01.031. 
+**[13]** Auyeung VC, Ulitsky I, McGeary SE, Bartel DP. Beyond secondary structure: primary-sequence determinants license pri-miRNA hairpins for processing. Cell. 2013;152:844–58. doi:10.1016/j.cell.2013.01.031.
 
 **[14]** Jiang M, Anderson J, Gillespie J, Mayne M. uShuffle: A useful tool for shuffling biological sequences while preserving the k-let counts. BMC Bioinformatics. 2008;9:192. doi:10.1186/1471-2105-9-192.
 
