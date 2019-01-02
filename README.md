@@ -274,7 +274,7 @@ After successfully running eMIRNA.Hunter script, six files will have been create
 
 Once the FASTA file with pre-miRNA candidates has been generated, users must process this sequences by following the previously described steps for eMIRNA pipeline, in order to obtain a Feature matrix representing those candidate sequences that will then be subjected to classification by the SVM trained algorithm.
 
-Optionally, users can subject the motif corrected FASTA file for further prediction, taking into consideration that not all miRNAs would be processed following motif detection and thus some novel candidates may be missed, as reported by Auyeung *et al.* 2013 [13].
+Optionally, users can subject the motif corrected FASTA file for further prediction, taking into consideration that not all miRNAs would be processed following motif detection and thus some novel candidates may be missed. On the contrary, a much more accurate positioning for pre-miRNA candidates where delimiting motifs had been successfully detected wil be calculated, as reported by Auyeung *et al.* 2013 [13].
 
 &nbsp;
 
