@@ -73,7 +73,7 @@ The **Negative Sequences** must correspond to non-coding sequences other than mi
 
 In the event that no Reference Genome or no good microRNA or non-coding transcripts are available for downloading, we strongly recommend to choose sequences from the closest phylogenetically related reference species with available genome annotation for training the model, otherwise the results can suffer from low reliability.
 
-Both Positive and Negative datasets must be in linear FASTA format. Should you have multilinear FASTA files, they should be converted to linear FASTA files. Users can use the following perl command:
+Both Positive and Negative datasets must be in linear FASTA format. Should you have multilinear FASTA files, they should be converted to linear FASTA files. Users can implement the following perl command:
 
 `perl -pe '/^>/ ? print "\n" : chomp' in.fa | tail -n +2 > out.fa`
 
@@ -205,7 +205,7 @@ Example of usage:
 
 `SVM = eMIRNA.Train(Pos, Neg, imbalance=”smote”)`
 
-It is important that when running the SVM training process, both Positive and Negative matrices have a balanced number of sequences to evaluate, keeping the number of positive and negative sequences to be similar, in order to avoid an overrepresentation of one of the two classes. To overcome this problem, eMIRNA.Train implements a series of imbalance correction methods. If required, eMIRNA.Train will first perform a Noise Reduction A Priori Synthetic correction (NRAS) of input features, as reported by Rivera W [6], followed by the preferred method to over-sampling the minority class to correct class-imbalance biases. Available methods are (adasyn, bdlsmote1, bdlsmote2, mwmote, ros, rwo, slsmote, smote):
+It is important that when running the SVM training process, both Positive and Negative matrices have a balanced number of sequences to evaluate, keeping the number of positive and negative sequences to be similar, in order to avoid any overrepresentation of one of the two classes. To overcome this issue, eMIRNA.Train implements a series of imbalance correction methods. If required, eMIRNA.Train will first perform a Noise Reduction A Priori Synthetic correction (NRAS) of input features, as reported by Rivera W [6], followed by the preferred method to over-sampling the minority class to correct class-imbalance biases. Available methods are (adasyn, bdlsmote1, bdlsmote2, mwmote, ros, rwo, slsmote, smote):
 
 + ADASYN: Adaptive Synthetic Sampling [7]
 + BDLSMOTE: borderline-SMOTE1 and borderline-SMOTE2 [8]
@@ -274,7 +274,7 @@ After successfully running eMIRNA.Hunter script, six files will have been create
 
 Once the FASTA file with pre-miRNA candidates has been generated, users must process this sequences by following the previously described steps for eMIRNA pipeline, in order to obtain a Feature matrix representing those candidate sequences that will then be subjected to classification by the SVM trained algorithm.
 
-Optionally, users can subject the motif corrected FASTA file for further prediction, taking into consideration that not all miRNAs would be processed following motif detection and thus some novel candidates may be missed. On the contrary, a much more accurate positioning for pre-miRNA candidates where delimiting motifs had been successfully detected wil be calculated, as reported by Auyeung *et al.* 2013 [13].
+Optionally, users can subject the motif corrected FASTA file for further prediction, taking into consideration that not all miRNAs would be processed following motif detection and thus some novel candidates may be missed. On the contrary, a much more accurate positioning for pre-miRNA candidates where delimiting motifs had been successfully detected wil be calculated, as reported by Auyeung *et al.* [13].
 
 &nbsp;
 
@@ -347,7 +347,7 @@ This module requires nine arguments:
 + PATH to desired output.
 + Desired output prefix name.
 
-Users should check genome availability at biomaRt repositories by using the the following R code:
+Users should check the genome availability at biomaRt repositories by using the the following R code:
 
 `mart = useMart('ensembl')`, followed by `listDatasets(mart)`
 
@@ -411,7 +411,7 @@ Output:
   
   ```
 
-After successfully running the eMIRNA.Refiner_denovo script, a BED file will have been created at predefined output `PATH`, containing the most relevant putative novel non-annotated microRNAs, and their estimated positions. Besides, a BED files containing already annotated detected candidates and FASTA file with correspondent candidate sequences will be generated.
+After successfully running the eMIRNA.Refiner_denovo script, a BED file will have been created at predefined output `PATH`, containing the most relevant putative novel non-annotated microRNAs, and their estimated positions. Besides, a BED file containing already annotated detected candidates and FASTA file with correspondent candidate sequences will be generated.
 
 &nbsp;
 
