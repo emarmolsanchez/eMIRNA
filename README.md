@@ -69,9 +69,9 @@ Training the **eMIRNA** Classifier requires two FASTA files with **Positive** an
 
 The **Positive Sequences** must correspond to those sequences annotated as microRNA genes in the available Reference Genome for the species under study. GTF annotation and FASTA files for corresponding transcripts can be downloaded from the Ensembl repositories available at http://www.ensembl.org/info/data/ftp/index.html.
 
-The **Negative Sequences** must correspond to non-coding sequences other than microRNA genes in the available Reference Genome for the species under study. GTF annotation and FASTA files for corresponding transcripts cand be downloaded from the Ensembl repositories available at http://www.ensembl.org/info/data/ftp/index.html.
+The **Negative Sequences** must correspond to non-coding sequences other than microRNA genes in the available Reference Genome for the species under study. GTF annotation and FASTA files for corresponding transcripts can be downloaded from the Ensembl repositories available at http://www.ensembl.org/info/data/ftp/index.html.
 
-In the event that no Reference Genome or no good microRNA or non-coding transcripts are available for downloading, we strongly recommend to choose sequences from the closest phylogenetically related reference species with available genome annotation for training the model, otherwise the results can suffer from low reliability.
+In the event that no Reference Genome or no good microRNA or non-coding transcripts are available for downloading, we strongly recommend choosing sequences from the closest phylogenetically related reference species with available genome annotation for training the model, otherwise the results can suffer from low reliability.
 
 Both Positive and Negative datasets must be in linear FASTA format. Should you have multilinear FASTA files, they should be converted to linear FASTA files. Users can implement the following perl command:
 
@@ -83,7 +83,7 @@ where `in.fa` corresponds to multilinear FASTA file, and `out.fa` is the resulti
 
 ## eMIRNA.Filter.by.Size
 
-The first eMIRNA module makes use of previous Positive and Negative FASTA files, to perform an initial filtering process based on sequence length. Tipically, microRNA genes range from 50 to 150 nucleotides long. Our first aim would be to filter the selected sequences based on expected microRNA genes length. We will apply this function to both Positive and Negative FASTA files. The Positive sequences should not experience any filtering upon this process, if correctly generated. For Negative sequences, all long non-coding sequences will be removed from our Negative FASTA file, retaining only those sequences resembling microRNA genes in length, according to estabished thresholds.
+The first eMIRNA module makes use of previous Positive and Negative FASTA files, to perform an initial filtering process based on sequence length. Typically, microRNA genes range from 50 to 150 nucleotides long. Our first aim would be to filter the selected sequences based on expected microRNA genes length. We will apply this function to both Positive and Negative FASTA files. The Positive sequences should not experience any filtering upon this process, if correctly generated. For Negative sequences, all long non-coding sequences will be removed from our Negative FASTA file, retaining only those sequences resembling microRNA genes in length, according to established thresholds.
 
 This function requires four arguments:
 
@@ -92,7 +92,7 @@ This function requires four arguments:
 + Lower length filtering threshold.
 + Upper length filtering threshold.
 
-We recomend to set 50 nucleotides for lower length threshold, and 150 for the upper, but users can define their own limit thresholds.
+We recommend setting 50 nucleotides as lower length threshold, and 150 for the upper, but users can define their own limit thresholds.
 
 Example of usage:
 
@@ -106,7 +106,7 @@ Once the eMIRNA.Filter.by.Size function has run, a new folder named `eMIRNA/` wi
 
 ## eMIRNA.Filter.by.Structure
 
-The second eMIRNA module aims to estimate the secondary folding structure of selected filtered sequences both in Positive and Negative datasets, thus filtering out all sequences that do not ressemble a pre-miRNA hairpin-like secondary structure. The eMIRNA.Filter.by.Structure function will make use of RNAfold [1] program to calculate the estimated secondary folding structure, which should be available in your computer `$PATH` to be correctly executed. Tipically, microRNA genes have a characteristic secondary structure, composed by two stems joined by complementarity and one terminal loop, forming a hairpin-like secondary structure. Some bubbles or bulges can appear within the two stems, belonging to non-paired nucleotides in the sequence.
+The second eMIRNA module aims to estimate the secondary folding structure of selected filtered sequences both in Positive and Negative datasets, thus filtering out all sequences that do not ressemble a pre-miRNA hairpin-like secondary structure. The eMIRNA.Filter.by.Structure function will make use of RNAfold [1] program to calculate the estimated secondary folding structure, which should be available in your computer `$PATH` to be correctly executed. Typically, microRNA genes have a characteristic secondary structure, composed by two stems joined by complementarity and one terminal loop, forming a hairpin-like secondary structure. Some bubbles or bulges can appear within the two stems, belonging to non-paired nucleotides in the sequence.
 
 This function requires two arguments:
 
@@ -125,7 +125,7 @@ Once the eMIRNA.Filter.by.Structure has run, a new folder named `FilterSstructur
 
 ## eMIRNA.Features
 
-The third eMIRNA module aims to calculate a series of structural, statistical and sequence-derived features from each sequence that had passed previous filterings, in order to obtain an estimated representation of their structural characteristics. Afterwards, these feature matrix will be processed by the prediction software to discriminate between microRNAs and other type of sequences.
+The third eMIRNA module aims to calculate a series of structural, statistical and sequence-derived features from each sequence that had passed previous filtering, in order to obtain an estimated representation of their structural characteristics. Afterwards, these feature matrices will be processed by the prediction software to discriminate between microRNAs and other type of sequences.
 
 The function requires two arguments:
 
