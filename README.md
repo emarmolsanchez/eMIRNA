@@ -106,7 +106,7 @@ Once the eMIRNA.Filter.by.Size function has run, a new folder named `eMIRNA/` wi
 
 ## eMIRNA.Filter.by.Structure
 
-The second eMIRNA module aims to estimate the secondary folding structure of selected filtered sequences both in Positive and Negative datasets, thus filtering out all sequences that do not ressemble a pre-miRNA hairpin-like secondary structure. The eMIRNA.Filter.by.Structure function will make use of RNAfold [1] program to calculate the estimated secondary folding structure, which should be available in your computer `$PATH` to be correctly executed. Typically, microRNA genes have a characteristic secondary structure, composed by two stems joined by complementarity and one terminal loop, forming a hairpin-like secondary structure. Some bubbles or bulges can appear within the two stems, belonging to non-paired nucleotides in the sequence.
+The second eMIRNA module aims to estimate the secondary folding structure of selected filtered sequences both in Positive and Negative datasets, thus filtering out all sequences that do not ressemble a pre-miRNA hairpin-like secondary structure. The eMIRNA.Filter.by.Structure function will make use of RNAfold software [1] to calculate the estimated secondary folding structure, which should be available in your computer `$PATH` to be correctly executed. Typically, microRNA genes have a characteristic secondary structure, composed by two stems joined by complementarity and one terminal loop, forming a hairpin-like secondary structure. Some bubbles or bulges can appear within the two stems, belonging to non-paired nucleotides in the sequence.
 
 This function requires two arguments:
 
