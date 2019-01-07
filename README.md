@@ -52,10 +52,9 @@ The following R libraries are required for running the eMIRNA pipeline:
 
 The following programs are required for running the eMIRNA pipeline:
 + RNAfold [1] (https://www.tbi.univie.ac.at/RNA/)
-+ UNAFold [2] (https://github.com/rcallahan/UNAFold)
-+ Triplet-SVM [3] (http://www.bioinfo.au.tsinghua.edu.cn/mirnasvm/)
-+ BEDTools v2.27.0 [4] (https://bedtools.readthedocs.io/en/latest/)
-+ Bowtie [5] (https://mcardle.wisc.edu/mprime/help/bowtie/manual.html)
++ Triplet-SVM [2] (http://www.bioinfo.au.tsinghua.edu.cn/mirnasvm/)
++ BEDTools v2.27.0 [3] (https://bedtools.readthedocs.io/en/latest/)
++ Bowtie [4] (https://mcardle.wisc.edu/mprime/help/bowtie/manual.html)
 + Fasta_ushuffle (https://github.com/agordon/fasta_ushuffle)
 
 
@@ -127,7 +126,7 @@ Once the eMIRNA.Filter.by.Structure has run, a new folder named `FilterSstructur
 
 The third eMIRNA module aims to calculate a series of structural, statistical and sequence-derived features from each sequence that had passed previous filtering, in order to obtain an estimated representation of their structural characteristics. Afterwards, these feature matrices will be processed by the prediction software to discriminate between microRNAs and other type of sequences.
 
-A modified version of Triplet-SVM pipeline is implemented in the eMIRNA.Features module. Users must place Triplet-SVM perl scripts 1 to 3 (available at `bin/`), which should be located at `$PATH`, so as the function is properly executed. UNAfold melt perl script and RNAfold executables must also be available at `$PATH`.
+A modified version of Triplet-SVM pipeline is implemented in the eMIRNA.Features module. Users must place Triplet-SVM perl scripts 1 to 3 (available at `bin/`), which should be located at `$PATH`, so as the function is properly executed. RNAfold executable must also be installed and available at `$PATH`.
 
 The function requires two arguments:
 
@@ -142,7 +141,7 @@ Example of usage:
 
 Once the eMIRNA.Features has run, a new folder named `Features_Results/` will be created inside `eMIRNA/` folder, in which a .csv file called `Pos/Neg.csv` will be generated with the results of running the function.
 
-The eMIRNA.Features function includes the calculation of a total of 6 Sequence Features, comprising 55 variables, 8 Secondary Structure Features, comprising 23 variables, and 24 Structural Statistics. 
+The eMIRNA.Features function includes the calculation of a total of 6 Sequence Features, comprising 55 variables, 8 Secondary Structure Features, comprising 23 variables, and 16 Structural Statistics. 
 
 Sequence Features:
 
@@ -182,14 +181,6 @@ Structural Statistics:
 + MFE – EFE / Length (DiffMFE.EFE).
 + MFEadj / GC (MFEadj.GC).
 + MFEadj / BP (MFEadj.BP).
-+ MFE estimated by UNAFold [2] (dG).
-+ dG / Length (dGadj).
-+ Structural Entropy estimated by Melt function from UNAFold [2] (dS).
-+ dS / Length (dSadj).
-+ Structural Enthalpy estimated by Melt function (dH).
-+ dH / Length (dHadj).
-+ Fusion Temperature estimated by Melt function (dT).
-+ dT / Length (dTadj).
 
 &nbsp;
 
@@ -207,15 +198,15 @@ Example of usage:
 
 `SVM = eMIRNA.Train(Pos, Neg, imbalance=”smote”)`
 
-It is important that when running the SVM training process, both Positive and Negative matrices have a balanced number of sequences to evaluate, keeping the number of positive and negative sequences to be similar, in order to avoid any overrepresentation of one of the two classes. To overcome this issue, eMIRNA.Train implements a series of imbalance correction methods. If required, eMIRNA.Train will first perform a Noise Reduction A Priori Synthetic correction (NRAS) of input features, as reported by Rivera W [6], followed by the preferred method to over-sampling the minority class to correct class-imbalance biases. Available methods are (adasyn, bdlsmote1, bdlsmote2, mwmote, ros, rwo, slsmote, smote):
+It is important that when running the SVM training process, both Positive and Negative matrices have a balanced number of sequences to evaluate, keeping the number of positive and negative sequences to be similar, in order to avoid any overrepresentation of one of the two classes. To overcome this issue, eMIRNA.Train implements a series of imbalance correction methods. If required, eMIRNA.Train will first perform a Noise Reduction A Priori Synthetic correction (NRAS) of input features, as reported by Rivera W [5], followed by the preferred method to over-sampling the minority class to correct class-imbalance biases. Available methods are (adasyn, bdlsmote1, bdlsmote2, mwmote, ros, rwo, slsmote, smote):
 
-+ ADASYN: Adaptive Synthetic Sampling [7]
-+ BDLSMOTE: borderline-SMOTE1 and borderline-SMOTE2 [8]
-+ MWMOTE: Majority Weighted Minority Over-Sampling Technique [9]
++ ADASYN: Adaptive Synthetic Sampling [6]
++ BDLSMOTE: borderline-SMOTE1 and borderline-SMOTE2 [7]
++ MWMOTE: Majority Weighted Minority Over-Sampling Technique [8]
 + ROS: Random Over-Sampling
-+ RWO: Random Walk Over-Sampling [10]
-+ SLSMOTE: Safe-Level-SMOTE [11]
-+ SMOTE: Synthetic Minority Over-Sampling Technique [12]
++ RWO: Random Walk Over-Sampling [9]
++ SLSMOTE: Safe-Level-SMOTE [10]
++ SMOTE: Synthetic Minority Over-Sampling Technique [11]
 
 By default, eMIRNA.Train will not perform any class-imbalance correction, but users are imperiously advised to do so, otherwise the training process could suffer.
 
@@ -227,7 +218,7 @@ Once the function has run, eMIRNA.Train will create a SVM classifier capable to 
 
 Once we have trained our model for predicting new microRNA candidates, we will have to test its performance and discovery ability to classify non previously annotated microRNAs in our species of interest. The eMIRNA.Hunter module is an auxiliar BASH script developed to obtain pre-miRNA candidate sequences, making use of an homology-based recovery from previously annotated microRNAs in reference species, in order to find orthologous sequences in our less annotated species under study.
 
-The eMIRNA.Hunter script implements Bowtie [5] for the alignment of mature microRNA annotated sequences in reference species like humans or rodents, to find orthologous regions in the genome of our species of interest, reconstructing pre-miRNA sequences from mature microRNAs and generating a FASTA and BED files for the candidates to be classified by the previously trained SVM algorithm.
+The eMIRNA.Hunter script implements Bowtie [4] for the alignment of mature microRNA annotated sequences in reference species like humans or rodents, to find orthologous regions in the genome of our species of interest, reconstructing pre-miRNA sequences from mature microRNAs and generating a FASTA and BED files for the candidates to be classified by the previously trained SVM algorithm.
 
 This module requires six arguments:
 
@@ -263,7 +254,7 @@ Output:
 
 For achieving a successful cross-species alignment, it is very important that mature microRNA sequences FASTA file from reference organism are in DNA code, with Ts for Thymine and no Us for Uracil in RNA code. Please make sure that your mature microRNA sequences are in DNA code, otherwise the alignment process will fail.
 
-For generating Bowtie Index for your Reference Genome, please refer to Bowtie Manual [5].
+For generating Bowtie Index for your Reference Genome, please refer to Bowtie Manual [4].
 
 Example of usage:
 
@@ -285,7 +276,7 @@ After successfully running eMIRNA.Hunter script, six files will have been create
 
 Once the FASTA file with pre-miRNA candidates has been generated, users must process this sequences by following the previously described steps for eMIRNA pipeline, in order to obtain a Feature matrix representing those candidate sequences that will then be subjected to classification by the SVM trained algorithm.
 
-Optionally, users can subject the motif corrected FASTA file for further prediction, taking into consideration that not all miRNAs would be processed following motif detection and thus some novel candidates may be missed. On the contrary, a much more accurate positioning for pre-miRNA candidates where delimiting motifs had been successfully detected wil be calculated, as reported by Auyeung *et al.* [13].
+Optionally, users can subject the motif corrected FASTA file for further prediction, taking into consideration that not all miRNAs would be processed following motif detection and thus some novel candidates may be missed. On the contrary, a much more accurate positioning for pre-miRNA candidates where delimiting motifs had been successfully detected wil be calculated, as reported by Auyeung *et al.* [12].
 
 &nbsp;
 
@@ -448,7 +439,7 @@ After successfully running the eMIRNA.Refiner_denovo script, a BED file will hav
 
 ## eMIRNA.Structural.Pvalues
 
-Finally, after having obtained a list of putative novel pre-miRNA sequences by the aforementioned eMIRNA functions, users can analyse if the structural integrity of predicted pre-miRNAs can achieve a stable conformation at a statistically significant level. The eMIRNA.Structural.Pvalues function implements a n-randomization of provided sequences while mantaining k-let counts as described by Jiang *et al*. [14], using the fasta_ushuffle wrapper available at https://github.com/agordon/fasta_ushuffle. 
+Finally, after having obtained a list of putative novel pre-miRNA sequences by the aforementioned eMIRNA functions, users can analyse if the structural integrity of predicted pre-miRNAs can achieve a stable conformation at a statistically significant level. The eMIRNA.Structural.Pvalues function implements a n-randomization of provided sequences while mantaining k-let counts as described by Jiang *et al*. [13], using the fasta_ushuffle wrapper available at https://github.com/agordon/fasta_ushuffle. 
 
 This module requires three arguments:
 
@@ -470,31 +461,29 @@ Once the eMIRNA.Structural.Pvalues has run, a new .csv file called `Candidates_S
 
 **[1]** Lorenz R, Bernhart SH, Höner zu Siederdissen C, Tafer H, Flamm C, Stadler PF, et al. ViennaRNA Package 2.0. Algorithms Mol Biol. 2011;6:26. doi:10.1186/1748-7188-6-26.
 
-**[2]** Markham NR, Zuker M. UNAFold: software for nucleic acid folding and hybridization. Methods Mol Biol. 2008;453:3–31. doi:10.1007/978-1-60327-429-6_1.
+**[2]** Xue C, Li F, He T, Liu G-P, Li Y, Zhang X. Classification of real and pseudo microRNA precursors using local structure-sequence features and support vector machine. BMC Bioinformatics. 2005;6:310. doi:10.1186/1471-2105-6-310.
 
-**[3]** Xue C, Li F, He T, Liu G-P, Li Y, Zhang X. Classification of real and pseudo microRNA precursors using local structure-sequence features and support vector machine. BMC Bioinformatics. 2005;6:310. doi:10.1186/1471-2105-6-310.
+**[3]** Quinlan AR, Hall IM. BEDTools: a flexible suite of utilities for comparing genomic features. Bioinformatics. 2010;26:841–2. doi:10.1093/bioinformatics/btq033.
 
-**[4]** Quinlan AR, Hall IM. BEDTools: a flexible suite of utilities for comparing genomic features. Bioinformatics. 2010;26:841–2. doi:10.1093/bioinformatics/btq033.
+**[4]** Langmead B, Trapnell C, Pop M, Salzberg SL. Ultrafast and memory-efficient alignment of short DNA sequences to the human genome. Genome Biol. 2009;10:R25. doi:10.1186/gb-2009-10-3-r25.
 
-**[5]** Langmead B, Trapnell C, Pop M, Salzberg SL. Ultrafast and memory-efficient alignment of short DNA sequences to the human genome. Genome Biol. 2009;10:R25. doi:10.1186/gb-2009-10-3-r25.
+**[5]** Rivera WA. Noise Reduction A Priori Synthetic Over-Sampling for class imbalanced data sets. Inf Sci (Ny). 2017;408:146–61. doi:10.1016/J.INS.2017.04.046.
 
-**[6]** Rivera WA. Noise Reduction A Priori Synthetic Over-Sampling for class imbalanced data sets. Inf Sci (Ny). 2017;408:146–61. doi:10.1016/J.INS.2017.04.046.
+**[6]** Haibo He, Yang Bai, Garcia EA, Shutao Li. ADASYN: Adaptive synthetic sampling approach for imbalanced learning. In: 2008 IEEE International Joint Conference on Neural Networks(IEEE World Congress on Computational Intelligence). IEEE; 2008. p. 1322–8. doi:10.1109/IJCNN.2008.4633969.
 
-**[7]** Haibo He, Yang Bai, Garcia EA, Shutao Li. ADASYN: Adaptive synthetic sampling approach for imbalanced learning. In: 2008 IEEE International Joint Conference on Neural Networks(IEEE World Congress on Computational Intelligence). IEEE; 2008. p. 1322–8. doi:10.1109/IJCNN.2008.4633969.
+**[7]** Han H, Wang W-Y, Mao B-H. Borderline-SMOTE: A New Over-Sampling Method in Imbalanced Data Sets Learning. Springer, Berlin, Heidelberg; 2005. p. 878–87. doi:10.1007/11538059_91.
 
-**[8]** Han H, Wang W-Y, Mao B-H. Borderline-SMOTE: A New Over-Sampling Method in Imbalanced Data Sets Learning. Springer, Berlin, Heidelberg; 2005. p. 878–87. doi:10.1007/11538059_91.
+**[8]** Barua S, Islam MM, Yao X, Murase K. MWMOTE--Majority Weighted Minority Oversampling Technique for Imbalanced Data Set Learning. IEEE Trans Knowl Data Eng. 2014;26:405–25. doi:10.1109/TKDE.2012.232.
 
-**[9]** Barua S, Islam MM, Yao X, Murase K. MWMOTE--Majority Weighted Minority Oversampling Technique for Imbalanced Data Set Learning. IEEE Trans Knowl Data Eng. 2014;26:405–25. doi:10.1109/TKDE.2012.232.
+**[9]** Zhang H, Li M. RWO-Sampling: A random walk over-sampling approach to imbalanced data classification. Inf Fusion. 2014;20:99–116. doi:10.1016/J.INFFUS.2013.12.003.
 
-**[10]** Zhang H, Li M. RWO-Sampling: A random walk over-sampling approach to imbalanced data classification. Inf Fusion. 2014;20:99–116. doi:10.1016/J.INFFUS.2013.12.003.
+**[10]** Bunkhumpornpat C, Sinapiromsaran K, Lursinsap C. Safe-Level-SMOTE: Safe-Level-Synthetic Minority Over-Sampling TEchnique for Handling the Class Imbalanced Problem. Springer, Berlin, Heidelberg; 2009. p. 475–82. doi:10.1007/978-3-642-01307-2_43.
 
-**[11]** Bunkhumpornpat C, Sinapiromsaran K, Lursinsap C. Safe-Level-SMOTE: Safe-Level-Synthetic Minority Over-Sampling TEchnique for Handling the Class Imbalanced Problem. Springer, Berlin, Heidelberg; 2009. p. 475–82. doi:10.1007/978-3-642-01307-2_43.
+**[11]** Chawla N V., Bowyer KW, Hall LO, Kegelmeyer WP. SMOTE: Synthetic Minority Over-sampling Technique. J Artif Intell Res. 2011. doi:10.1613/jair.953.
 
-**[12]** Chawla N V., Bowyer KW, Hall LO, Kegelmeyer WP. SMOTE: Synthetic Minority Over-sampling Technique. J Artif Intell Res. 2011. doi:10.1613/jair.953.
+**[12]** Auyeung VC, Ulitsky I, McGeary SE, Bartel DP. Beyond secondary structure: primary-sequence determinants license pri-miRNA hairpins for processing. Cell. 2013;152:844–58. doi:10.1016/j.cell.2013.01.031.
 
-**[13]** Auyeung VC, Ulitsky I, McGeary SE, Bartel DP. Beyond secondary structure: primary-sequence determinants license pri-miRNA hairpins for processing. Cell. 2013;152:844–58. doi:10.1016/j.cell.2013.01.031.
-
-**[14]** Jiang M, Anderson J, Gillespie J, Mayne M. uShuffle: A useful tool for shuffling biological sequences while preserving the k-let counts. BMC Bioinformatics. 2008;9:192. doi:10.1186/1471-2105-9-192.
+**[13]** Jiang M, Anderson J, Gillespie J, Mayne M. uShuffle: A useful tool for shuffling biological sequences while preserving the k-let counts. BMC Bioinformatics. 2008;9:192. doi:10.1186/1471-2105-9-192.
 
 
 &nbsp;
