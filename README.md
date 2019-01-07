@@ -242,7 +242,7 @@ A detailed explanation of each variable can be accessed with -h (help) option:
 eMIRNA.Hunter Usage Instructions:
 eMIRNA.Hunter [options]
 Input:
- -r                                     PATH to Referenfe Genome Bowtie Index
+ -r                                     PATH to Species of interest Genome Bowtie Index
  -f                                     PATH to Reference FASTA file
  -o                                     PATH to desired output folder
  -x                                     Desired Name string for output files
@@ -262,6 +262,12 @@ Output:
 For achieving a successful cross-species alignment, it is very important that mature microRNA sequences FASTA file from reference organism are in DNA code, with Ts for Thymine and no Us for Uracil in RNA code. Please make sure that your mature microRNA sequences are in DNA code, otherwise the alignment process will fail.
 
 For generating Bowtie Index for your Reference Genome, please refer to Bowtie Manual [5].
+
+Example of usage:
+
+`bash eMIRNA.Hunter -r PATH_to_Bowtie_Index -f Hsapiens_mature_miRNAs.fa -o PATH_to_output_folder -x Candidates -u 70 -b 30`
+
+&nbsp;
 
 After successfully running eMIRNA.Hunter script, six files will have been created at predefined output PATH:
 
@@ -292,7 +298,7 @@ A detailed explanation of each variable can be accessed with -h (help) option:
 eMIRNA.Hunter_denovo Usage Instructions:
 eMIRNA.Hunter_denovo [options]
 Input:
-  -r                               PATH to Reference Genome Bowtie Index
+  -r                               PATH to Species of interest Genome Bowtie Index
   -f                               PATH to Collapsed smallRNA-seq FASTA file
   -o                               PATH to desired output folder
   -x                               Desired Name string for output files
@@ -308,6 +314,9 @@ Output:
   <x>_miRNAs_corrected.fa          FASTA file output with motif corrected candidate pre-miRNAs for prediction
   
   ```
+Example of usage:
+
+`bash eMIRNA.Hunter_denovo -r PATH_to_Bowtie_Index -f Small-RNAseq_collapsed_fastq.fa -o PATH_to_output_folder -x Candidates -u 70 -b 30`
 
 &nbsp;
  
