@@ -127,6 +127,8 @@ Once the eMIRNA.Filter.by.Structure has run, a new folder named `FilterSstructur
 
 The third eMIRNA module aims to calculate a series of structural, statistical and sequence-derived features from each sequence that had passed previous filtering, in order to obtain an estimated representation of their structural characteristics. Afterwards, these feature matrices will be processed by the prediction software to discriminate between microRNAs and other type of sequences.
 
+A modified version of Triplet-SVM pipeline is implemented in the eMIRNA.Features module. Users must place Triplet-SVM perl scripts 1 to 3 (available at `bin/`), which should be placed at `$PATH`, so as the function is properly executed. UNAfold melt perl script must also be available at `$PATH`.
+
 The function requires two arguments:
 
 + PATH to eMIRNA.Filter.by.Structure Positive or Negative FASTA output files.
