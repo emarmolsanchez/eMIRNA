@@ -24,7 +24,7 @@ echo "eMIRNA.Refiner_denovo Usage Instructions:
 eMIRNA.Refiner_denovo [options]
 
 Input:
-  -g                                        PATH to Referenfe Genome GTF Annotation file
+  -g                                        PATH to Species of interest Genome GTF Annotation file
   -p                                        PATH to List of Predicted microRNA candidates by eMIRNA
   -b                                        PATH to BED microRNAs output file from eMIRNA.Hunter_denovo
   -f					    PATH to FASTA microRNAs output file from eMIRNA.Hunter_denovo
