@@ -27,7 +27,7 @@ echo "eMIRNA.Refiner Usage Instructions:
 eMIRNA.Refiner [options]
 
 Input:
-  -g                                        PATH to Referenfe Genome GTF Annotation file
+  -g                                        PATH to Species of interest Genome GTF Annotation file
   -i                                        PATH to Reference Organism microRNA GFF Annotation file
   -p                                        PATH to List of Predicted microRNA candidates by eMIRNA
   -b                                        PATH to BED Homolog microRNAs output file from eMIRNA.Hunter
