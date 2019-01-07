@@ -73,7 +73,7 @@ The **Negative Sequences** must correspond to non-coding sequences other than mi
 
 In the event that no Reference Genome or no good microRNA or non-coding transcripts are available for downloading, we strongly recommend choosing sequences from the closest phylogenetically related reference species with available genome annotation for training the model, otherwise the results can suffer from low reliability.
 
-Both Positive and Negative datasets must be in linear FASTA format. Should you have multilinear FASTA files, they should be converted to linear FASTA files. Users can implement the following perl command:
+Both Positive and Negative datasets must be in linear FASTA format. Should you have multilinear FASTA files, they must be converted to linear FASTA files. Users can implement the following perl command:
 
 `perl -pe '/^>/ ? print "\n" : chomp' in.fa | tail -n +2 > out.fa`
 
