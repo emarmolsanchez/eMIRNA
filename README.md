@@ -265,7 +265,10 @@ For generating Bowtie Index for your Reference Genome, please refer to Bowtie Ma
 
 Example of usage:
 
-`bash eMIRNA.Hunter -r PATH_to_Bowtie_Index -f Hsapiens_mature_miRNAs.fa -o PATH_to_output_folder -x Candidates -u 70 -b 30`
+```
+bash eMIRNA.Hunter -r PATH_to_Bowtie_Index -f Hsapiens_mature_miRNAs.fa -o PATH_to_output_folder -x Candidates -u 70 -b 30
+
+```
 
 &nbsp;
 
@@ -316,7 +319,11 @@ Output:
   ```
 Example of usage:
 
-`bash eMIRNA.Hunter_denovo -r PATH_to_Bowtie_Index -f Small-RNAseq_collapsed_fastq.fa -o PATH_to_output_folder -x Candidates -u 70 -b 30`
+```
+
+bash eMIRNA.Hunter_denovo -r PATH_to_Bowtie_Index -f Small-RNAseq_collapsed_fastq.fa -o PATH_to_output_folder -x Candidates -u 70 -b 30
+
+```
 
 &nbsp;
  
