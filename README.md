@@ -96,9 +96,9 @@ We recommend setting 50 nucleotides as lower length threshold, and 150 for the u
 
 Example of usage:
 
-`eMIRNA.Filter.by.Size("PATH to Positive FASTA file", "Pos", 50, 100)`
+`eMIRNA.Filter.by.Size("PATH to Positive FASTA file", "Pos", 50, 150)`
 
-`eMIRNA.Filter.by.Size("PATH to Negative FASTA file", "Neg", 50, 100)`
+`eMIRNA.Filter.by.Size("PATH to Negative FASTA file", "Neg", 50, 150)`
 
 Once the eMIRNA.Filter.by.Size function has run, a new folder named `eMIRNA/` will have been created at your computer `$HOME`, with a subfolder, inside `eMIRNA/` folder, called `FilterSize_Results/`, in which a FASTA file named `Pos/Neg_filter_size.fa` will be generated with the results of running the function.
 
