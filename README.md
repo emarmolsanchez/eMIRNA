@@ -373,7 +373,7 @@ A detailed explanation of each variable can be accessed with -h (help) option:
 eMIRNA.Refiner Usage Instructions:
 eMIRNA.Refiner [options]
 Input:
- -g	                                      PATH to Referenfe Genome GTF Annotation file
+ -g	                                      PATH to Species of interest Genome GTF Annotation file
  -i	                                      PATH to Reference Organism microRNA GFF Annotation file
  -p	                                      PATH to List of Predicted microRNA candidates by eMIRNA
  -b	                                      PATH to BED Ortholog microRNAs output file from eMIRNA.Hunter
@@ -387,6 +387,12 @@ Output:
 <x>_Predicted_miRNAs_annotated.bed            BED file output with eMIRNA Predicted already Annotated miRNAs
 <x>_Predicted_miRNAs_NON_annotated.bed        BED file output with eMIRNA Predicted Novel miRNAs
 <x>_Putative_Predicted_miRNAs.txt             TXT file output with Putative miRNA Candidates filtered by Neighbouring Score
+
+```
+Example of usage:
+
+```
+bash eMIRNA.Refiner -g Sscrofa11.1.94.gtf -i Hsapiens_miRNA_mirbase.gff -p Candidates.txt -b Candidates_homolog_miRNAs_corrected.bed -d 2 -s sscrofa -m hsapiens -o PATH_to_output_folder -x Candidates
 
 ```
 
@@ -413,7 +419,7 @@ A detailed explanation of each variable can be accessed with -h (help) option:
 eMIRNA.Refiner_denovo Usage Instructions:
 eMIRNA.Refiner_denovo [options]
 Input:
-  -g                                             PATH to Referenfe Genome GTF Annotation file
+  -g                                             PATH to Species of interest Genome GTF Annotation file
   -p                                             PATH to List of Predicted microRNA candidates by eMIRNA
   -b                                             PATH to BED microRNAs output file from eMIRNA.Hunter_denovo
   -f                                             PATH to FASTA microRNAs output file from eMIRNA.Hunter_denovo
@@ -426,6 +432,13 @@ Output:
   <x>_Predicted_miRNAs_NON_annotated.fa          FASTA file output with eMIRNA Predicted Novel miRNAs
   
   ```
+
+Example of usage:
+
+```
+bash eMIRNA.Refiner_denovo -g Sscrofa11.1.94.gtf -p Candidates.txt -b Candidates_miRNAs_corrected.bed -f Candidates_miRNAs_corrected.fa -o PATH_to_output_folder -x Candidates
+
+```
 
 After successfully running the eMIRNA.Refiner_denovo script, a BED file will have been created at predefined output `PATH`, containing the most relevant putative novel non-annotated microRNAs, and their estimated positions. Besides, a BED file containing already annotated detected candidates and FASTA file with correspondent candidate sequences will be generated.
 
