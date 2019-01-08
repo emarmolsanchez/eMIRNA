@@ -32,7 +32,7 @@ Input:
   -p                                        PATH to List of Predicted microRNA candidates by eMIRNA
   -b                                        PATH to BED Homolog microRNAs output file from eMIRNA.Hunter
   -d                                        Mb window for between-species Neighbouring Genes Contrast (2-5 recommended)
-  -s                                        Name of species of interest (scientific name in lower case, e.g. hsapiens)
+  -s                                        Name of species of interest (scientific name in lower case, e.g. sscrofa)
   -m                                        Name of contrast species (scientific name in lower case, e.g. hsapiens)
   -o                                        PATH to desired output folder
   -x                                        Desired Name string for output files
