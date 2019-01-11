@@ -196,7 +196,7 @@ This function requires three arguments:
 
 Example of usage:
 
-`SVM = eMIRNA.Train(Pos, Neg, imbalance=”smote”)`
+`SVM = eMIRNA.Train(Pos, Neg, imbalance="smote")`
 
 It is important that when running the SVM training process, both Positive and Negative matrices have a balanced number of sequences to evaluate, keeping the number of positive and negative sequences to be similar, in order to avoid any overrepresentation of one of the two classes. To overcome this issue, eMIRNA.Train implements a series of imbalance correction methods. If required, eMIRNA.Train will first perform a Noise Reduction A Priori Synthetic correction (NRAS) of input features, as reported by Rivera W [5], followed by the preferred method to over-sampling the minority class to correct class-imbalance biases. Available methods are (adasyn, bdlsmote1, bdlsmote2, mwmote, ros, rwo, slsmote, smote):
 
@@ -332,7 +332,7 @@ This module requires three arguments:
 
 Example of usage:
 
-`eMIRNA.Predict(SVM, Candidates_Feature_Matirx, “Candidates”)`
+`eMIRNA.Predict(SVM, Candidates_Feature_Matirx, "Candidates")`
 
 Once the eMIRNA.Predict has run, a new folder named `Prediction_Results/` will be created inside `eMIRNA/` folder, in which a .txt file called `Candidates.txt` will be generated, containing a list of Sequence candidates names classified as putative pre-miRNAs by the SVM trained algorithm.
 
@@ -449,7 +449,7 @@ This module requires three arguments:
 
 Example of usage:
 
-`eMIRNA.Structural.Pvalues(“~/eMIRNA/Candidates_Predicted_miRNAs_NON_annotated.fa”, “Candidates”, 100)`
+`eMIRNA.Structural.Pvalues("~/eMIRNA/Candidates_Predicted_miRNAs_NON_annotated.fa", "Candidates", 100)`
 
 By default, eMIRNA.Structural.Pvalues will perform 100 random shuffling iterations over each provided sequence. Users can set their desired number of iterations, but should be aware of computing times required for iterating and folding of secondary structures for each sequence. As computing costs can exponentially increase with higher number of iterations, we encourge users to set their desired range of iterations between 100 and 1000, depending on the number of candidate sequences to be analysed.
 
