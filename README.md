@@ -222,7 +222,7 @@ The eMIRNA.Hunter script implements Bowtie [4] for the alignment of mature micro
 
 This module requires six arguments:
 
-+ PATH to Reference Genome Bowtie Index of our species of interest.
++ PATH to Reference Genome Bowtie Index from your species of interest.
 + PATH to FASTA file of selected reference organism mature microRNAs.
 + PATH to desired output.
 + Desired output prefix name.
