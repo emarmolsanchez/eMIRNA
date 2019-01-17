@@ -128,10 +128,13 @@ The third eMIRNA module aims to calculate a series of structural, statistical an
 
 A modified version of Triplet-SVM pipeline is implemented in the eMIRNA.Features module. Triplet-SVM perl scripts 1 to 3 (available at `bin/`) should be located at computer `$PATH`, so as the function is properly executed. RNAfold executable must also be installed and available at `$PATH`. All Triplet-SVM perl scripts should have execution permission allowed, which can easily be set with command `chmod 777`.
 
-The function requires two arguments:
+When running the eMIRNA.Features, rescaling of feature values will be implemented unless users specify otherwise (normalize = TRUE/FALSE). Features rescaling demonstrated better overall performance of trained SVM models to discriminate between miRNAs and other non-coding sequences. When dealing with poorly annotated species, which may be the case of a great number of users willing to implemente the eMIRNA pipeline for predicting novel miRNA candidates, users are advised to use the  
+
+The function requires three arguments:
 
 + PATH to eMIRNA.Filter.by.Structure Positive or Negative FASTA output files.
 + String with desired output prefix name.
++ Boolean for rescaling features matrix data (TRUE/FALSE).
 
 Example of usage:
 
