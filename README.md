@@ -24,6 +24,7 @@ eMIRNA is a comprehensive and user-friendly R-based pipeline for predicting and 
 - [eMIRNA.Structural.Pvalues](https://github.com/emarmolsanchez/eMIRNA/#emirnastructuralpvalues)
 - [References](https://github.com/emarmolsanchez/eMIRNA/#references)
 - [Contact](https://github.com/emarmolsanchez/eMIRNA/#contact)
+- [Notes](https://github.com/emarmolsanchez/eMIRNA/#notes)
 
 &nbsp;
 &nbsp;
@@ -494,3 +495,11 @@ Once the eMIRNA.Structural.Pvalues has run, a new .csv file called `Candidates_S
 ## Contact
 
 emilio.marmol@cragenomica.es
+
+&nbsp;
+
+## Notes
+
+- (01/18/2019) Matrix calculation bug was reported for some UNIX systems. New eMIRNA.features module was successfully tested and updated accordingly.
+
+- (01/11/2019) The UNAfold software seems to be no longer available for free download. Provided this setback, features depending on UNAfold melt functions were removed from eMIRNA.Features module. SVM algorithm performance assesment reported no appreciable drawbacks due to UNAfold features removal.
