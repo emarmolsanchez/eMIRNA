@@ -429,7 +429,7 @@ eMIRNA.Features <- function(file, prefix, normalize=TRUE){
     
     unlink("*.ps")
     unlink("*.txt")
-    unlink("*fa*")
+    unlink("*.fa*")
     
     table_1 <- table[, 1:32]
     table_2 <- table[, 33:94]
