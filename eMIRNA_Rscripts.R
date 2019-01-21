@@ -89,6 +89,7 @@ eMIRNA.Features <- function(file, prefix, normalize=TRUE){
   workdir <- "~/eMIRNA/Feature_Results/"
   setwd(workdir)
   message("Calculating Features")
+  if (substr(file, nchar(file)-16+1, nchar(file)) == '_filter_nloop.fa'){
   command1 <- paste0("RNAfold --MEA -d2 -p --noPS -i ", file)
   RNAfold1 <- system(command1, intern=TRUE)
   
@@ -452,6 +453,14 @@ eMIRNA.Features <- function(file, prefix, normalize=TRUE){
     write.table(table, final_table, sep=",", quote=F, col.names=NA)
     
     return(table)
+       
+                   
+  } else {
+    
+    stop("Input file is not a nloop filtered FASTA file.")
+    
+    
+ }
     
   
 }
