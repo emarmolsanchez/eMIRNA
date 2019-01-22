@@ -217,7 +217,7 @@ It is important that when running the SVM training process, both Positive and Ne
 
 By default, eMIRNA.Train will not perform any class-imbalance correction, but users are imperiously advised to do so, otherwise the training process could suffer.
 
-Once the function has run, eMIRNA.Train a new folder named `SVM_Results/` will be created inside `eMIRNA/` folder, in which two .csv files called `training.csv` and `testing.csv` will be generated with the results of splitting the original combined Postivie and Negative matrices. Besides, eMIRNA.Train module will create an `.rds` file with the SVM classifier capable to differentiate between microRNAs and other structurally microRNA-like non-coding RNAs.
+Once the function has run, a new folder named `SVM_Results/` will be created inside `eMIRNA/` folder, in which two .csv files called `training.csv` and `testing.csv` will be generated with the results of splitting the original combined Postivie and Negative matrices. Besides, eMIRNA.Train module will create an `.rds` file with the SVM classifier capable to differentiate between microRNAs and other structurally microRNA-like non-coding RNAs.
 
 &nbsp;
 
