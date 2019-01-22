@@ -142,9 +142,9 @@ The function requires three arguments:
 
 Example of usage:
 
-`Pos = eMIRNA.Features("~/eMIRNA/FilterStructure_Results/Pos_filter_nloop.fa", "Pos")`
+`Pos = eMIRNA.Features("~/eMIRNA/FilterStructure_Results/Pos_filter_nloop.fa", "Pos", normalize=FALSE)`
 
-`Neg = eMIRNA.Features("~/eMIRNA/FilterStructure_Results/Neg_filter_nloop.fa", "Neg")`
+`Neg = eMIRNA.Features("~/eMIRNA/FilterStructure_Results/Neg_filter_nloop.fa", "Neg", normalize=FALSE)`
 
 Once the eMIRNA.Features has run, a new folder named `Features_Results/` will be created inside `eMIRNA/` folder, in which a .csv file called `Pos/Neg.csv` will be generated with the results of running the function.
 
