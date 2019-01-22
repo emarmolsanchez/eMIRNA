@@ -508,10 +508,11 @@ eMIRNA.Train <- function(pos, neg, imbalance="none"){
                       tuneGrid = grid_lineal,
                       tuneLength = 10)
   
-  return(svm_Linear)
-  write.table(training, "~/eMIRNA/SVM_Results/training.csv", sep=",", quote=F, col.names=NA)
-  write.table(testing, "~/eMIRNA/SVM_Results/testing.csv", sep=",", quote=F, col.names=NA)
-  saveRDS(svm_Linear, "~/eMIRNA/SVM_Results/SVM.rds")
+  
+    write.table(training, "~/eMIRNA/SVM_Results/training.csv", sep=",", quote=F, col.names=NA)
+    write.table(testing, "~/eMIRNA/SVM_Results/testing.csv", sep=",", quote=F, col.names=NA)
+    saveRDS(svm_Linear, "~/eMIRNA/SVM_Results/SVM.rds")
+    return(svm_Linear)
   
   }  else if(imbalance == "adasyn"){
     
@@ -535,10 +536,11 @@ eMIRNA.Train <- function(pos, neg, imbalance="none"){
                         tuneGrid = grid_lineal,
                         tuneLength = 10)
     
-    return(svm_Linear)
+    
     write.table(training, "~/eMIRNA/SVM_Results/training.csv", sep=",", quote=F, col.names=NA)
     write.table(testing, "~/eMIRNA/SVM_Results/testing.csv", sep=",", quote=F, col.names=NA)
     saveRDS(svm_Linear, "~/eMIRNA/SVM_Results/SVM.rds")
+    return(svm_Linear)
     
   } else if(imbalance == "bdlsmote1"){
     
@@ -566,10 +568,11 @@ eMIRNA.Train <- function(pos, neg, imbalance="none"){
                         tuneGrid = grid_lineal,
                         tuneLength = 10)
     
-    return(svm_Linear)
+    
     write.table(training, "~/eMIRNA/SVM_Results/training.csv", sep=",", quote=F, col.names=NA)
     write.table(testing, "~/eMIRNA/SVM_Results/testing.csv", sep=",", quote=F, col.names=NA)
     saveRDS(svm_Linear, "~/eMIRNA/SVM_Results/SVM.rds")
+    return(svm_Linear)
     
   } else if(imbalance == "bdlsmote2"){
     
@@ -597,10 +600,11 @@ eMIRNA.Train <- function(pos, neg, imbalance="none"){
                         tuneGrid = grid_lineal,
                         tuneLength = 10)
     
-    return(svm_Linear)
+    
     write.table(training, "~/eMIRNA/SVM_Results/training.csv", sep=",", quote=F, col.names=NA)
     write.table(testing, "~/eMIRNA/SVM_Results/testing.csv", sep=",", quote=F, col.names=NA)
     saveRDS(svm_Linear, "~/eMIRNA/SVM_Results/SVM.rds")
+    return(svm_Linear)
     
   } else if(imbalance == "mwmote"){
     
@@ -624,10 +628,11 @@ eMIRNA.Train <- function(pos, neg, imbalance="none"){
                         tuneGrid = grid_lineal,
                         tuneLength = 10)
     
-    return(svm_Linear)
+    
     write.table(training, "~/eMIRNA/SVM_Results/training.csv", sep=",", quote=F, col.names=NA)
     write.table(testing, "~/eMIRNA/SVM_Results/testing.csv", sep=",", quote=F, col.names=NA)
     saveRDS(svm_Linear, "~/eMIRNA/SVM_Results/SVM.rds")
+    return(svm_Linear)
     
   } else if(imbalance == "ros"){
     
@@ -651,10 +656,11 @@ eMIRNA.Train <- function(pos, neg, imbalance="none"){
                         tuneGrid = grid_lineal,
                         tuneLength = 10)
     
-    return(svm_Linear)
+    
     write.table(training, "~/eMIRNA/SVM_Results/training.csv", sep=",", quote=F, col.names=NA)
     write.table(testing, "~/eMIRNA/SVM_Results/testing.csv", sep=",", quote=F, col.names=NA)
     saveRDS(svm_Linear, "~/eMIRNA/SVM_Results/SVM.rds")
+    return(svm_Linear)
     
   } else if(imbalance == "rwo"){
    
@@ -678,10 +684,11 @@ eMIRNA.Train <- function(pos, neg, imbalance="none"){
                         tuneGrid = grid_lineal,
                         tuneLength = 10)
     
-    return(svm_Linear)
+   
     write.table(training, "~/eMIRNA/SVM_Results/training.csv", sep=",", quote=F, col.names=NA)
     write.table(testing, "~/eMIRNA/SVM_Results/testing.csv", sep=",", quote=F, col.names=NA)
     saveRDS(svm_Linear, "~/eMIRNA/SVM_Results/SVM.rds")
+    return(svm_Linear)
     
   } else if(imbalance == "slsmote"){
     
@@ -705,10 +712,11 @@ eMIRNA.Train <- function(pos, neg, imbalance="none"){
                         tuneGrid = grid_lineal,
                         tuneLength = 10)
     
-    return(svm_Linear)
+    
     write.table(training, "~/eMIRNA/SVM_Results/training.csv", sep=",", quote=F, col.names=NA)
     write.table(testing, "~/eMIRNA/SVM_Results/testing.csv", sep=",", quote=F, col.names=NA)
     saveRDS(svm_Linear, "~/eMIRNA/SVM_Results/SVM.rds")
+    return(svm_Linear)
     
   } else if(imbalance == "none"){
     
@@ -729,10 +737,11 @@ eMIRNA.Train <- function(pos, neg, imbalance="none"){
                         tuneGrid = grid_lineal,
                         tuneLength = 10)
     
-    return(svm_Linear)
+    
     write.table(training, "~/eMIRNA/SVM_Results/training.csv", sep=",", quote=F, col.names=NA)
     write.table(testing, "~/eMIRNA/SVM_Results/testing.csv", sep=",", quote=F, col.names=NA)
     saveRDS(svm_Linear, "~/eMIRNA/SVM_Results/SVM.rds")
+    return(svm_Linear)
     
   } else {
     
