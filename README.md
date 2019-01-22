@@ -53,9 +53,8 @@ The following R libraries are required for running the eMIRNA pipeline:
 
 The following programs are required for running the eMIRNA pipeline:
 + RNAfold [1] (https://www.tbi.univie.ac.at/RNA/)
-+ Triplet-SVM [2] (http://www.bioinfo.au.tsinghua.edu.cn/mirnasvm/)
-+ BEDTools v2.27.0 [3] (https://bedtools.readthedocs.io/en/latest/)
-+ Bowtie [4] (https://mcardle.wisc.edu/mprime/help/bowtie/manual.html)
++ BEDTools v2.27.0 [2] (https://bedtools.readthedocs.io/en/latest/)
++ Bowtie [3] (https://mcardle.wisc.edu/mprime/help/bowtie/manual.html)
 + Fasta_ushuffle (https://github.com/agordon/fasta_ushuffle)
 
 
@@ -127,9 +126,13 @@ Once the eMIRNA.Filter.by.Structure has run, a new folder named `FilterSstructur
 
 The third eMIRNA module aims to calculate a series of structural, statistical and sequence-derived features from each sequence that had passed previous filtering, in order to obtain an estimated representation of their structural characteristics. Afterwards, these feature matrices will be processed by the prediction software to discriminate between microRNAs and other type of sequences.
 
-A modified version of Triplet-SVM pipeline is implemented in the eMIRNA.Features module. Triplet-SVM perl scripts 1 to 3 (available at `bin/`) should be located at computer `$PATH`, so as the function is properly executed. RNAfold executable must also be installed and available at `$PATH`. All Triplet-SVM perl scripts should have execution permission allowed, which can easily be set with command `chmod 777`.
+A modified version of Triplet-SVM pipeline [4] is implemented in the eMIRNA.Features module. Triplet-SVM perl scripts 1 to 3 (available at `bin/`) should be located at computer `$PATH`, so as the function is properly executed. RNAfold executable must also be installed and available at `$PATH`. All Triplet-SVM perl scripts should have execution permission allowed, which can easily be set with command `chmod 777`.
 
-When running the eMIRNA.Features, rescaling of feature values will be implemented unless users specify otherwise (`normalize = TRUE/FALSE`). Features rescaling demonstrated better overall performance of trained SVM models to discriminate between miRNAs and other non-coding sequences. When dealing with poorly annotated species (which may be the case of a great number of users willing to implemente the eMIRNA pipeline for predicting novel miRNA candidates), users are advised to use the `normalize = FALSE` option, which will cause a slightly worse performance of trained SVM model. Besides, users could choose a better annotated species for algorithm training, such as humans or mice, and apply the `normalize = TRUE` option, which will increase SVM model performance and behave similarly to non-rescaled SVM model in poorly annotated species. Inter-species exchangeability of trained SVM algorithms is only advised for closely related species and absolutely not recommended if species do not belong to, at least, the same class taxonomic rank. 
+When running the eMIRNA.Features, rescaling of feature values will be implemented unless users specify otherwise (`normalize = TRUE/FALSE`). Features rescaling demonstrated better overall performance of trained SVM models to discriminate between miRNAs and other non-coding sequences. 
+
+When dealing with poorly annotated species (which may be the case of a great number of users willing to implemente the eMIRNA pipeline for predicting novel miRNA candidates), users are advised to use the `normalize = FALSE` option, which will cause a slightly worse performance of trained SVM model, but will allow a much better representation of feature spatial positioning for fitting the SVM Hyperplane, hence resulting in a more accurate prediction afterwards, despite the overall decrease in reported SVM performance.
+
+Besides, users could choose a better annotated species for algorithm training, such as humans or mice, and apply the `normalize = TRUE` option, which will increase SVM model performance and behave similarly to non-rescaled SVM model in poorly annotated species. Inter-species exchangeability of trained SVM algorithms is only advised for closely related species and absolutely not recommended if species do not belong to, at least, the same class taxonomic rank. 
 
 The function requires three arguments:
 
@@ -222,7 +225,7 @@ Once the function has run, eMIRNA.Train will create a SVM classifier capable to 
 
 Once we have trained our model for predicting new microRNA candidates, we will have to test its performance and discovery ability to classify non previously annotated microRNAs in our species of interest. The eMIRNA.Hunter module is an auxiliar BASH script developed to obtain pre-miRNA candidate sequences, making use of an homology-based recovery from previously annotated microRNAs in reference species, in order to find orthologous sequences in our less annotated species under study.
 
-The eMIRNA.Hunter script implements Bowtie [4] for the alignment of mature microRNA annotated sequences in reference species like humans or rodents, to find orthologous regions in the genome of our species of interest, reconstructing pre-miRNA sequences from mature microRNAs and generating a FASTA and BED files for the candidates to be classified by the previously trained SVM algorithm.
+The eMIRNA.Hunter script implements Bowtie [3] for the alignment of mature microRNA annotated sequences in reference species like humans or rodents, to find orthologous regions in the genome of our species of interest, reconstructing pre-miRNA sequences from mature microRNAs and generating a FASTA and BED files for the candidates to be classified by the previously trained SVM algorithm.
 
 This module requires six arguments:
 
@@ -258,7 +261,7 @@ Output:
 
 For achieving a successful cross-species alignment, it is very important that mature microRNA sequences FASTA file from reference organism are in DNA code, with Ts for Thymine and no Us for Uracil in RNA code. Please make sure that your mature microRNA sequences are in DNA code, otherwise the alignment process will fail.
 
-For generating Bowtie Index for your Reference Genome, please refer to Bowtie Manual [4].
+For generating Bowtie Index for your Reference Genome, please refer to Bowtie Manual [3].
 
 Example of usage:
 
@@ -465,11 +468,11 @@ Once the eMIRNA.Structural.Pvalues has run, a new .csv file called `Candidates_S
 
 **[1]** Lorenz R, Bernhart SH, Höner zu Siederdissen C, Tafer H, Flamm C, Stadler PF, et al. ViennaRNA Package 2.0. Algorithms Mol Biol. 2011;6:26. doi:10.1186/1748-7188-6-26.
 
-**[2]** Xue C, Li F, He T, Liu G-P, Li Y, Zhang X. Classification of real and pseudo microRNA precursors using local structure-sequence features and support vector machine. BMC Bioinformatics. 2005;6:310. doi:10.1186/1471-2105-6-310.
+**[2]** Quinlan AR, Hall IM. BEDTools: a flexible suite of utilities for comparing genomic features. Bioinformatics. 2010;26:841–2. doi:10.1093/bioinformatics/btq033.
 
-**[3]** Quinlan AR, Hall IM. BEDTools: a flexible suite of utilities for comparing genomic features. Bioinformatics. 2010;26:841–2. doi:10.1093/bioinformatics/btq033.
+**[3]** Langmead B, Trapnell C, Pop M, Salzberg SL. Ultrafast and memory-efficient alignment of short DNA sequences to the human genome. Genome Biol. 2009;10:R25. doi:10.1186/gb-2009-10-3-r25.
 
-**[4]** Langmead B, Trapnell C, Pop M, Salzberg SL. Ultrafast and memory-efficient alignment of short DNA sequences to the human genome. Genome Biol. 2009;10:R25. doi:10.1186/gb-2009-10-3-r25.
+**[4]** Xue C, Li F, He T, Liu G-P, Li Y, Zhang X. Classification of real and pseudo microRNA precursors using local structure-sequence features and support vector machine. BMC Bioinformatics. 2005;6:310. doi:10.1186/1471-2105-6-310.
 
 **[5]** Rivera WA. Noise Reduction A Priori Synthetic Over-Sampling for class imbalanced data sets. Inf Sci (Ny). 2017;408:146–61. doi:10.1016/J.INS.2017.04.046.
 
