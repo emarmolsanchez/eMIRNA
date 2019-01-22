@@ -471,6 +471,14 @@ eMIRNA.Train <- function(pos, neg, imbalance="none"){
   suppressMessages(require(bimba))
   suppressMessages(require(LiblineaR))
   message("Training SVM model")
+  setwd("~/")
+  Dir0 <- "eMIRNA"
+  dir.create(file.path(Dir0), showWarnings=FALSE)
+  Dir <- "SVM_Results"
+  setwd("~/eMIRNA/")
+  dir.create(file.path(Dir), showWarnings = FALSE)
+  workdir <- "~/eMIRNA/SVM_Results/"
+  setwd(workdir)
   
   final.table <- rbind(pos, neg)
   
@@ -481,11 +489,9 @@ eMIRNA.Train <- function(pos, neg, imbalance="none"){
   
   if(imbalance == "smote"){
     
+  set.seed(1234)
   algorithms <- c("NRAS", "SMOTE")
   final.table <- sampling_sequence(final.table, algorithms=algorithms)
-  
-  
-  set.seed(1234)
   intrain <- createDataPartition(y = final.table$class, p= 0.8, list = FALSE)
   training <- final.table[intrain,]
   testing <- final.table[-intrain,]
@@ -503,14 +509,16 @@ eMIRNA.Train <- function(pos, neg, imbalance="none"){
                       tuneLength = 10)
   
   return(svm_Linear)
+  write.table(training, "~/eMIRNA/SVM_Results/training.csv", sep=",", quote=F, col.names=NA)
+  write.table(testing, "~/eMIRNA/SVM_Results/testing.csv", sep=",", quote=F, col.names=NA)
+  saveRDS(svm_Linear, "~/eMIRNA/SVM_Results/SVM.rds")
   
   }  else if(imbalance == "adasyn"){
     
+    set.seed(1234)
     algorithms <- c("NRAS", "ADASYN")
     final.table <- sampling_sequence(final.table, algorithms=algorithms)
     
-    
-    set.seed(1234)
     intrain <- createDataPartition(y = final.table$class, p= 0.8, list = FALSE)
     training <- final.table[intrain,]
     testing <- final.table[-intrain,]
@@ -528,9 +536,13 @@ eMIRNA.Train <- function(pos, neg, imbalance="none"){
                         tuneLength = 10)
     
     return(svm_Linear)
+    write.table(training, "~/eMIRNA/SVM_Results/training.csv", sep=",", quote=F, col.names=NA)
+    write.table(testing, "~/eMIRNA/SVM_Results/testing.csv", sep=",", quote=F, col.names=NA)
+    saveRDS(svm_Linear, "~/eMIRNA/SVM_Results/SVM.rds")
     
   } else if(imbalance == "bdlsmote1"){
     
+    set.seed(1234)
     algorithms <- c("NRAS", "BDLSMOTE")
     list1 <- list()
     list2 <- list(borderline=1)
@@ -538,7 +550,6 @@ eMIRNA.Train <- function(pos, neg, imbalance="none"){
     final.table <- sampling_sequence(final.table, algorithms=algorithms,
                                      parameters=parameters)
     
-    set.seed(1234)
     intrain <- createDataPartition(y = final.table$class, p= 0.8, list = FALSE)
     training <- final.table[intrain,]
     testing <- final.table[-intrain,]
@@ -556,9 +567,13 @@ eMIRNA.Train <- function(pos, neg, imbalance="none"){
                         tuneLength = 10)
     
     return(svm_Linear)
+    write.table(training, "~/eMIRNA/SVM_Results/training.csv", sep=",", quote=F, col.names=NA)
+    write.table(testing, "~/eMIRNA/SVM_Results/testing.csv", sep=",", quote=F, col.names=NA)
+    saveRDS(svm_Linear, "~/eMIRNA/SVM_Results/SVM.rds")
     
   } else if(imbalance == "bdlsmote2"){
     
+    set.seed(1234)
     algorithms <- c("NRAS", "BDLSMOTE")
     list1 <- list()
     list2 <- list(borderline=2)
@@ -566,8 +581,6 @@ eMIRNA.Train <- function(pos, neg, imbalance="none"){
     final.table <- sampling_sequence(final.table, algorithms=algorithms,
                                      parameters=parameters)
     
-    
-    set.seed(1234)
     intrain <- createDataPartition(y = final.table$class, p= 0.8, list = FALSE)
     training <- final.table[intrain,]
     testing <- final.table[-intrain,]
@@ -585,14 +598,16 @@ eMIRNA.Train <- function(pos, neg, imbalance="none"){
                         tuneLength = 10)
     
     return(svm_Linear)
+    write.table(training, "~/eMIRNA/SVM_Results/training.csv", sep=",", quote=F, col.names=NA)
+    write.table(testing, "~/eMIRNA/SVM_Results/testing.csv", sep=",", quote=F, col.names=NA)
+    saveRDS(svm_Linear, "~/eMIRNA/SVM_Results/SVM.rds")
     
   } else if(imbalance == "mwmote"){
     
+    set.seed(1234)
     algorithms <- c("NRAS", "MWMOTE")
     final.table <- sampling_sequence(final.table, algorithms=algorithms)
   
-    
-    set.seed(1234)
     intrain <- createDataPartition(y = final.table$class, p= 0.8, list = FALSE)
     training <- final.table[intrain,]
     testing <- final.table[-intrain,]
@@ -610,14 +625,16 @@ eMIRNA.Train <- function(pos, neg, imbalance="none"){
                         tuneLength = 10)
     
     return(svm_Linear)
+    write.table(training, "~/eMIRNA/SVM_Results/training.csv", sep=",", quote=F, col.names=NA)
+    write.table(testing, "~/eMIRNA/SVM_Results/testing.csv", sep=",", quote=F, col.names=NA)
+    saveRDS(svm_Linear, "~/eMIRNA/SVM_Results/SVM.rds")
     
   } else if(imbalance == "ros"){
     
+    set.seed(1234)
     algorithms <- c("NRAS", "ROS")
     final.table <- sampling_sequence(final.table, algorithms=algorithms)
     
-    
-    set.seed(1234)
     intrain <- createDataPartition(y = final.table$class, p= 0.8, list = FALSE)
     training <- final.table[intrain,]
     testing <- final.table[-intrain,]
@@ -635,14 +652,16 @@ eMIRNA.Train <- function(pos, neg, imbalance="none"){
                         tuneLength = 10)
     
     return(svm_Linear)
+    write.table(training, "~/eMIRNA/SVM_Results/training.csv", sep=",", quote=F, col.names=NA)
+    write.table(testing, "~/eMIRNA/SVM_Results/testing.csv", sep=",", quote=F, col.names=NA)
+    saveRDS(svm_Linear, "~/eMIRNA/SVM_Results/SVM.rds")
     
   } else if(imbalance == "rwo"){
-    
+   
+    set.seed(1234)
     algorithms <- c("NRAS", "RWO")
     final.table <- sampling_sequence(final.table, algorithms=algorithms)
-    
-    
-    set.seed(1234)
+
     intrain <- createDataPartition(y = final.table$class, p= 0.8, list = FALSE)
     training <- final.table[intrain,]
     testing <- final.table[-intrain,]
@@ -660,14 +679,16 @@ eMIRNA.Train <- function(pos, neg, imbalance="none"){
                         tuneLength = 10)
     
     return(svm_Linear)
+    write.table(training, "~/eMIRNA/SVM_Results/training.csv", sep=",", quote=F, col.names=NA)
+    write.table(testing, "~/eMIRNA/SVM_Results/testing.csv", sep=",", quote=F, col.names=NA)
+    saveRDS(svm_Linear, "~/eMIRNA/SVM_Results/SVM.rds")
     
   } else if(imbalance == "slsmote"){
     
+    set.seed(1234)
     algorithms <- c("NRAS", "SLSMOTE")
     final.table <- sampling_sequence(final.table, algorithms=algorithms)
-    
-    
-    set.seed(1234)
+
     intrain <- createDataPartition(y = final.table$class, p= 0.8, list = FALSE)
     training <- final.table[intrain,]
     testing <- final.table[-intrain,]
@@ -685,6 +706,9 @@ eMIRNA.Train <- function(pos, neg, imbalance="none"){
                         tuneLength = 10)
     
     return(svm_Linear)
+    write.table(training, "~/eMIRNA/SVM_Results/training.csv", sep=",", quote=F, col.names=NA)
+    write.table(testing, "~/eMIRNA/SVM_Results/testing.csv", sep=",", quote=F, col.names=NA)
+    saveRDS(svm_Linear, "~/eMIRNA/SVM_Results/SVM.rds")
     
   } else if(imbalance == "none"){
     
@@ -706,6 +730,9 @@ eMIRNA.Train <- function(pos, neg, imbalance="none"){
                         tuneLength = 10)
     
     return(svm_Linear)
+    write.table(training, "~/eMIRNA/SVM_Results/training.csv", sep=",", quote=F, col.names=NA)
+    write.table(testing, "~/eMIRNA/SVM_Results/testing.csv", sep=",", quote=F, col.names=NA)
+    saveRDS(svm_Linear, "~/eMIRNA/SVM_Results/SVM.rds")
     
   } else {
     
