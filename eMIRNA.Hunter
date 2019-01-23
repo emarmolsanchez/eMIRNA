@@ -108,7 +108,7 @@ bedtools getfasta -fi $REF.fa -bed $OUT${X}_homolog_miRNAs.bed -s -name -fo $OUT
 
 #Correcting positions by UG and CNNC motifs and getting new FASTA and BED
 
-for i in $OUT${X}_homolog_miRNAs.fa; do rev $i | awk '/^[A-Z]/ {print match($1, "C[A-Z][A-Z]")+17}' > $OUT${X}_temp1; done
+for i in $OUT${X}_homolog_miRNAs.fa; do rev $i | awk '/^[A-Z]/ {print match($1, "C[A-Z][A-Z]C")+17}' > $OUT${X}_temp1; done
 
 for i in $OUT${X}_homolog_miRNAs.fa; do awk '/^[A-Z]/ {print match($1, "TG")+14}' $i > $OUT${X}_temp2; done
 
