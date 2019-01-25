@@ -132,7 +132,7 @@ When running the eMIRNA.Features, rescaling of feature values will be implemente
 
 When dealing with poorly annotated species (which may be the case of a great number of users willing to implemente the eMIRNA pipeline for predicting novel miRNA candidates), users are advised to use the `normalize = FALSE` option, which will cause a slightly worse performance of trained SVM model, but will allow a much better representation of feature spatial positioning for fitting the SVM Hyperplane, hence resulting in a more accurate prediction afterwards, despite the overall decrease in reported SVM performance.
 
-Besides, users could choose a better annotated species for algorithm training, such as humans or mice, and apply the `normalize = TRUE` option, which will increase SVM model performance and behave similarly to non-rescaled SVM model in poorly annotated species. Inter-species exchangeability of trained SVM algorithms is only advised for closely related species and absolutely not recommended if species do not belong to, at least, the same class taxonomic rank. 
+Besides, users could choose a better annotated species for algorithm training, such as humans or mice, and apply the `normalize = TRUE` option, which will increase SVM model performance and behave similarly to non-rescaled SVM model in poorly annotated species. Inter-species exchangeability of trained SVM algorithms is only advised for closely related species. Users must be aware of low reliability in miRNA prediction if pyhlogenetically far-distant species are used for SVM training and further prediction. 
 
 The function requires three arguments:
 
