@@ -75,7 +75,7 @@ eMIRNA.Filter.by.Structure <- function(file, prefix){
 
 
 
-eMIRNA.Features <- function(file, prefix, normalize=TRUE){
+eMIRNA.Features <- function(file, prefix, rescale=TRUE){
   suppressMessages(require(seqinr))
   suppressMessages(require(stringr))
   suppressMessages(require(scales))
@@ -435,7 +435,7 @@ eMIRNA.Features <- function(file, prefix, normalize=TRUE){
     table_1 <- table[, 1:32]
     table_2 <- table[, 33:94]
     
-    if (normalize == TRUE){
+    if (rescale == TRUE){
       table_2 <- as.data.frame(lapply(table_2, rescale))
       table <- cbind(table_1, table_2)
       rownames(table) <- ID
