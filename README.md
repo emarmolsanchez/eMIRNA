@@ -128,11 +128,11 @@ The third eMIRNA module aims to calculate a series of structural, statistical an
 
 A modified version of Triplet-SVM pipeline [4] is implemented in the eMIRNA.Features module. Triplet-SVM perl scripts 1 to 3 (available at `bin/`) should be located at computer `$PATH`, so as the function is properly executed. RNAfold executable must also be installed and available at `$PATH`. All Triplet-SVM perl scripts should have execution permission allowed, which can easily be set with command `chmod 777`.
 
-When running the eMIRNA.Features, rescaling of feature values will be implemented unless users specify otherwise (`normalize = TRUE/FALSE`). Features rescaling demonstrated better overall performance of trained SVM models to discriminate between miRNAs and other non-coding sequences. 
+When running the eMIRNA.Features, rescaling of feature values will be implemented unless users specify otherwise (`rescale = TRUE/FALSE`). Features rescaling demonstrated better overall performance of trained SVM classifiers to discriminate between miRNAs and other non-coding sequences. 
 
-When dealing with poorly annotated species (which may be the case of a great number of users willing to implemente the eMIRNA pipeline for predicting novel miRNA candidates), users are advised to use the `normalize = FALSE` option, which will cause a slightly worse performance of trained SVM model, but will allow a much better representation of feature spatial positioning for fitting the SVM Hyperplane, hence resulting in a more accurate prediction afterwards, despite the overall decrease in reported SVM performance.
+If dealing with poorly annotated species (which may be the case of a great number of users willing to implement the eMIRNA pipeline), users are advised to use the `normalize = FALSE` option, which will cause a slightly worse performance of trained SVM model, but will allow a much better representation of feature spatial positioning for fitting the SVM Hyperplane, hence resulting in a more accurate prediction afterwards, despite the overall decrease in reported SVM performance.
 
-Besides, users could choose a better annotated species for algorithm training, such as humans or mice, and apply the `normalize = TRUE` option, which will increase SVM model performance and behave similarly to non-rescaled SVM model in poorly annotated species. Inter-species exchangeability of trained SVM algorithms is only advised for closely related species. Users must be aware of low reliability in miRNA prediction if pyhlogenetically far-distant species are used for SVM training and further prediction. 
+Besides, users could choose a better annotated species for algorithm training, such as humans or mice, and apply the `rescale = TRUE` option, which will increase SVM algorithm performance and behave similarly to non-rescaled SVM classifiers trained with poorly annotated species data. Inter-species exchangeability of trained SVM algorithms is only advised for closely related species. Users must be aware of low reliability in miRNA prediction if pyhlogenetically far-distant species are used for SVM training and further prediction. 
 
 The function requires three arguments:
 
@@ -142,9 +142,9 @@ The function requires three arguments:
 
 Example of usage:
 
-`Pos = eMIRNA.Features("~/eMIRNA/FilterStructure_Results/Pos_filter_nloop.fa", "Pos", normalize=FALSE)`
+`Pos = eMIRNA.Features("~/eMIRNA/FilterStructure_Results/Pos_filter_nloop.fa", "Pos", rescale=FALSE)`
 
-`Neg = eMIRNA.Features("~/eMIRNA/FilterStructure_Results/Neg_filter_nloop.fa", "Neg", normalize=FALSE)`
+`Neg = eMIRNA.Features("~/eMIRNA/FilterStructure_Results/Neg_filter_nloop.fa", "Neg", rescale=FALSE)`
 
 Once the eMIRNA.Features has run, a new folder named `Features_Results/` will be created inside `eMIRNA/` folder, in which a .csv file called `Pos/Neg.csv` will be generated with the results of running the function.
 
@@ -152,7 +152,7 @@ The eMIRNA.Features function includes the calculation of a total of 6 Sequence F
 
 Sequence Features:
 
-+ 32 Triplet elements calculated with SVM-Triplets pipeline [3] (T1 - T32).
++ 32 Triplet elements calculated with SVM-Triplets pipeline [4] (T1 - T32).
 + Sequence Length (Length).
 + Guanine+Cytosine/Length (GC).
 + Adenine+Uracil / Guanine+Cytosine ratio (AU.GCr).
@@ -217,13 +217,13 @@ It is important that when running the SVM training process, both Positive and Ne
 
 By default, eMIRNA.Train will not perform any class-imbalance correction, but users are imperiously advised to do so, otherwise the training process could suffer.
 
-Once the function has run, a new folder named `SVM_Results/` will be created inside `eMIRNA/` folder, in which two .csv files called `training.csv` and `testing.csv` will be generated with the results of splitting the original combined Postivie and Negative matrices. Besides, eMIRNA.Train module will create an `.rds` file with the SVM classifier capable to differentiate between microRNAs and other structurally microRNA-like non-coding RNAs.
+Once the function has run, a new folder named `SVM_Results/` will be created inside `eMIRNA/` folder, in which two .csv files called `training.csv` and `testing.csv` will be generated with the results of splitting the original combined Postivie and Negative matrices. Besides, eMIRNA.Train module will create an `.rds` file with the trained SVM classifier.
 
 &nbsp;
 
 ## eMIRNA.Hunter
 
-Once we have trained our model for predicting new microRNA candidates, we will have to test its performance and discovery ability to classify non previously annotated microRNAs in our species of interest. The eMIRNA.Hunter module is an auxiliar BASH script developed to obtain pre-miRNA candidate sequences, making use of an homology-based recovery from previously annotated microRNAs in reference species, in order to find orthologous sequences in our less annotated species under study.
+Once we have trained our model for predicting new microRNA candidates, we will have to test its performance and discovery ability to classify non-previously annotated microRNAs in our species of interest. The eMIRNA.Hunter module is an auxiliar BASH script developed to obtain pre-miRNA candidate sequences, making use of a homology-based recovery from previously annotated microRNAs in reference species, in order to find orthologous sequences in our less annotated species under study.
 
 The eMIRNA.Hunter script implements Bowtie [3] for the alignment of mature microRNA annotated sequences in reference species like humans or rodents, to find orthologous regions in the genome of our species of interest, reconstructing pre-miRNA sequences from mature microRNAs and generating a FASTA and BED files for the candidates to be classified by the previously trained SVM algorithm.
 
@@ -281,7 +281,7 @@ After successfully running eMIRNA.Hunter script, six files will have been create
 + BED file with motif corrected positions of reconstructed pre-miRNA homologous candidates.
 + FASTA file with motif corrected reconstructed pre-miRNA homologous candidates.
 
-Once the FASTA file with pre-miRNA candidates has been generated, users must process this sequences by following the previously described steps for eMIRNA pipeline, in order to obtain a Feature matrix representing those candidate sequences that will then be subjected to classification by the SVM trained algorithm.
+Once the FASTA file with pre-miRNA candidates has been generated, users must process these sequences by following the previously described steps for eMIRNA pipeline, in order to obtain a Feature matrix representing those candidate sequences that will then be subjected to classification by the SVM trained algorithm.
 
 Optionally, users can subject the motif corrected FASTA file for further prediction, taking into consideration that not all miRNAs would be processed following motif detection and thus some novel candidates may be missed. On the contrary, a much more accurate positioning for pre-miRNA candidates where delimiting motifs had been successfully detected wil be calculated, as reported by Auyeung *et al.* [12].
 
@@ -293,7 +293,7 @@ The eMIRNA.Hunter_denovo module is a modified versión of eMIRNA.Hunter module, 
 
 Users should provide a properly collapsed FASTA file with smallRNA-seq sequences from canonical FASTQ sequence files. The FASTQ files should be quality-check filtered and sequencing adaptor trimmed before running any available collapser tool, e.g. FASTQ collapser from FASTX-toolkit (http://hannonlab.cshl.edu/fastx_toolkit/index.html) for collapsing FASTQ files into FASTA files with uniquely represented sequences.
 
-Users are encouraged to perform a pre-filtering process of the collapsed FASTA file to retain sequences between 18-25 nucleotides in length, corresponding to the average length of mature miRNAs. The eMIRNA.Filter.by.Size function could be used for this purpose.
+Users are encouraged to perform a pre-filtering process of the collapsed FASTA file to retain sequences between 18-25 nucleotides in length, corresponding to the average length of mature miRNAs. The eMIRNA.Filter.by.Size module could be used for this purpose.
 
 A detailed explanation of each variable can be accessed with -h (help) option:
 
@@ -329,19 +329,19 @@ bash eMIRNA.Hunter_denovo -r PATH_to_Bowtie_Index -f Small-RNAseq_collapsed_fast
  
 ## eMIRNA.Predict
 
-The fifth eMIRNA module aims to perform microRNA classification by making use of the previously trained SVM algorithm and candidates sequences generated by eMIRNA.Hunter. Users must pre-process the candidate sequences FASTA files generated by eMIRNA.Hunter module with eMIRNA.Filter.by.Size and eMIRNA.Filter.by.Structure modules, followed by the calculation of representing features matrix by the eMIRNA.Features module. Either the positionally corrected or not corrected FASTA files output from eMIRNA.Hunter can be selected for this task, but users must use the corresponding corrected/not corrected BED files for further analyses with eMIRNA.Refiner module.
+The fifth eMIRNA module aims to perform microRNA classification by making use of the previously trained SVM algorithm and candidates sequences generated by eMIRNA.Hunter. Users must pre-process the candidate sequences FASTA files generated by eMIRNA.Hunter module with eMIRNA.Filter.by.Size and eMIRNA.Filter.by.Structure modules, followed by the calculation of representing features matrix by eMIRNA.Features. Either the positionally corrected or not corrected FASTA files output from eMIRNA.Hunter can be selected for this task, but users must use the corresponding corrected/not corrected BED files for further steps in the eMIRNA pipeline.
 
 This module requires three arguments:
 
 + SVM trained algorithm object.
-+ Feature matrix representing candidates sequences to evaluate.
++ Feature matrix representing candidate sequences to evaluate.
 + String with desired output prefix name.
 
 Example of usage:
 
 `eMIRNA.Predict(SVM, Candidates_Feature_Matirx, "Candidates")`
 
-Once the eMIRNA.Predict has run, a new folder named `Prediction_Results/` will be created inside `eMIRNA/` folder, in which a .txt file called `Candidates.txt` will be generated, containing a list of Sequence candidates names classified as putative pre-miRNAs by the SVM trained algorithm.
+Once the eMIRNA.Predict has run, a new folder named `Prediction_Results/` will be created inside `eMIRNA/` folder, in which a .txt file called `Candidates.txt` will be generated, containing a list of Sequence candidate names classified as putative miRNAs by the SVM trained algorithm.
 
 &nbsp;
 
@@ -349,7 +349,7 @@ Once the eMIRNA.Predict has run, a new folder named `Prediction_Results/` will b
 
 After generating a list of putative new microRNAs by implementing the eMIRNA pipeline, users should filter these new candidates in order to select those more likely to be new putative microRNA candidates in the species of interest. The eMIRNA.Refiner module has been specifically designed to cover this task. This BASH script complements eMIRNA.Hunter and eMIRNA.Predict modules by selecting those candidate sequences that have more probability to correspond to new non-annotated microRNA sequences orthologous to the reference organism annotated microRNAs in which candidate sequences reconstruction has been performed.
 
-The eMIRNA.Refiner module makes use of an auxiliar R script called eMIRNA_biomaRt_calc.R, which should be located at the same `$PATH` where eMIRNA.Refiner is found. The functionality of eMIRNA.Refiner is based on comparing the microRNA gene neighbourhood both in the reference species and in the species under study. Many shared orthologous microRNA sequences will not only share a conserved sequence between species, but also the genome location in which they are placed, making them more reliable if sharing both sequence and location. The candidate microRNA genes neighbourhood is estimated by establishing a comparison window around the sequence (tipically 2-10 Mb) and contrasting orthologous genes located around the corresponding microRNA in the reference organism. By doing so, the eMIRNA.Refiner module can calculate a Neighbourhood Score, measuring the ratio of similarity among annotated genes in the locus of interest between the reference organism and our species of interest. The higher this ratio would be, the most realiable the new microRNA candidate can be considered for further analyses, meaning that not only the sequence is conserved between species, but also its genetic topology, highlighting the putative metabolic importance of this miRNA gene.
+The eMIRNA.Refiner module makes use of an auxiliar R script called eMIRNA_biomaRt_calc.R, which should be located at the same `$PATH` where eMIRNA.Refiner is found. The functionality of eMIRNA.Refiner is based on comparing the microRNA gene neighborhood both in the reference species and in the species under study. Many shared orthologous microRNA sequences will not only share a conserved sequence between species, but also the genome location in which they are placed, making them more reliable if sharing both sequence and location. The candidate microRNA genes neighborhood is estimated by establishing a comparison window around the sequence (typically 2-10 Mb) and contrasting orthologous genes located around the corresponding microRNA in the reference organism. By doing so, the eMIRNA.Refiner module can calculate a Neighborhood Score, measuring the ratio of similarity among annotated genes in the locus of interest between the reference organism and our species of interest. The higher this ratio would be, the most reliable the new microRNA candidate can be considered for further analyses, meaning that not only the sequence is conserved between species, but also its genetic topology, highlighting the putative metabolic importance of this miRNA gene.
 
 This module requires nine arguments:
 
@@ -446,7 +446,7 @@ After successfully running the eMIRNA.Refiner_denovo script, a BED file will hav
 
 ## eMIRNA.Structural.Pvalues
 
-Finally, after having obtained a list of putative novel pre-miRNA sequences by the aforementioned eMIRNA functions, users can analyse if the structural integrity of predicted pre-miRNAs can achieve a stable conformation at a statistically significant level. The eMIRNA.Structural.Pvalues function implements a n-randomization of provided sequences while mantaining k-let counts as described by Jiang *et al*. [13], using the fasta_ushuffle wrapper available at https://github.com/agordon/fasta_ushuffle. 
+Finally, after having obtained a list of putative novel pre-miRNA sequences by the aforementioned eMIRNA functions, users can analyze if the structural integrity of predicted pre-miRNAs can achieve a stable conformation at a statistically significant level. The eMIRNA.Structural.Pvalues function implements a n-randomization of provided sequences while maintaining k-let counts as described by Jiang *et al*. [13], using the fasta_ushuffle wrapper available at https://github.com/agordon/fasta_ushuffle. 
 
 This module requires three arguments:
 
@@ -458,7 +458,7 @@ Example of usage:
 
 `eMIRNA.Structural.Pvalues("~/eMIRNA/Candidates_Predicted_miRNAs_NON_annotated.fa", "Candidates", 100)`
 
-By default, eMIRNA.Structural.Pvalues will perform 100 random shuffling iterations over each provided sequence. Users can set their desired number of iterations, but should be aware of computing times required for iterating and folding of secondary structures for each sequence. As computing costs can exponentially increase with higher number of iterations, we encourge users to set their desired range of iterations between 100 and 1000, depending on the number of candidate sequences to be analysed.
+By default, eMIRNA.Structural.Pvalues will perform 100 random shuffling iterations over each provided sequence. Users can set their desired number of iterations but should be aware of computing times required for iterating and folding of secondary structures for each sequence. As computing costs can exponentially increase with higher number of iterations, we encourage users to set their desired range of iterations between 100 and 1000, depending on the number of candidate sequences to be analyzed.
 
 Once the eMIRNA.Structural.Pvalues has run, a new .csv file called `Candidates_Structural_Pvalues.csv` will be generated at `/Prediction_Results` folder, containing calculated MFE and EFE Structural *P*-values for each candidates sequence. Users can then select those sequences with a significantly stable secondary structure folding as sequences having higher probability to have been properly profiled and predicted (i.e. *P*-values < 0.05).
 
