@@ -447,7 +447,7 @@ After successfully running the eMIRNA.Refiner_denovo script, a BED file will hav
 
 ## eMIRNA.Structural.Pvalues
 
-Finally, after having obtained a list of putative novel pre-miRNA sequences by the aforementioned eMIRNA functions, users can analyze if the structural integrity of predicted pre-miRNAs can achieve a stable conformation at a statistically significant level. The eMIRNA.Structural.Pvalues function implements a n-randomization of provided sequences while maintaining k-let counts as described by Jiang *et al*. [13], using the fasta_ushuffle available at https://github.com/agordon/fasta_ushuffle. Users must download the fasta_ushuffle software, compile and install it, and locate them at system `PATH` in order to be run properly.
+Finally, after having obtained a list of putative novel pre-miRNA sequences by the aforementioned eMIRNA functions, users can analyze if the structural integrity of predicted pre-miRNAs can achieve a stable conformation at a statistically significant level. The eMIRNA.Structural.Pvalues function implements a n-randomization of provided sequences while maintaining k-let counts as described by Jiang *et al*. [13], using the fasta_ushuffle available at https://github.com/agordon/fasta_ushuffle. The fasta_ushuffle software must be downloaded, compiled and stored at computer `PATH` in order to be run properly.
 
 This module requires three arguments:
 
