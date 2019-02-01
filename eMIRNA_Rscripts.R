@@ -76,7 +76,6 @@ eMIRNA.Filter.by.Structure <- function(file, prefix){
 
 
 eMIRNA.Features <- function(file, prefix, rescale=TRUE){
-  suppressMessages(require(seqinr))
   suppressMessages(require(stringr))
   suppressMessages(require(scales))
   suppressMessages(require(Biobase))
