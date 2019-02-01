@@ -44,7 +44,6 @@ The eMIRNA pipeline makes use of a Machine Learning approach based on Support Ve
 ## Prerequisites
 
 The following R libraries are required for running the eMIRNA pipeline:
-+ seqinr (https://CRAN.R-project.org/package=seqinr)
 + stringr (https://CRAN.R-project.org/package=stringr)
 + Biobase (https://bioconductor.org/packages/release/bioc/html/Biobase.html)
 + scales (https://CRAN.R-project.org/package=scales)
