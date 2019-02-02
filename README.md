@@ -2,7 +2,15 @@
 
 eMIRNA is a comprehensive and user-friendly R-based pipeline for predicting and annotating the presence of known and novel microRNAs. This document is intended to give a technical supplementary description about how to run the eMIRNA pipeline through a detailed explanation of all the modules that form part of this program.
 
-eMIRNA pipeline is under development, if you find any problem, doubt or bug while running it, please contact emilio.marmol@cragenomica.es. eMIRNA pipeline for plants will be released soon.
+eMIRNA pipeline is under active development, if you find any problem, doubt or bug while running it, please contact emilio.marmol@cragenomica.es. eMIRNA pipeline for plants will be released soon.
+
+All eMIRNA R functions are available for instalation as R package. Please, if you want to install eMIRNA R functions in your R environment, use the following R commands:
+
+```r
+
+devtools::install_github("emarmolsanchez/eMIRNA_Rmodules")
+
+```
 
 &nbsp;
 &nbsp;
@@ -96,9 +104,13 @@ We recommend setting 50 nucleotides as lower length threshold, and 150 for the u
 
 Example of usage:
 
-`eMIRNA.Filter.by.Size("PATH to Positive FASTA file", "Pos", 50, 150)`
+```r
 
-`eMIRNA.Filter.by.Size("PATH to Negative FASTA file", "Neg", 50, 150)`
+eMIRNA.Filter.by.Size("PATH to Positive FASTA file", "Pos", 50, 150)
+
+eMIRNA.Filter.by.Size("PATH to Negative FASTA file", "Neg", 50, 150)
+
+```
 
 Once the eMIRNA.Filter.by.Size function has run, a new folder named `eMIRNA/` will have been created at your computer `$HOME`, with a subfolder, inside `eMIRNA/` folder, called `FilterSize_Results/`, in which a FASTA file named `Pos/Neg_filter_size.fa` will be generated with the results of running the function.
 
