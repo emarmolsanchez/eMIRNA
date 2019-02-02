@@ -127,9 +127,13 @@ This function requires two arguments:
 
 Example of usage:
 
-`eMIRNA.Filter.by.Structure("~/eMIRNA/FilterSize_Results/Pos_filter_size.fa", "Pos")`
+```r
 
-`eMIRNA.Filter.by.Structure("~/eMIRNA/FilterSize_Results/Neg_filter_size.fa", "Neg")`
+eMIRNA.Filter.by.Structure("~/eMIRNA/FilterSize_Results/Pos_filter_size.fa", "Pos")
+
+eMIRNA.Filter.by.Structure("~/eMIRNA/FilterSize_Results/Neg_filter_size.fa", "Neg")
+
+```
 
 Once the eMIRNA.Filter.by.Structure has run, a new folder named `FilterSstructure_Results/` will be created inside `eMIRNA/` folder, in which a FASTA file called `Pos/Neg_filter_nloop.fa` will be generated with the results of running the function.
 
@@ -155,9 +159,13 @@ The function requires three arguments:
 
 Example of usage:
 
-`Pos = eMIRNA.Features("~/eMIRNA/FilterStructure_Results/Pos_filter_nloop.fa", "Pos", rescale=FALSE)`
+```r
 
-`Neg = eMIRNA.Features("~/eMIRNA/FilterStructure_Results/Neg_filter_nloop.fa", "Neg", rescale=FALSE)`
+Pos <- eMIRNA.Features("~/eMIRNA/FilterStructure_Results/Pos_filter_nloop.fa", "Pos", rescale=FALSE)
+
+Neg <- eMIRNA.Features("~/eMIRNA/FilterStructure_Results/Neg_filter_nloop.fa", "Neg", rescale=FALSE)
+
+```
 
 Once the eMIRNA.Features has run, a new folder named `Features_Results/` will be created inside `eMIRNA/` folder, in which a .csv file called `Pos/Neg.csv` will be generated with the results of running the function.
 
@@ -216,7 +224,11 @@ This function requires three arguments:
 
 Example of usage:
 
-`SVM = eMIRNA.Train(Pos, Neg, imbalance="smote")`
+```r
+
+SVM <- eMIRNA.Train(Pos, Neg, imbalance="smote")
+
+```
 
 It is important that when running the SVM training process, both Positive and Negative matrices have a balanced number of sequences to evaluate, keeping the number of positive and negative sequences to be similar, in order to avoid any overrepresentation of one of the two classes. To overcome this issue, eMIRNA.Train implements a series of imbalance correction methods. If required, eMIRNA.Train will first perform a Noise Reduction A Priori Synthetic correction (NRAS) of input features, as reported by Rivera W [5], followed by the preferred method to over-sampling the minority class to correct class-imbalance biases. Available methods are (adasyn, bdlsmote1, bdlsmote2, mwmote, ros, rwo, slsmote, smote):
 
@@ -352,7 +364,11 @@ This module requires three arguments:
 
 Example of usage:
 
-`eMIRNA.Predict(SVM, Candidates_Feature_Matirx, "Candidates")`
+```r
+
+eMIRNA.Predict(SVM, Candidates_Feature_Matirx, "Candidates")
+
+```
 
 Once the eMIRNA.Predict has run, a new folder named `Prediction_Results/` will be created inside `eMIRNA/` folder, in which a .txt file called `Candidates.txt` will be generated, containing a list of Sequence candidate names classified as putative miRNAs by the SVM trained algorithm.
 
@@ -469,7 +485,11 @@ This module requires three arguments:
 
 Example of usage:
 
-`eMIRNA.Structural.Pvalues("~/eMIRNA/Candidates_Predicted_miRNAs_NON_annotated.fa", "Candidates", 100)`
+```r
+
+eMIRNA.Structural.Pvalues("~/eMIRNA/Candidates_Predicted_miRNAs_NON_annotated.fa", "Candidates", 100)
+
+```
 
 By default, eMIRNA.Structural.Pvalues will perform 100 random shuffling iterations over each provided sequence. Users can set their desired number of iterations but should be aware of computing times required for iterating and folding of secondary structures for each sequence. As computing costs can exponentially increase with higher number of iterations, we encourage users to set their desired range of iterations between 100 and 1000, depending on the number of candidate sequences to be analyzed.
 
