@@ -499,31 +499,31 @@ Once the eMIRNA.Structural.Pvalues has run, a new .csv file called `Candidates_S
 
 ## References
 
-Auyeung, V.C. et al. (2013) Beyond secondary structure: primary-sequence determinants license pri-miRNA hairpins for processing. *Cell*, 152, 844–58.
+Auyeung V.C. et al. (2013) Beyond secondary structure: primary-sequence determinants license pri-miRNA hairpins for processing. *Cell*, 152, 844–58.
 
-Barua, S. et al. (2014) MWMOTE--Majority Weighted Minority Oversampling Technique for Imbalanced Data Set Learning. *IEEE Trans. Knowl. Data Eng.*, 26, 405–25.
+Barua S. et al. (2014) MWMOTE--Majority Weighted Minority Oversampling Technique for Imbalanced Data Set Learning. *IEEE Trans. Knowl. Data Eng.*, 26, 405–25.
 
-Bunkhumpornpat, C. et al. (2013) Safe-Level-SMOTE: Safe-Level-Synthetic Minority Over-Sampling TEchnique for Handling the Class Imbalanced Problem. *ISCIT*, 570-575.
+Bunkhumpornpat C. et al. (2013) Safe-Level-SMOTE: Safe-Level-Synthetic Minority Over-Sampling TEchnique for Handling the Class Imbalanced Problem. *ISCIT*, 570-575.
 
-Chawla, N.V. et al (2002) SMOTE: Synthetic Minority Over-sampling Technique. *J. Artif. Intell. Res.*, 16, 321–357.
+Chawla N.V. et al (2002) SMOTE: Synthetic Minority Over-sampling Technique. *J. Artif. Intell. Res.*, 16, 321–357.
 
-Haibo, H. et al. (2008) ADASYN: Adaptive synthetic sampling approach for imbalanced learning. *IEEE*, 1322–8.
+Haibo H. et al. (2008) ADASYN: Adaptive synthetic sampling approach for imbalanced learning. *IEEE*, 1322–8.
 
-Han, H. et al. (2005) Borderline-SMOTE: A New Over-Sampling Method in Imbalanced Data Sets Learning. *ICIC*, 878–87.
+Han H. et al. (2005) Borderline-SMOTE: A New Over-Sampling Method in Imbalanced Data Sets Learning. *ICIC*, 878–87.
 
-Jiang, M. et al. (2008) uShuffle: A useful tool for shuffling biological sequences while preserving the k-let counts. *BMC Bioinformatics*, 9, 192.
+Jiang M. et al. (2008) uShuffle: A useful tool for shuffling biological sequences while preserving the k-let counts. *BMC Bioinformatics*, 9, 192.
 
-Langmead, B. et al. (2009) Ultrafast and memory-efficient alignment of short DNA sequences to the human genome. *Genome Biol.*, 10, R25.
+Langmead B. et al. (2009) Ultrafast and memory-efficient alignment of short DNA sequences to the human genome. *Genome Biol.*, 10, R25.
 
-Lorenz, R. et al. (2011) ViennaRNA Package 2.0. *Algorithms Mol. Biol.*, 6, 26.
+Lorenz R. et al. (2011) ViennaRNA Package 2.0. *Algorithms Mol. Biol.*, 6, 26.
 
-Quinlan, A.R. and Hall, I.M. (2010) BEDTools: a flexible suite of utilities for comparing genomic features. *Bioinformatics*, 26, 841–2.
+Quinlan A.R. and Hall, I.M. (2010) BEDTools: a flexible suite of utilities for comparing genomic features. *Bioinformatics*, 26, 841–2.
 
-Rivera, W.A. (2017) Noise Reduction A Priori Synthetic Over-Sampling for class imbalanced data sets. *Inf. Sci. (Ny)*, 408, 146–61.
+Rivera W.A. (2017) Noise Reduction A Priori Synthetic Over-Sampling for class imbalanced data sets. *Inf. Sci. (Ny)*, 408, 146–61.
 
-Xue, C. et al. (2005) Classification of real and pseudo microRNA precursors using local structure-sequence features and support vector machine. *BMC Bioinformatics*, 6, 310.
+Xue C. et al. (2005) Classification of real and pseudo microRNA precursors using local structure-sequence features and support vector machine. *BMC Bioinformatics*, 6, 310.
 
-Zhang, H. and Li, M. (2014) RWO-Sampling: A random walk over-sampling approach to imbalanced data classification. *Inf. Fusion*, 20, 99–116.
+Zhang H. and Li, M. (2014) RWO-Sampling: A random walk over-sampling approach to imbalanced data classification. *Inf. Fusion*, 20, 99–116.
 
 
 
