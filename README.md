@@ -238,7 +238,7 @@ It is important that when running the SVM training process, both Positive and Ne
 + ROS: Random Over-Sampling
 + RWO: Random Walk Over-Sampling (Zhang and Li, 2014)
 + SLSMOTE: Safe-Level-SMOTE (Bunkhumpornpat et al., 2013)
-+ SMOTE: Synthetic Minority Over-Sampling Technique Chawla et al., 2002)
++ SMOTE: Synthetic Minority Over-Sampling Technique (Chawla et al., 2002)
 
 By default, eMIRNA.Train will not perform any class-imbalance correction, but users are imperiously advised to do so, otherwise the training process could suffer.
 
