@@ -162,5 +162,5 @@ cat $OUT${X}_temp21.txt $OUT${X}_temp28.txt > $OUT${X}_temp29.txt
 sed 's/-5p//g' $OUT${X}_temp29.txt | sed 's/-3p//' > $OUT${X}_Putative_Predicted_miRNAs.txt
 
 
-rm $OUT*temp*
+rm $OUT${X}_temp*
 
