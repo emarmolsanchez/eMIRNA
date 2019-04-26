@@ -45,7 +45,7 @@ Output:
 
       exit 0;;
 :) echo ""
-   echo "Error while executing eMiRNA.Refiner!! Option -$OPTARG requires an argument."
+   echo "Error while executing eMIRNA.Refiner!! Option -$OPTARG requires an argument."
    exit 1;;
 
 esac
