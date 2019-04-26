@@ -91,4 +91,4 @@ echo -e "Chr\tStart\tEnd\tStrand\tSeq\tID\tmiRNA" > $OUT${X}_temp11.txt
 cat $OUT${X}_temp11.txt $OUT${X}_temp10.bed > $OUT${X}_Predicted_miRNAs_annotated.bed
 
 
-rm $OUT*temp*
+rm $OUT${X}_temp*
