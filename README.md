@@ -45,7 +45,7 @@ The eMIRNA pipeline makes use of a Machine Learning approach based on Support Ve
 
 &nbsp;
 
-![alt text](https://github.com/emarmolsanchez/eMIRNA/blob/master/bin/Figure1.png)
+![alt text](https://github.com/emarmolsanchez/eMIRNA/blob/master/bin/Figure1.jpg)
 
 &nbsp;
 
