@@ -41,7 +41,7 @@ devtools::install_github("emarmolsanchez/eMIRNA_Rmodules")
 
 ## Introduction
 
-The eMIRNA pipeline makes use of a Machine Learning approach based on Support Vector Machine (SVM) algorithm to assess whether putative candidate sequences can be predicted as pre-miRNA-like structures. First, the eMIRNA algorithm must be trained by making use of positive (microRNAs) and negative (other ncRNAs) sequence datasets. Once the SVM model has been trained, putative miRNA candidates can be subjected to prediction.
+The eMIRNA pipeline makes use of a Machine Learning approach based on semi-supervised transductive Graph-based algorithm [1] to assess whether putative candidate sequences can be predicted as pre-miRNA-like structures.
 
 &nbsp;
 
@@ -71,17 +71,21 @@ All executables should be stored at computer `$PATH` in order to be run properly
 
 &nbsp;
 
-## Positive and Negative Datasets
+## Positive, Negative and Unlabeled Datasets
 
-Training the **eMIRNA** Classifier requires two FASTA files with **Positive** and **Negative** sequences.
+Running the **eMIRNA** Classifier requires two FASTA files with **Positive** and **Negative** sequences.
 
 The **Positive Sequences** must correspond to those sequences annotated as microRNA genes in the available Reference Genome for the species under study. GTF annotation and FASTA files for corresponding transcripts can be downloaded from the Ensembl repositories available at http://www.ensembl.org/info/data/ftp/index.html.
 
 The **Negative Sequences** must correspond to non-coding sequences other than microRNA genes in the available Reference Genome for the species under study. GTF annotation and FASTA files for corresponding transcripts can be downloaded from the Ensembl repositories available at http://www.ensembl.org/info/data/ftp/index.html.
 
-In the event that no Reference Genome or no good microRNA or non-coding transcripts are available for downloading, we strongly recommend choosing sequences from the closest phylogenetically related reference species with available genome annotation for training the model, otherwise the results can suffer from low reliability.
+Additionally, other hairpin-like sequences can be extracted from the reference Genome, in order to increase the variety and diversity of sequences to be included during graph reconstruction and allow a better topological adjustment of positive and negative categories. The hextractoR package (https://CRAN.R-project.org/package=HextractoR) can be used for generating a set of hairpin-like sequences from any available genome assembly. Please be aware that quering the whole genome can be extremely time consuming and resource intensive. We reccomend establishing random blocks (1-10 Mb) within each genomic chromosome. As no prior knowledge of the identity of randomly extracted hairpins would available, they will be set as **Unlabeled sequences**.
 
-Both Positive and Negative datasets must be in linear FASTA format. Should you have multilinear FASTA files, they must be converted to linear FASTA files. Users can implement the following perl command:
+Once positive, negative and unlabeled sequences are available, we recomend using a identity-by-sequence filtering step, in order to remove redundant sequences that may occur in any of the categories. The CD-Hit suite is a good resource for implementing sequence-based repetitve elements removal (http://weizhong-lab.ucsd.edu/cdhit_suite/cgi-bin/index.cgi).
+
+In the event that no Reference Genome or no good microRNA or non-coding transcripts are available for downloading, we strongly recommend choosing sequences from the closest phylogenetically related reference species with available genome annotation for running the classification procedure, otherwise the results can suffer from low reliability.
+
+Positive, Negative and Unlabeled datasets must be in linear FASTA format. Should you have multilinear FASTA files, they must be converted to linear FASTA files. Users can implement the following perl command:
 
 `perl -pe '/^>/ ? print "\n" : chomp' in.fa | tail -n +2 > out.fa`
 
@@ -91,7 +95,7 @@ where `in.fa` corresponds to multilinear FASTA file, and `out.fa` is the resulti
 
 ## eMIRNA.Filter.by.Size
 
-The first eMIRNA module makes use of previous Positive and Negative FASTA files, to perform an initial filtering process based on sequence length. Typically, microRNA genes range from 50 to 150 nucleotides long. Our first aim would be to filter the selected sequences based on expected microRNA genes length. We will apply this function to both Positive and Negative FASTA files. The Positive sequences should not experience any filtering upon this process, if correctly generated. For Negative sequences, all long non-coding sequences will be removed from our Negative FASTA file, retaining only those sequences resembling microRNA genes in length, according to established thresholds.
+The first eMIRNA module makes use of previous Positive, Negative and Unlabeled FASTA files to perform an initial filtering process based on sequence length. Typically, microRNA genes range from 50 to 150 nucleotides long. Our first aim would be to filter the selected sequences based on expected microRNA genes length. We will apply this function to each of the FASTA files. The Positive sequences should not experience any filtering upon this process, if correctly generated. For Negative and Unlabeled sequences, all long non-coding hairpin-like sequences will be removed, retaining only those sequences resembling microRNA genes in length, according to established thresholds.
 
 This function requires four arguments:
 
@@ -100,7 +104,7 @@ This function requires four arguments:
 + Lower length filtering threshold.
 + Upper length filtering threshold.
 
-We recommend setting 50 nucleotides as lower length threshold, and 150 for the upper, but users can define their own limit thresholds.
+We recommend setting 50 nucleotides as lower length threshold, and 150 for the upper, but users can define their own preferred thresholds.
 
 Example of usage:
 
@@ -110,9 +114,11 @@ eMIRNA.Filter.by.Size("PATH to Positive FASTA file", "Pos", 50, 150)
 
 eMIRNA.Filter.by.Size("PATH to Negative FASTA file", "Neg", 50, 150)
 
+eMIRNA.Filter.by.Size("PATH to Unlabeled FASTA file", "Unlab", 50, 150)
+
 ```
 
-Once the eMIRNA.Filter.by.Size function has run, a new folder named `eMIRNA/` will have been created at your computer `$HOME`, with a subfolder, inside `eMIRNA/` folder, called `FilterSize_Results/`, in which a FASTA file named `Pos/Neg_filter_size.fa` will be generated with the results of running the function.
+Once the eMIRNA.Filter.by.Size function has run, a new folder named `eMIRNA/` will be created at your computer `$HOME`, with a subfolder called `FilterSize_Results/`, in which a FASTA file named `Pos/Neg/Unlab_filter_size.fa` will be generated with the results of running the function.
 
 &nbsp;
 
