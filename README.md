@@ -125,35 +125,30 @@ Once the eMIRNA.Filter function has run, a new folder named `eMIRNA/` will be cr
 
 ## eMIRNA.Features
 
-The third eMIRNA module aims to calculate a series of structural, statistical and sequence-derived features from each sequence that had passed previous filtering, in order to obtain an estimated representation of their structural characteristics. Afterwards, these feature matrices will be processed by the prediction software to discriminate between microRNAs and other type of sequences.
+The third eMIRNA module aims to calculate a series of structural, statistical and sequence-derived features from each sequence that had passed previous filtering, in order to obtain an estimated representation of their structural characteristics. Subsequently, these feature matrices will be processed by the prediction software to discriminate between microRNAs and other type of sequences.
 
-A modified version of Triplet-SVM pipeline (Xue et al., 2005) is implemented in the eMIRNA.Features module. Triplet-SVM perl scripts 1 to 3 (available at `bin/`) should be located at computer `$PATH`, so as the function is properly executed. RNAfold executable must also be installed and available at `$PATH`. All Triplet-SVM perl scripts should have execution permission allowed, which can easily be set with command `chmod 777`.
+A modified version of Triplet-SVM pipeline [3] is implemented in the eMIRNA.Features module. Triplet-SVM perl scripts 1 to 3 (available at `bin/`) should be located at computer `$PATH`, so that the function is properly executed. RNAfold executable must also be installed and available at `$PATH`. All Triplet-SVM perl scripts should have execution permission allowed, which can easily be set with command `chmod 777`. 
 
-When running the eMIRNA.Features, rescaling of feature values will be implemented unless users specify otherwise (`rescale = TRUE/FALSE`). Features rescaling demonstrated better overall performance of trained SVM classifiers to discriminate between miRNAs and other non-coding sequences. 
+The function requires two arguments:
 
-If dealing with poorly annotated species (which may be the case of a great number of users willing to implement the eMIRNA pipeline), users are advised to use the `normalize = FALSE` option, which will cause a slightly worse performance of trained SVM model, but will allow a much better representation of feature spatial positioning for fitting the SVM Hyperplane, hence resulting in a more accurate prediction afterwards, despite the overall decrease in reported SVM performance.
-
-Besides, users could choose a better annotated species for algorithm training, such as humans or mice, and apply the `rescale = TRUE` option, which will increase SVM algorithm performance and behave similarly to non-rescaled SVM classifiers trained with poorly annotated species data. Inter-species exchangeability of trained SVM algorithms is only advised for closely related species. Users must be aware of low reliability in miRNA prediction if pyhlogenetically far-distant species are used for SVM training and further prediction. 
-
-The function requires three arguments:
-
-+ PATH to eMIRNA.Filter.by.Structure Positive or Negative FASTA output files.
++ PATH to eMIRNA.Filter FASTA output files.
 + String with desired output prefix name.
-+ Boolean for rescaling features matrix data (TRUE/FALSE).
 
 Example of usage:
 
 ```r
 
-Pos <- eMIRNA.Features("~/eMIRNA/FilterStructure_Results/Pos_filter_nloop.fa", "Pos", rescale=FALSE)
+Pos <- eMIRNA.Features("~/eMIRNA/Filter_Results/Pos_filtered.fa", "Pos")
 
-Neg <- eMIRNA.Features("~/eMIRNA/FilterStructure_Results/Neg_filter_nloop.fa", "Neg", rescale=FALSE)
+Neg <- eMIRNA.Features("~/eMIRNA/Filter_Results/Neg_filtered.fa", "Neg")
+
+Unlab <- eMIRNA.Features("~/eMIRNA/Filter_Results/Unlab_filtered.fa", "Unlab")
 
 ```
 
-Once the eMIRNA.Features has run, a new folder named `Features_Results/` will be created inside `eMIRNA/` folder, in which a .csv file called `Pos/Neg.csv` will be generated with the results of running the function.
+Once the eMIRNA.Features has run, a new folder named `Features_Results/` will be created inside `eMIRNA/`, in which a .txt file called `Pos/Neg/Unlab.txt` will be generated with the results of running the function.
 
-The eMIRNA.Features function includes the calculation of a total of 6 Sequence Features, comprising 55 variables, 8 Secondary Structure Features, comprising 23 variables, and 16 Structural Statistics. 
+The eMIRNA.Features function includes the calculation of a total of 6 Sequence Features, comprising 55 variables, 8 Secondary Structure Features, comprising 27 variables, and 17 Structural Statistics. 
 
 Sequence Features:
 
@@ -171,8 +166,8 @@ Secondary Structure Features:
 + Base pairs in Secondary Structure (BP).
 + Base pairs or matches at 5’ - 3’ Stems (BP5, BP3).
 + Unpaired bases or mismatches at 5’ - 3’ Stems (Mism5, Mism3).
-+ Bulges at 5’ - 3’ Stems (B5, B3).
-+ Bulges at 5’ - 3’ Stems of type 1,2,3,4 or 5 unpaired bases (BN1.5, BN1.3 … BN5.5, BN5.3).
++ Bulges at 5’ - 3’ Stems (Bulge5, Bulge3).
++ Bulges at 5’ - 3’ Stems of type 1, 2, 3, 4, 5, 6 or 7 unpaired bases (BN1.5, BN1.3 … BN7.5, BN7.3).
 + A-U, G-C and G-U Pairings in sequence (AUp, GCp, GUp).
 
 Structural Statistics:
@@ -184,49 +179,16 @@ Structural Statistics:
 + Maximum Expected Accuracy of Free Energy (MEAFE).
 + Maximum Expected Accuracy (MEA).
 + BP / Length (BPP).
-+ MFE Ensemble Frequency (EFreq).
 + Ensemble Diversity (ED).
 + MFE / Length (MFEadj).
 + EFE / Length (EFEadj).
 + CDE / Length (Dadj).
++ MEAFE / Length (MEAFEadj).
++ ED / Length (EDadj).
 + Shannon Entropy / Length (SEadj).
 + MFE – EFE / Length (DiffMFE.EFE).
 + MFEadj / GC (MFEadj.GC).
 + MFEadj / BP (MFEadj.BP).
-
-&nbsp;
-
-## eMIRNA.Train
-
-The fourth eMIRNA module aims to perform the training process of a Machine Learning-based Support Vector Machine (SVM) algorithm, making use of Feature representation previously calculated, to construct a SVM model capable to distinguish between microRNAs and other non-coding sequences. The SVM algorithm is built by using a 10 k-fold cross-validation over a training set randomly selected from analyzed features.
-
-This function requires three arguments:
-
-+ Positive Features calculated by eMIRNA.Features, saved in R object.
-+ Negative Features calculated by eMIRNA.Features, saved in R object.
-+ Imbalance correction algorithm.
-
-Example of usage:
-
-```r
-
-SVM <- eMIRNA.Train(Pos, Neg, imbalance="smote")
-
-```
-
-It is important that when running the SVM training process, both Positive and Negative matrices have a balanced number of sequences to evaluate, keeping the number of positive and negative sequences to be similar, in order to avoid any overrepresentation of one of the two classes. To overcome this issue, eMIRNA.Train implements a series of imbalance correction methods. If required, eMIRNA.Train will first perform a Noise Reduction A Priori Synthetic correction (NRAS) of input features, as reported by Rivera W [5], followed by the preferred method to over-sampling the minority class to correct class-imbalance biases. Available methods are (adasyn, bdlsmote1, bdlsmote2, mwmote, ros, rwo, slsmote, smote):
-
-+ ADASYN: Adaptive Synthetic Sampling (Haibo et al., 2008)
-+ BDLSMOTE: borderline-SMOTE1 and borderline-SMOTE2 (Han et al., 2005)
-+ MWMOTE: Majority Weighted Minority Over-Sampling Technique (Barua et al., 2014)
-+ ROS: Random Over-Sampling
-+ RWO: Random Walk Over-Sampling (Zhang and Li, 2014)
-+ SLSMOTE: Safe-Level-SMOTE (Bunkhumpornpat et al., 2013)
-+ SMOTE: Synthetic Minority Over-Sampling Technique (Chawla et al., 2002)
-
-By default, eMIRNA.Train will not perform any class-imbalance correction, but users are imperiously advised to do so, otherwise the training process could suffer.
-
-Once the function has run, a new folder named `SVM_Results/` will be created inside `eMIRNA/` folder, in which two .csv files called `training.csv` and `testing.csv` will be generated with the results of splitting the original combined Postivie and Negative matrices. Besides, eMIRNA.Train module will create an `.rds` file with the trained SVM classifier.
 
 &nbsp;
 
