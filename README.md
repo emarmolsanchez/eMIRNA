@@ -22,8 +22,7 @@ devtools::install_github("emarmolsanchez/eMIRNA_Rmodules")
 - [Introduction](https://github.com/emarmolsanchez/eMIRNA/#introduction)
 - [Prerrequisites](https://github.com/emarmolsanchez/eMIRNA/#prerequisites)
 - [Positive and Negative Datasets](https://github.com/emarmolsanchez/eMIRNA/#positive-and-negative-datasets)
-- [eMIRNA.Filter.by.Size](https://github.com/emarmolsanchez/eMIRNA/#emirnafilterbysize)
-- [eMIRNA.Filter.by.Structure](https://github.com/emarmolsanchez/eMIRNA/#emirnafilterbystructure)
+- [eMIRNA.Filter](https://github.com/emarmolsanchez/eMIRNA/#emirnafilter)
 - [eMIRNA.Features](https://github.com/emarmolsanchez/eMIRNA/#emirnafeatures)
 - [eMIRNA.Train](https://github.com/emarmolsanchez/eMIRNA/#emirnatrain)
 - [eMIRNA.Hunter](https://github.com/emarmolsanchez/eMIRNA/#emirnahunter)
@@ -93,9 +92,9 @@ where `in.fa` corresponds to multilinear FASTA file, and `out.fa` is the resulti
 
 &nbsp;
 
-## eMIRNA.Filter.by.Size
+## eMIRNA.Filter
 
-The first eMIRNA module makes use of previous Positive, Negative and Unlabeled FASTA files to perform an initial filtering process based on sequence length. Typically, microRNA genes range from 50 to 150 nucleotides long. Our first aim would be to filter the selected sequences based on expected microRNA genes length. We will apply this function to each of the FASTA files. The Positive sequences should not experience any filtering upon this process, if correctly generated. For Negative and Unlabeled sequences, all long non-coding hairpin-like sequences will be removed, retaining only those sequences resembling microRNA genes in length, according to established thresholds.
+The first eMIRNA module makes use of previous Positive, Negative and Unlabeled FASTA files to perform an initial filtering process based on sequence length. Typically, microRNA genes range from 50 to 150 nucleotides long. Our first aim would be to filter the selected sequences based on expected microRNA genes length. We will apply this function to each of the FASTA files. The Positive sequences should not experience any filtering upon this process, if correctly generated. For Negative and Unlabeled sequences, all long non-coding hairpin-like sequences will be removed, retaining only those sequences resembling microRNA genes in length, according to established thresholds. Next, this module estimates the secondary folding structure of selected filtered sequences, thus filtering out all candidates that do not ressemble a pre-miRNA hairpin-like secondary structure. The eMIRNA.Filter function will make use of RNAfold software [2] to calculate the estimated secondary folding structure, which should be available in your computer `$PATH` to be correctly executed. Typically, microRNA genes have a characteristic secondary structure, composed by two stems joined by complementarity and one terminal loop, forming a hairpin-like secondary structure. Some bubbles or bulges can appear within the two stems, belonging to non-paired nucleotides in the sequence.
 
 This function requires four arguments:
 
@@ -118,30 +117,7 @@ eMIRNA.Filter.by.Size("PATH to Unlabeled FASTA file", "Unlab", 50, 150)
 
 ```
 
-Once the eMIRNA.Filter.by.Size function has run, a new folder named `eMIRNA/` will be created at your computer `$HOME`, with a subfolder called `FilterSize_Results/`, in which a FASTA file named `Pos/Neg/Unlab_filter_size.fa` will be generated with the results of running the function.
-
-&nbsp;
-
-## eMIRNA.Filter.by.Structure
-
-The second eMIRNA module aims to estimate the secondary folding structure of selected filtered sequences both in Positive and Negative datasets, thus filtering out all sequences that do not ressemble a pre-miRNA hairpin-like secondary structure. The eMIRNA.Filter.by.Structure function will make use of RNAfold software [1] to calculate the estimated secondary folding structure, which should be available in your computer `$PATH` to be correctly executed. Typically, microRNA genes have a characteristic secondary structure, composed by two stems joined by complementarity and one terminal loop, forming a hairpin-like secondary structure. Some bubbles or bulges can appear within the two stems, belonging to non-paired nucleotides in the sequence.
-
-This function requires two arguments:
-
-+ PATH to eMIRNA.Filter.by.Size Positive or Negative FASTA output files.
-+ String with desired output prefix name.
-
-Example of usage:
-
-```r
-
-eMIRNA.Filter.by.Structure("~/eMIRNA/FilterSize_Results/Pos_filter_size.fa", "Pos")
-
-eMIRNA.Filter.by.Structure("~/eMIRNA/FilterSize_Results/Neg_filter_size.fa", "Neg")
-
-```
-
-Once the eMIRNA.Filter.by.Structure has run, a new folder named `FilterSstructure_Results/` will be created inside `eMIRNA/` folder, in which a FASTA file called `Pos/Neg_filter_nloop.fa` will be generated with the results of running the function.
+Once the eMIRNA.Filter function has run, a new folder named `eMIRNA/` will be created at your computer `$HOME`, with a subfolder called `Filter_Results/` inside, in which a FASTA file named `Pos/Neg/Unlab_filtered.fa` will be generated with the results of running the function.
 
 &nbsp;
 
