@@ -21,7 +21,7 @@ devtools::install_github("emarmolsanchez/eMIRNA_Rmodules")
 
 - [Introduction](https://github.com/emarmolsanchez/eMIRNA/#introduction)
 - [Prerrequisites](https://github.com/emarmolsanchez/eMIRNA/#prerequisites)
-- [Positive and Negative Datasets](https://github.com/emarmolsanchez/eMIRNA/#positive-and-negative-datasets)
+- [Positive and Negative Data sets](https://github.com/emarmolsanchez/eMIRNA/#positive-and-negative-datasets)
 - [eMIRNA.Filter](https://github.com/emarmolsanchez/eMIRNA/#emirnafilter)
 - [eMIRNA.Features](https://github.com/emarmolsanchez/eMIRNA/#emirnafeatures)
 - [eMIRNA.Train](https://github.com/emarmolsanchez/eMIRNA/#emirnatrain)
@@ -70,7 +70,7 @@ All executables should be stored at computer `$PATH` in order to be run properly
 
 &nbsp;
 
-## Positive, Negative and Unlabeled Datasets
+## Positive, Negative and Unlabeled Data sets
 
 Running the **eMIRNA** Classifier requires two FASTA files with **Positive** and **Negative** sequences.
 
