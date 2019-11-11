@@ -1,16 +1,8 @@
 # eMIRNA
 
-eMIRNA is a comprehensive and user-friendly R-based pipeline for predicting and annotating the presence of known and novel microRNAs. This document is intended to give a technical supplementary description about how to run the eMIRNA pipeline through a detailed explanation of all the modules that form part of this program.
+eMIRNA is a comprehensive and user-friendly pipeline for predicting and annotating the presence of known and novel microRNAs. This document is intended to give a technical supplementary description about how to run the eMIRNA pipeline through a detailed explanation of all the modules that form part of this program.
 
-eMIRNA pipeline is under active development, if you find any problem, doubt or bug while running it, please contact emilio.marmol@cragenomica.es. eMIRNA pipeline for plants will be released soon.
-
-All eMIRNA R functions are available for instalation as R package. Please, if you want to install eMIRNA R functions in your R environment, use the following R commands:
-
-```r
-
-devtools::install_github("emarmolsanchez/eMIRNA_Rmodules")
-
-```
+The eMIRNA pipeline is under active development, if you find any problem, doubt or bug while running it, please contact emilio.marmol@cragenomica.es. eMIRNA pipeline for plants will be released soon.
 
 &nbsp;
 &nbsp;
@@ -21,16 +13,14 @@ devtools::install_github("emarmolsanchez/eMIRNA_Rmodules")
 
 - [Introduction](https://github.com/emarmolsanchez/eMIRNA/#introduction)
 - [Prerrequisites](https://github.com/emarmolsanchez/eMIRNA/#prerequisites)
-- [Positive and Negative Data sets](https://github.com/emarmolsanchez/eMIRNA/#positive-and-negative-datasets)
+- [Positive, Negative and Unlabeled Data sets](https://github.com/emarmolsanchez/eMIRNA/#positive,-negative-and-unlabeled-data-sets)
 - [eMIRNA.Filter](https://github.com/emarmolsanchez/eMIRNA/#emirnafilter)
 - [eMIRNA.Features](https://github.com/emarmolsanchez/eMIRNA/#emirnafeatures)
 - [eMIRNA.Train](https://github.com/emarmolsanchez/eMIRNA/#emirnatrain)
 - [eMIRNA.Hunter](https://github.com/emarmolsanchez/eMIRNA/#emirnahunter)
-- [eMIRNA.Hunter_denovo](https://github.com/emarmolsanchez/eMIRNA/#emirnahunter_denovo)
 - [eMIRNA.Predict](https://github.com/emarmolsanchez/eMIRNA/#emirnapredict)
 - [eMIRNA.Refiner](https://github.com/emarmolsanchez/eMIRNA/#emirnarefiner)
-- [eMIRNA.Refiner_denovo](https://github.com/emarmolsanchez/eMIRNA/#emirnarefiner_denovo)
-- [eMIRNA.Structural.Pvalues](https://github.com/emarmolsanchez/eMIRNA/#emirnastructuralpvalues)
+- [eMIRNA.Structural.Pvalue](https://github.com/emarmolsanchez/eMIRNA/#emirnastructuralpvalue)
 - [References](https://github.com/emarmolsanchez/eMIRNA/#references)
 - [Contact](https://github.com/emarmolsanchez/eMIRNA/#contact)
 - [Notes](https://github.com/emarmolsanchez/eMIRNA/#notes)
