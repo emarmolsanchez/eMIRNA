@@ -16,11 +16,12 @@ The eMIRNA pipeline is under active development, if you find any problem, doubt 
 - [Positive, Negative and Unlabeled Data sets](https://github.com/emarmolsanchez/eMIRNA/#positive-negative-and-unlabeled-data-sets)
 - [eMIRNA.Filter](https://github.com/emarmolsanchez/eMIRNA/#emirnafilter)
 - [eMIRNA.Features](https://github.com/emarmolsanchez/eMIRNA/#emirnafeatures)
-- [eMIRNA.Train](https://github.com/emarmolsanchez/eMIRNA/#emirnatrain)
 - [eMIRNA.Hunter](https://github.com/emarmolsanchez/eMIRNA/#emirnahunter)
+- [eMIRNA.Structural.Pvalue](https://github.com/emarmolsanchez/eMIRNA/#emirnastructuralpvalue)
 - [eMIRNA.Predict](https://github.com/emarmolsanchez/eMIRNA/#emirnapredict)
 - [eMIRNA.Refiner](https://github.com/emarmolsanchez/eMIRNA/#emirnarefiner)
-- [eMIRNA.Structural.Pvalue](https://github.com/emarmolsanchez/eMIRNA/#emirnastructuralpvalue)
+- [eMIRNA.Network](https://github.com/emarmolsanchez/eMIRNA/#emirnanetwork)
+- [eMIRNA.RIF](https://github.com/emarmolsanchez/eMIRNA/#emirnarif)
 - [References](https://github.com/emarmolsanchez/eMIRNA/#references)
 - [Contact](https://github.com/emarmolsanchez/eMIRNA/#contact)
 - [Notes](https://github.com/emarmolsanchez/eMIRNA/#notes)
@@ -282,7 +283,7 @@ eMIRNA.Structural.Pvalues("~/eMIRNA/Structural_Results/Candidates_miRNAs_correct
 
 By default, eMIRNA.Structural.Pvalues will perform 100 random shuffling iterations over each provided sequence. Users can set their desired number of iterations but should be aware of computing times required for iterating and folding of secondary structures for each sequence. As computing costs can exponentially increase with higher number of iterations, we encourage users to set their desired range of iterations between 100 and 1000, depending on the number of candidate sequences to be analyzed.
 
-Once the eMIRNA.Structural.Pvalues has run, a new .txt file called `Candidates_Structural_Pvalues.txt` will be generated at `/Structural_Results` folder, containing estimated MFE *P*-values for each candidates sequence. Besides, a new filtered FASTA file will be also generated at `/Structural_Results` folder, named `Candidates_filtered_Pval.fa`, containing only those sequence candidates with structural *P*-values > 0.1 (or the corresponding defined threshold).
+Once the eMIRNA.Structural.Pvalues has run, a new .txt file called `Candidates_Structural_Pvalues.txt` will be generated at `/Structural_Results` folder, containing estimated MFE *P*-values for each candidates sequence. Besides, a new filtered FASTA file will be also generated at `/Structural_Results` folder, named `Candidates_filtered_Pval.fa`, containing only those sequence candidates with structural *P*-values < 0.1 (or the corresponding defined threshold).
 
 The resulting filtered FASTA file can then be subjected to eMIRNA.Filter and eMIRNA.Features modules in order to obtain a representative feature matrix for each candidate sequence to be classified.
 
@@ -368,6 +369,10 @@ bash eMIRNA.Refiner -g Sscrofa11.1.97.gtf -p Prediction_results.txt -b Candidate
 After successfully running the eMIRNA.Refiner script, a BED file will have been created at predefined output `PATH`, containing the most relevant putative novel non-annotated microRNAs, and their estimated positions, as well as FASTA file with the corresponding novel candidate sequences. Besides, a BED file containing already annotated detected candidates will be also generated.
 
 &nbsp;
+
+## eMIRNA.Network
+
+
 
 
 
