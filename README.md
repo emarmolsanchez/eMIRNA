@@ -66,13 +66,13 @@ All executables should be stored at computer `$PATH` in order to be run properly
 
 Running the **eMIRNA** Classifier requires two FASTA files with **Positive** and **Negative** sequences.
 
-The **Positive Sequences** must correspond to those sequences annotated as microRNA genes in the available Reference Genome for the species under study. GTF annotation and FASTA files for corresponding transcripts can be downloaded from the Ensembl repositories available at http://www.ensembl.org/info/data/ftp/index.html.
+The **Positive Sequences** must correspond to those sequences annotated as microRNA genes in the available Reference Genome for the species under study. GTF annotation and FASTA files for corresponding transcripts can be downloaded from the [Ensembl repositories].
 
-The **Negative Sequences** must correspond to non-coding sequences other than microRNA genes in the available Reference Genome for the species under study. GTF annotation and FASTA files for corresponding transcripts can be downloaded from the Ensembl repositories available at http://www.ensembl.org/info/data/ftp/index.html.
+The **Negative Sequences** must correspond to non-coding sequences other than microRNA genes in the available Reference Genome for the species under study. GTF annotation and FASTA files for corresponding transcripts can be downloaded from the [Ensembl repositories].
 
-Additionally, other hairpin-like sequences can be extracted from the reference Genome, in order to increase the variety and diversity of sequences to be included during graph reconstruction and allow a better topological adjustment of positive and negative categories. The hextractoR package (https://CRAN.R-project.org/package=HextractoR) can be used for generating a set of hairpin-like sequences from any available genome assembly. Please be aware that quering the whole genome can be extremely time consuming and resource intensive. We reccomend establishing random blocks (1-10 Mb) within each genomic chromosome. As no prior knowledge of the identity of randomly extracted hairpins would available, they will be set as **Unlabeled sequences**.
+Additionally, other hairpin-like sequences can be extracted from the reference Genome, in order to increase the variety and diversity of sequences to be included during graph reconstruction and allow a better topological adjustment of positive and negative categories. The [hextractoR] package can be used for generating a set of hairpin-like sequences from any available genome assembly. Please be aware that quering the whole genome can be extremely time consuming and resource intensive. We reccomend establishing random blocks (1-10 Mb) within each genomic chromosome. As no prior knowledge of the identity of randomly extracted hairpins would available, they will be set as **Unlabeled sequences**.
 
-Once positive, negative and unlabeled sequences are available, we recomend using a identity-by-sequence filtering step, in order to remove redundant sequences that may occur in any of the categories. The CD-Hit suite is a good resource for implementing sequence-based repetitve elements removal (http://weizhong-lab.ucsd.edu/cdhit_suite/cgi-bin/index.cgi).
+Once positive, negative and unlabeled sequences are available, we recomend using a identity-by-sequence filtering step, in order to remove redundant sequences that may occur in any of the categories. The [CD-Hit] suite is a good resource for implementing sequence-based repetitve elements removal.
 
 In the event that no Reference Genome or no good microRNA or non-coding transcripts are available for downloading, we strongly recommend choosing sequences from the closest phylogenetically related reference species with available genome annotation for running the classification procedure, otherwise the results can suffer from low reliability.
 
@@ -88,7 +88,7 @@ where `in.fa` corresponds to multilinear FASTA file, and `out.fa` is the resulti
 
 The first eMIRNA module makes use of previous Positive, Negative and Unlabeled FASTA files to perform an initial filtering process based on sequence length. Typically, microRNA genes range from 50 to 150 nucleotides long. Our first aim would be to filter the selected sequences based on expected microRNA genes length. We will apply this function to each of the FASTA files. The Positive sequences should not experience any filtering upon this process, if correctly generated. For Negative and Unlabeled sequences, all long non-coding hairpin-like sequences will be removed, retaining only those sequences resembling microRNA genes in length, according to established thresholds. 
 
-Next, this module estimates the secondary folding structure of selected filtered sequences, thus filtering out all candidates that do not ressemble a pre-miRNA hairpin-like secondary structure. The eMIRNA.Filter function will make use of RNAfold software [2] to calculate the estimated secondary folding structure, which should be available in your computer `$PATH` to be correctly executed. Typically, microRNA genes have a characteristic secondary structure, composed by two stems joined by complementarity and one terminal loop, forming a hairpin-like secondary structure. Some bubbles or bulges can appear within the two stems, belonging to non-paired nucleotides in the sequence.
+Next, this module estimates the secondary folding structure of selected filtered sequences, thus filtering out all candidates that do not ressemble a pre-miRNA hairpin-like secondary structure. The eMIRNA.Filter function will make use of RNAfold software [[2]] to calculate the estimated secondary folding structure, which should be available in your computer `$PATH` to be correctly executed. Typically, microRNA genes have a characteristic secondary structure, composed by two stems joined by complementarity and one terminal loop, forming a hairpin-like secondary structure. Some bubbles or bulges can appear within the two stems, belonging to non-paired nucleotides in the sequence.
 
 This function requires four arguments:
 
@@ -119,7 +119,7 @@ Once the eMIRNA.Filter function has run, a new folder named `eMIRNA/` will be cr
 
 The third eMIRNA module aims to calculate a series of structural, statistical and sequence-derived features from each sequence that had passed previous filtering, in order to obtain an estimated representation of their structural characteristics. Subsequently, these feature matrices will be processed by the prediction software to discriminate between microRNAs and other type of sequences.
 
-A modified version of Triplet-SVM pipeline [3] is implemented in the eMIRNA.Features module. Triplet-SVM perl scripts 1 to 3 (available at `bin/`) should be located at computer `$PATH`, so that the function is properly executed. RNAfold executable must also be installed and available at `$PATH`. All Triplet-SVM perl scripts should have execution permission allowed, which can easily be set with command `chmod 777`. 
+A modified version of Triplet-SVM pipeline [[5]] is implemented in the eMIRNA.Features module. Triplet-SVM perl scripts 1 to 3 (available at `bin/`) should be located at computer `$PATH`, so that the function is properly executed. RNAfold executable must also be installed and available at `$PATH`. All Triplet-SVM perl scripts should have execution permission allowed, which can easily be set with command `chmod 777`. 
 
 The function requires two arguments:
 
@@ -485,6 +485,7 @@ emilio.marmol@cragenomica.es
 [2]:https://almob.biomedcentral.com/articles/10.1186/1748-7188-6-26
 [3]:https://academic.oup.com/bioinformatics/article/26/6/841/244688
 [4]:https://genomebiology.biomedcentral.com/articles/10.1186/gb-2009-10-3-r25
+[5]:https://bmcbioinformatics.biomedcentral.com/articles/10.1186/1471-2105-6-310
 [stringr]:https://CRAN.R-project.org/package=stringr
 [seqinr]:https://CRAN.R-project.org/package=seqinr
 [Biobase]:https://bioconductor.org/packages/release/bioc/html/Biobase.html
@@ -494,3 +495,6 @@ emilio.marmol@cragenomica.es
 [BEDTools v2.27.0]:https://bedtools.readthedocs.io/en/latest/
 [Bowtie]:https://mcardle.wisc.edu/mprime/help/bowtie/manual.html
 [Fasta_ushuffle]:https://github.com/agordon/fasta_ushuffle
+[Ensembl repositories]:http://www.ensembl.org/info/data/ftp/index.html
+[HextractoR]:https://CRAN.R-project.org/package=HextractoR
+[CD-Hit]:http://weizhong-lab.ucsd.edu/cdhit_suite/cgi-bin/index.cgi
