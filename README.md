@@ -52,9 +52,9 @@ The following R libraries are required for running the eMIRNA pipeline:
 + miRNAss [[1]] (https://CRAN.R-project.org/package=miRNAss)
 
 The following software programs are required for running the eMIRNA pipeline:
-+ RNAfold [2] (https://www.tbi.univie.ac.at/RNA/)
-+ BEDTools v2.27.0 [3] (https://bedtools.readthedocs.io/en/latest/)
-+ Bowtie [4] (https://mcardle.wisc.edu/mprime/help/bowtie/manual.html)
++ RNAfold [[2]] (https://www.tbi.univie.ac.at/RNA/)
++ BEDTools v2.27.0 [[3]] (https://bedtools.readthedocs.io/en/latest/)
++ Bowtie [[4]] (https://mcardle.wisc.edu/mprime/help/bowtie/manual.html)
 + Fasta_ushuffle (https://github.com/agordon/fasta_ushuffle)
 
 
@@ -482,3 +482,6 @@ emilio.marmol@cragenomica.es
 
 
 [1]:https://academic.oup.com/bioinformatics/article/34/4/541/4222633
+[2]:https://almob.biomedcentral.com/articles/10.1186/1748-7188-6-26
+[3]:https://academic.oup.com/bioinformatics/article/26/6/841/244688
+[4]:https://genomebiology.biomedcentral.com/articles/10.1186/gb-2009-10-3-r25
