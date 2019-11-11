@@ -38,7 +38,7 @@ The eMIRNA pipeline makes use of a Machine Learning approach based on semi-super
 
 **(1)** Positive, negative and unlabeled data are filtered based on size and secondary folding structure and a set of features is extracted for each sequence. **(2)** Mature miRNA sequences from small RNA-Seq data or related reference species are mapped against the selected genome assembly and elongated to reconstruct putative pre-miRNA candidates. **(3)** Candidate precursors are filtered based on size and secondary folding structure and a set of features is extracted for each candidate sequence. Optionally, sequences showing unstable secondary structure are removed. **(4)** Candidate sequences are embedded in the semi-supervised transductive classifier and a list of putative miRNAs is predicted. **(5)** Predicted miRNAs are either assigned to already annotated miRNA loci in the selected reference assembly or classified as putative novel miRNA genes.
 
-[1]:https://academic.oup.com/bioinformatics/article/34/4/541/4222633
+
 
 &nbsp;
 
@@ -49,7 +49,7 @@ The following R libraries are required for running the eMIRNA pipeline:
 + seqinr (https://CRAN.R-project.org/package=seqinr)
 + Biobase (https://bioconductor.org/packages/release/bioc/html/Biobase.html)
 + scales (https://CRAN.R-project.org/package=scales)
-+ miRNAss [1] (https://CRAN.R-project.org/package=miRNAss)
++ miRNAss [[1]] (https://CRAN.R-project.org/package=miRNAss)
 
 The following software programs are required for running the eMIRNA pipeline:
 + RNAfold [2] (https://www.tbi.univie.ac.at/RNA/)
@@ -478,3 +478,7 @@ emilio.marmol@cragenomica.es
 - (01/18/2019) Matrix calculation bug was reported for some UNIX systems. New eMIRNA.features module was successfully tested and updated accordingly.
 
 - (01/11/2019) The UNAfold software seems to be no longer available for free download. Provided this setback, features depending on UNAfold melt functions were removed from eMIRNA.Features module. SVM algorithm performance assesment reported no appreciable drawbacks due to UNAfold features removal.
+
+
+
+[1]:https://academic.oup.com/bioinformatics/article/34/4/541/4222633
