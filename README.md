@@ -30,7 +30,7 @@ The eMIRNA pipeline is under active development, if you find any problem, doubt 
 
 ## Introduction
 
-The eMIRNA pipeline makes use of a Machine Learning approach based on semi-supervised transductive Graph-based algorithm [[1]] to assess whether putative candidate sequences can be predicted as pre-miRNA-like structures.
+The eMIRNA pipeline makes use of a Machine Learning approach based on semi-supervised transductive Graph-based algorithm, as reported by Yones *et al.* (2018) [[1]], in order to assess whether putative candidate sequences can be predicted as pre-miRNA-like structures.
 
 &nbsp;
 
@@ -74,7 +74,7 @@ The **Positive Sequences** must correspond to those sequences annotated as micro
 
 The **Negative Sequences** must correspond to non-coding sequences other than microRNA genes in the available Reference Genome for the species under study. GTF annotation and FASTA files for corresponding transcripts can be downloaded from the [Ensembl repositories].
 
-Additionally, other hairpin-like sequences can be extracted from the reference Genome, in order to increase the variety and diversity of sequences to be included during graph reconstruction and allow a better topological adjustment of positive and negative categories. The [HextractoR] package can be used for generating a set of hairpin-like sequences from any available genome assembly. Please be aware that quering the whole genome can be extremely time consuming and resource intensive. We reccomend establishing random blocks (1-10 Mb) within each genomic chromosome. As no prior knowledge of the identity of randomly extracted hairpins would available, they will be set as **Unlabeled sequences**.
+Additionally, other hairpin-like sequences can be extracted from the reference Genome, in order to increase the variety and diversity of sequences to be included during graph reconstruction and allow a better topological adjustment of positive and negative categories. The [HextractoR] package can be used for generating a set of hairpin-like sequences from any available genome assembly. Please be aware that quering the whole genome can be extremely time consuming and resource intensive. We recommend establishing random blocks (1-10 Mb) within each genomic chromosome. As no prior knowledge of the identity of randomly extracted hairpins would available, they will be set as **Unlabeled sequences**.
 
 Once positive, negative and unlabeled sequences are available, we recomend using a identity-by-sequence filtering step, in order to remove redundant sequences that may occur in any of the categories. The [CD-Hit] suite is a good resource for implementing sequence-based repetitve elements removal.
 
@@ -191,11 +191,11 @@ Structural Statistics:
 ## eMIRNA.Hunter
 The eMIRNA.Hunter module is an auxiliar BASH script developed to obtain pre-miRNA candidate sequences, For doing so, users can choose either an homology-based recovery from previously annotated microRNAs in reference species, or the use of reads derived from small RNA-Seq experiments.
 
-The eMIRNA.Hunter script implements Bowtie (Langmead et al., 2009) for the alignment of putative mature microRNA sequences against the reference assembly selected by the user, reconstructing pre-miRNA sequence candidates and generating a FASTA and BED files for the candidates to be subsequently classified.
+The eMIRNA.Hunter script implements Bowtie [[8]] for the alignment of putative mature microRNA sequences against the reference assembly selected by the user, reconstructing pre-miRNA sequence candidates and generating a FASTA and BED files for the candidates to be subsequently classified.
 
-Users should provide a properly collapsed FASTA file with small RNA-Seq sequences from canonical FASTQ sequence files, or a list of unique annotated mature miRNA sequences in FASTA format. The FASTQ files should be quality-check filtered and sequencing adaptor trimmed before running any available collapser tool, e.g. FASTQ collapser from [FASTX-Toolkit] for collapsing FASTQ files into FASTA files with uniquely represented sequences.
+Users should provide a properly collapsed FASTA file with small RNA-Seq sequences from canonical FASTQ sequence files, or a list of unique annotated mature miRNA sequences in FASTA format. The FASTQ files should be quality-check filtered and sequencing adaptor trimmed before running any available collapser tool, e.g. FASTQ collapser from [FASTX-Toolkit] for collapsing FASTQ files into FASTA files with uniquely represented sequences. We encourage to perform a pre-filtering process of the collapsed FASTA file to retain sequences between 18-25 nucleotides in length, corresponding to the average length of mature miRNAs.
 
-This module requires six arguments:
+This module requires seven arguments:
 
 + PATH to Reference Genome Bowtie Index from your species of interest.
 + PATH to FASTA file of selected reference organism mature microRNAs.
@@ -203,6 +203,7 @@ This module requires six arguments:
 + Desired output prefix name.
 + Upwards number of bases for pre-miRNA reconstruction
 + Backwards number of bases for pre-miRNA reconstruction
++ Running mode (homology or *de novo*)
 
 A detailed explanation of each variable can be accessed with -h (help) option:
 
@@ -218,13 +219,14 @@ Input:
  -b                                     Backwards number of bases for pre-miRNA reconstruction (1-10 bp recommended)
  -m                                     eMIRNA.Hunter Mode (homology or denovo)
  -h                                     Display help page
+ 
 Output:
  <x>.sam                                SAM file output from Bowtie miRNA alignment
  <x>.log                                LOG file output from Bowtie miRNA alignment
- <x>_homolog_miRNAs.bed                 BED file output with candidate pre-miRNAs for prediction
- <x>_homolog_miRNAs.fa                  FASTA file output with candidate pre-miRNAs for prediction
- <x>_homolog_miRNAs_corrected.bed       BED file output with motif corrected candidate pre-miRNAs for prediction
- <x>_homolog_miRNAs_corrected.fa        FASTA file output with motif corrected candidate pre-miRNAs for prediction
+ <x>_miRNAs.bed                         BED file output with candidate pre-miRNAs for prediction
+ <x>_miRNAs.fa                          FASTA file output with candidate pre-miRNAs for prediction
+ <x>_miRNAs_corrected.bed               BED file output with motif corrected candidate pre-miRNAs for prediction
+ <x>_miRNAs_corrected.fa                FASTA file output with motif corrected candidate pre-miRNAs for prediction
  
  ```
 We recommend defining a range between 60-80 bp and 15-30 bp for upwards and backwards elongation of the putative mature miRNA candidate, respectively. 
@@ -252,7 +254,7 @@ After successfully running eMIRNA.Hunter script, six files will have been create
 
 Once the module has run, users can optionally perform an additional filter on generated FASTA pre-miRNA candidates according to their secondary folding structural stability by using the eMIRNA.Structural.Pvalue module.
 
-Users are encouraged to perform a pre-filtering process of the collapsed FASTA file to retain sequences between 18-25 nucleotides in length, corresponding to the average length of mature miRNAs, as well as based on secondary folding structure. The eMIRNA.Filter module could be used for this purpose. Subsequently, users must process these sequences with the eMIRNA.Features module, in order to obtain a Feature matrix representing those candidate sequences that will then be subjected to classification.
+The eMIRNA.Filter module could be used for this purpose. Subsequently, users must process these sequences with the eMIRNA.Features module, in order to obtain a Feature matrix representing those candidate sequences that will then be subjected to classification.
 
 We recommend using the motif corrected FASTA files for subsequent steps, taking into consideration that not all miRNAs would be processed following motif detection and thus some novel candidates may be missed. On the contrary, a much less accurate positioning for pre-miRNA candidates will be estimated and fewer successfully detected novel miRNA candidates should be expected.
 
@@ -260,52 +262,80 @@ We recommend using the motif corrected FASTA files for subsequent steps, taking 
 
 ## eMIRNA.Structural.Pvalue
 
+The eMIRNA.Structural.Pvalue module implements a n-randomization of provided sequences while maintaining *k*-let counts as described by Jiang *et al*. 2008 [[10]], using the [Fasta_ushuffle] package, which must be downloaded, compiled and stored at computer `PATH` in order to be run properly.
 
-&nbsp;
- 
-## eMIRNA.Predict
+This module requires five arguments:
 
-The fifth eMIRNA module aims to perform microRNA classification by making use of the previously trained SVM algorithm and candidates sequences generated by eMIRNA.Hunter. Users must pre-process the candidate sequences FASTA files generated by eMIRNA.Hunter module with eMIRNA.Filter.by.Size and eMIRNA.Filter.by.Structure modules, followed by the calculation of representing features matrix by eMIRNA.Features. Either the positionally corrected or not corrected FASTA files output from eMIRNA.Hunter can be selected for this task, but users must use the corresponding corrected/not corrected BED files for further steps in the eMIRNA pipeline.
-
-This module requires three arguments:
-
-+ SVM trained algorithm object.
-+ Feature matrix representing candidate sequences to evaluate.
++ PATH to FASTA file of putative novel miRNA candidates generated by eMIRNA.Refiner_denovo.
 + String with desired output prefix name.
++ Number of iterations to perform.
++ *P*-value threshold for structural stability filtering.
++ Boolean for FASTA filtering based on structural *P*-value (TRUE/FALSE).
 
 Example of usage:
 
 ```r
 
-eMIRNA.Predict(SVM, Candidates_Feature_Matirx, "Candidates")
+eMIRNA.Structural.Pvalues("~/eMIRNA/Structural_Results/Candidates_miRNAs_corrected.fa", "Candidates", iterate=100, threshold=0.1, filter=TRUE)
 
 ```
 
-Once the eMIRNA.Predict has run, a new folder named `Prediction_Results/` will be created inside `eMIRNA/` folder, in which a .txt file called `Candidates.txt` will be generated, containing a list of Sequence candidate names classified as putative miRNAs by the SVM trained algorithm.
+By default, eMIRNA.Structural.Pvalues will perform 100 random shuffling iterations over each provided sequence. Users can set their desired number of iterations but should be aware of computing times required for iterating and folding of secondary structures for each sequence. As computing costs can exponentially increase with higher number of iterations, we encourage users to set their desired range of iterations between 100 and 1000, depending on the number of candidate sequences to be analyzed.
+
+Once the eMIRNA.Structural.Pvalues has run, a new .txt file called `Candidates_Structural_Pvalues.txt` will be generated at `/Structural_Results` folder, containing estimated MFE *P*-values for each candidates sequence. Besides, a new filtered FASTA file will be also generated at `/Structural_Results` folder, named `Candidates_filtered_Pval.fa`, containing only those sequence candidates with structural *P*-values > 0.1 (or the corresponding defined threshold).
+
+The resulting filtered FASTA file can then be subjected to eMIRNA.Filter and eMIRNA.Features modules in order to obtain a representative feature matrix for each candidate sequence to be classified.
+
+&nbsp;
+ 
+## eMIRNA.Predict
+
+The eMIRNA.Predict module aims to perform microRNA classification by making use of a semi-supervised transductive learning approach [[1]]. Candidates sequences generated by eMIRNA.Hunter and subsequently filtered and processed to generate a representative feature matrix must be used, as well as Positive, Negative and Unlabeled feature matrices previously generated and loaded into the R environment and called `Candidates`, `Pos`, `Neg` and `Unlab`, respectively.
+
+This module requires three compulsory arguments and one additional argument if available:
+
++ Positive feature matrix.
++ Negative feature matrix.
++ Feature matrix representing candidate sequences to evaluate.
++ Optionally, users can included Unlabeled feature matrix if available.
+
+Example of usage:
+
+```r
+
+Prediction <- eMIRNA.Predict(Pos, Neg, Unlab, target=Candidates)
+
+```
+
+Once the eMIRNA.Predict has run, an object of class `eMIRNA` will be saved at `Prediction`. Inside the object, users will find the following elements:
+
++ Performance: Vector of elements with estimated performance metrics (Sensitivity, Specifictiy, Accuracy, F1-Score, AUROC and AUPR) after running the prediction algorithm.
++ Prediction: Data.frame with candidate sequences IDs, Odd score for the probability of being a miRNA and predicted class (miRNA/Other).
++ ROC: Receiving Operating Characteristic curve data.frame with all necessary fields to plot ROC curve estimate.
++ PR: Precision-Recall curve data.frame with all necessary fields to plot PR curve estimate.
+
+Users cand then save the Prediction data.frame at their preferred location.
+
+```r
+
+write.table(Prediction@Prediction, "~/eMIRNA/Prediction_results.txt", col.names=NA, quote=F, row.names=1, sep="\t")
+
+```
 
 &nbsp;
 
 ## eMIRNA.Refiner
 
-After generating a list of putative new microRNAs by implementing the eMIRNA pipeline, users should filter these new candidates in order to select those more likely to be new putative microRNA candidates in the species of interest. The eMIRNA.Refiner module has been specifically designed to cover this task. This BASH script complements eMIRNA.Hunter and eMIRNA.Predict modules by selecting those candidate sequences that have more probability to correspond to new non-annotated microRNA sequences orthologous to the reference organism annotated microRNAs in which candidate sequences reconstruction has been performed.
+After generating a list of putative microRNA candidates by implementing the eMIRNA pipeline, users should process these new candidates in order to assing them to already annotated miRNA loci or to novel miRNA gene candidates. The eMIRNA.Refiner module has been specifically designed to cover this task.
 
-The eMIRNA.Refiner module makes use of an auxiliar R script called eMIRNA_biomaRt_calc.R, which should be located at the same `$PATH` where eMIRNA.Refiner is found. The functionality of eMIRNA.Refiner is based on comparing the microRNA gene neighborhood both in the reference species and in the species under study. Many shared orthologous microRNA sequences will not only share a conserved sequence between species, but also the genome location in which they are placed, making them more reliable if sharing both sequence and location. The candidate microRNA genes neighborhood is estimated by establishing a comparison window around the sequence (typically 2-10 Mb) and contrasting orthologous genes located around the corresponding microRNA in the reference organism. By doing so, the eMIRNA.Refiner module can calculate a Neighborhood Score, measuring the ratio of similarity among annotated genes in the locus of interest between the reference organism and our species of interest. The higher this ratio would be, the most reliable the new microRNA candidate can be considered for further analyses, meaning that not only the sequence is conserved between species, but also its genetic topology, highlighting the putative metabolic importance of this miRNA gene.
-
-This module requires nine arguments:
+This module requires six arguments:
 
 + PATH to GTF annotation file from the species of interest.
-+ PATH to GFF miRNA annotation file from selected reference species.
-+ PATH to list of candidate sequences generated by eMIRNA.Predict module.
-+ PATH to BED file with positions of reconstructed pre-miRNA orthologous candidates by eMIRNA.Hunter.
-+ Window size in Mb for Neighbouring Genes between-species contrast.
-+ Name of the species of interest.
-+ Name of the reference species to contrast.
++ PATH to data.frame table of candidate sequences generated by eMIRNA.Predict module.
++ PATH to BED file with positions of reconstructed pre-miRNA candidates by eMIRNA.Hunter.
++ PATH to FASTA file with sequences of reconstructed pre-miRNA candidates filtered by eMIRNA.Structural.Pvalue (Optionally, raw FASTA file from eMIRNA.Hunter can be used).
 + PATH to desired output.
 + Desired output prefix name.
-
-Users should check the genome availability at biomaRt repositories by using the the following R code:
-
-`mart = useMart('ensembl')`, followed by `listDatasets(mart)`
 
 A detailed explanation of each variable can be accessed with -h (help) option:
 
@@ -313,59 +343,14 @@ A detailed explanation of each variable can be accessed with -h (help) option:
 eMIRNA.Refiner Usage Instructions:
 eMIRNA.Refiner [options]
 Input:
- -g	                                      PATH to Species of interest Genome GTF Annotation file
- -i	                                      PATH to Reference Organism microRNA GFF Annotation file
- -p	                                      PATH to List of Predicted microRNA candidates by eMIRNA
- -b	                                      PATH to BED Ortholog microRNAs output file from eMIRNA.Hunter
- -d	                                      Mb window for between-species Neighbouring Genes Contrast (2-5 recommended)
- -s	                                      Name of species of interest (scientific name in lower case, e.g. sscrofa)
- -m	                                      Name of reference species for contrast (scientific name in lower case, e.g. hsapiens)
- -o	                                      PATH to desired output folder
- -x	                                      Desired Name string for output files
- -h	                                      Display help page
-Output:
-<x>_Predicted_miRNAs_annotated.bed            BED file output with eMIRNA Predicted already Annotated miRNAs
-<x>_Predicted_miRNAs_NON_annotated.bed        BED file output with eMIRNA Predicted Novel miRNAs
-<x>_Putative_Predicted_miRNAs.txt             TXT file output with Putative miRNA Candidates filtered by Neighbouring Score
-
-```
-Example of usage:
-
-```
-bash eMIRNA.Refiner -g Sscrofa11.1.94.gtf -i Hsapiens_miRNA_mirbase.gff -p Candidates.txt -b Candidates_homolog_miRNAs_corrected.bed -d 2 -s sscrofa -m hsapiens -o PATH_to_output_folder -x Candidates
-
-```
-
-After successfully running the eMIRNA.Refiner script, a .txt file will have been created at predefined output `PATH`, containing the most relevant putative novel non-annotated microRNAs, their estimated positions and corresponding Neighbouring Score. Besides, two BED files, containing novel and annotated candidates will be generated.
-
-&nbsp;
-
-## eMIRNA.Refiner_denovo
-
-The eMIRNA.Refiner_denovo module is a modified versión of eMIRNA.Refiner module, developed to obtain pre-miRNA candidate sequences to perform a *de novo* discovery of novel putative miRNAs from smallRNA-seq data.
-
-This module requires six arguments:
-
-+ PATH to GTF annotation file from the species of interest.
-+ PATH to list of candidate sequences generated by eMIRNA.Predict module.
-+ PATH to BED file with positions of reconstructed pre-miRNA candidates by eMIRNA.Hunter_denovo.
-+ PATH to FASTA file with sequences of reconstructed pre-miRNA candidates by eMIRNA.Hunter_denovo.
-+ PATH to desired output.
-+ Desired output prefix name.
-
-A detailed explanation of each variable can be accessed with -h (help) option:
-
-```
-eMIRNA.Refiner_denovo Usage Instructions:
-eMIRNA.Refiner_denovo [options]
-Input:
   -g                                             PATH to Species of interest Genome GTF Annotation file
-  -p                                             PATH to List of Predicted microRNA candidates by eMIRNA
-  -b                                             PATH to BED microRNAs output file from eMIRNA.Hunter_denovo
-  -f                                             PATH to FASTA microRNAs output file from eMIRNA.Hunter_denovo
+  -p                                             PATH to Table of Predicted microRNA candidates by eMIRNA.Predict
+  -b                                             PATH to BED microRNAs output file from eMIRNA.Hunter
+  -f                                             PATH to FASTA microRNAs output file from eMIRNA.Structural.Pvalue (or eMIRNA.Hunter)
   -o                                             PATH to desired output folder
   -x                                             Desired Name string for output files
   -h                                             Display help page
+  
 Output:
   <x>_Predicted_miRNAs_annotated.bed             BED file output with eMIRNA Predicted already Annotated miRNAs
   <x>_Predicted_miRNAs_NON_annotated.bed         BED file output with eMIRNA Predicted Novel miRNAs
@@ -376,51 +361,17 @@ Output:
 Example of usage:
 
 ```
-bash eMIRNA.Refiner_denovo -g Sscrofa11.1.94.gtf -p Candidates.txt -b Candidates_miRNAs_corrected.bed -f Candidates_miRNAs_corrected.fa -o PATH_to_output_folder -x Candidates
+bash eMIRNA.Refiner -g Sscrofa11.1.97.gtf -p Prediction_results.txt -b Candidates_miRNAs_corrected.bed -f Candidates_filtered_Pval.fa -o PATH_to_output_folder -x Candidates
 
 ```
 
-After successfully running the eMIRNA.Refiner_denovo script, a BED file will have been created at predefined output `PATH`, containing the most relevant putative novel non-annotated microRNAs, and their estimated positions. Besides, a BED file containing already annotated detected candidates and FASTA file with correspondent candidate sequences will be generated.
+After successfully running the eMIRNA.Refiner script, a BED file will have been created at predefined output `PATH`, containing the most relevant putative novel non-annotated microRNAs, and their estimated positions, as well as FASTA file with the corresponding novel candidate sequences. Besides, a BED file containing already annotated detected candidates will be also generated.
 
 &nbsp;
 
-## eMIRNA.Structural.Pvalues
 
-Finally, after having obtained a list of putative novel pre-miRNA sequences by the aforementioned eMIRNA functions, users can analyze if the structural integrity of predicted pre-miRNAs can achieve a stable conformation at a statistically significant level. The eMIRNA.Structural.Pvalues function implements a n-randomization of provided sequences while maintaining k-let counts as described by Jiang *et al*. (Jiang et al., 2008), using the fasta_ushuffle available at https://github.com/agordon/fasta_ushuffle. The fasta_ushuffle software must be downloaded, compiled and stored at computer `PATH` in order to be run properly.
-
-This module requires three arguments:
-
-+ PATH to FASTA file of putative novel miRNA candidates generated by eMIRNA.Refiner_denovo.
-+ String with desired output prefix name.
-+ Number of iterations to perform.
-
-Example of usage:
-
-```r
-
-eMIRNA.Structural.Pvalues("~/eMIRNA/Candidates_Predicted_miRNAs_NON_annotated.fa", "Candidates", 100)
-
-```
-
-By default, eMIRNA.Structural.Pvalues will perform 100 random shuffling iterations over each provided sequence. Users can set their desired number of iterations but should be aware of computing times required for iterating and folding of secondary structures for each sequence. As computing costs can exponentially increase with higher number of iterations, we encourage users to set their desired range of iterations between 100 and 1000, depending on the number of candidate sequences to be analyzed.
-
-Once the eMIRNA.Structural.Pvalues has run, a new .csv file called `Candidates_Structural_Pvalues.csv` will be generated at `/Prediction_Results` folder, containing calculated MFE and EFE Structural *P*-values for each candidates sequence. Users can then select those sequences with a significantly stable secondary structure folding as sequences having higher probability to have been properly profiled and predicted (i.e. *P*-values < 0.05).
-
-&nbsp;
 
 ## References
-
-Auyeung V.C. et al. (2013) Beyond secondary structure: primary-sequence determinants license pri-miRNA hairpins for processing. *Cell*, 152, 844–58.
-
-Barua S. et al. (2014) MWMOTE--Majority Weighted Minority Oversampling Technique for Imbalanced Data Set Learning. *IEEE Trans. Knowl. Data Eng.*, 26, 405–25.
-
-Bunkhumpornpat C. et al. (2013) Safe-Level-SMOTE: Safe-Level-Synthetic Minority Over-Sampling TEchnique for Handling the Class Imbalanced Problem. *ISCIT*, 570-575.
-
-Chawla N.V. et al (2002) SMOTE: Synthetic Minority Over-sampling Technique. *J. Artif. Intell. Res.*, 16, 321–357.
-
-Haibo H. et al. (2008) ADASYN: Adaptive synthetic sampling approach for imbalanced learning. *IEEE*, 1322–8.
-
-Han H. et al. (2005) Borderline-SMOTE: A New Over-Sampling Method in Imbalanced Data Sets Learning. *ICIC*, 878–87.
 
 Jiang M. et al. (2008) uShuffle: A useful tool for shuffling biological sequences while preserving the k-let counts. *BMC Bioinformatics*, 9, 192.
 
@@ -430,11 +381,7 @@ Lorenz R. et al. (2011) ViennaRNA Package 2.0. *Algorithms Mol. Biol.*, 6, 26.
 
 Quinlan A.R. and Hall, I.M. (2010) BEDTools: a flexible suite of utilities for comparing genomic features. *Bioinformatics*, 26, 841–2.
 
-Rivera W.A. (2017) Noise Reduction A Priori Synthetic Over-Sampling for class imbalanced data sets. *Inf. Sci. (Ny)*, 408, 146–61.
-
 Xue C. et al. (2005) Classification of real and pseudo microRNA precursors using local structure-sequence features and support vector machine. *BMC Bioinformatics*, 6, 310.
-
-Zhang H. and Li, M. (2014) RWO-Sampling: A random walk over-sampling approach to imbalanced data classification. *Inf. Fusion*, 20, 99–116.
 
 
 
@@ -463,6 +410,7 @@ emilio.marmol@cragenomica.es
 [7]:https://academic.oup.com/bioinformatics/article/26/6/841/244688
 [8]:https://genomebiology.biomedcentral.com/articles/10.1186/gb-2009-10-3-r25
 [9]:https://bmcbioinformatics.biomedcentral.com/articles/10.1186/1471-2105-6-310
+[10]:https://bmcbioinformatics.biomedcentral.com/articles/10.1186/1471-2105-9-192
 [stringr]:https://CRAN.R-project.org/package=stringr
 [seqinr]:https://CRAN.R-project.org/package=seqinr
 [Biobase]:https://bioconductor.org/packages/release/bioc/html/Biobase.html
