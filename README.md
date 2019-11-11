@@ -142,7 +142,7 @@ Unlab <- eMIRNA.Features("~/eMIRNA/Filter_Results/Unlab_filtered.fa", "Unlab")
 
 ```
 
-Once the `eMIRNA.Features` has run, a new folder named `Features_Results/` will be created inside `eMIRNA/`, in which a .txt file called `Pos/Neg/Unlab.txt` will be generated with the results of running the function.
+Once the eMIRNA.Features has run, a new folder named `Features_Results/` will be created inside `eMIRNA/`, in which a .txt file called `Pos/Neg/Unlab.txt` will be generated with the results of running the function.
 
 The eMIRNA.Features function includes the calculation of a total of 6 Sequence Features, comprising 55 variables, 8 Secondary Structure Features, comprising 27 variables, and 17 Structural Statistics. 
 
@@ -195,10 +195,6 @@ The eMIRNA.Hunter script implements Bowtie (Langmead et al., 2009) for the align
 
 Users should provide a properly collapsed FASTA file with small RNA-Seq sequences from canonical FASTQ sequence files, or a list of unique annotated mature miRNA sequences in FASTA format. The FASTQ files should be quality-check filtered and sequencing adaptor trimmed before running any available collapser tool, e.g. FASTQ collapser from [FASTX-Toolkit] for collapsing FASTQ files into FASTA files with uniquely represented sequences.
 
-Once the module has run, users can optionally perform an additional filter on generated FASTA pre-miRNA candidates according to their secondary folding structural stability by using the eMIRNA.Structural.Pvalue module.
-
-Users are encouraged to perform a pre-filtering process of the collapsed FASTA file to retain sequences between 18-25 nucleotides in length, corresponding to the average length of mature miRNAs. The eMIRNA.Filter.by.Size module could be used for this purpose.
-
 This module requires six arguments:
 
 + PATH to Reference Genome Bowtie Index from your species of interest.
@@ -218,8 +214,9 @@ Input:
  -f                                     PATH to Reference FASTA file
  -o                                     PATH to desired output folder
  -x                                     Desired Name string for output files
- -u                                     Upwards number of bases for pre-miRNA reconstruction (30-80 bp recommended, 70-80 for CNNC motif correction)
- -b                                     Backwards number of bases for pre-miRNA reconstruction (1-10 bp recommended, 20-30 for UG motif correction)
+ -u                                     Upwards number of bases for pre-miRNA reconstruction (60-80 bp recommended)
+ -b                                     Backwards number of bases for pre-miRNA reconstruction (1-10 bp recommended)
+ -m                                     eMIRNA.Hunter Mode (homology or denovo)
  -h                                     Display help page
 Output:
  <x>.sam                                SAM file output from Bowtie miRNA alignment
@@ -230,16 +227,16 @@ Output:
  <x>_homolog_miRNAs_corrected.fa        FASTA file output with motif corrected candidate pre-miRNAs for prediction
  
  ```
+We recommend defining a range between 60-80 bp and 15-30 bp for upwards and backwards elongation of the putative mature miRNA candidate, respectively. 
 
 For achieving a successful cross-species alignment, it is very important that mature microRNA sequences FASTA file from reference organism are in DNA code, with Ts for Thymine and no Us for Uracil in RNA code. Please make sure that your mature microRNA sequences are in DNA code, otherwise the alignment process will fail.
 
-For generating Bowtie Index for your Reference Genome, please refer to Bowtie Manual.
+For generating Bowtie Index for your Reference Genome, please refer to [Bowtie] Manual.
 
 Example of usage:
 
 ```
-bash eMIRNA.Hunter -r PATH_to_Bowtie_Index -f Hsapiens_mature_miRNAs.fa -o PATH_to_output_folder -x Candidates -u 70 -b 30
-
+bash eMIRNA.Hunter -r PATH_to_Bowtie_Index -f Small-RNAseq_collapsed_fastq.fa -o PATH_to_output_folder -x Candidates -u 60 -b 15 -m denovo
 ```
 
 &nbsp;
@@ -248,54 +245,21 @@ After successfully running eMIRNA.Hunter script, six files will have been create
 
 + SAM file with aligned sequences.
 + Log file with alignment statistics.
-+ BED file with positions of reconstructed premiRNA homologous candidates.
-+ FASTA file with reconstructed premiRNA homologous candidates.
-+ BED file with motif corrected positions of reconstructed pre-miRNA homologous candidates.
-+ FASTA file with motif corrected reconstructed pre-miRNA homologous candidates.
++ BED file with positions of reconstructed pre-miRNA candidates.
++ FASTA file with reconstructed pre-miRNA candidates.
++ BED file with motif corrected positions of reconstructed pre-miRNA candidates.
++ FASTA file with motif corrected reconstructed pre-miRNA candidates.
 
-Once the FASTA file with pre-miRNA candidates has been generated, users must process these sequences by following the previously described steps for eMIRNA pipeline, in order to obtain a Feature matrix representing those candidate sequences that will then be subjected to classification by the SVM trained algorithm.
+Once the module has run, users can optionally perform an additional filter on generated FASTA pre-miRNA candidates according to their secondary folding structural stability by using the eMIRNA.Structural.Pvalue module.
 
-Optionally, users can subject the motif corrected FASTA file for further prediction, taking into consideration that not all miRNAs would be processed following motif detection and thus some novel candidates may be missed. On the contrary, a much more accurate positioning for pre-miRNA candidates where delimiting motifs had been successfully detected wil be calculated, as reported by Auyeung *et al.* (Auyeung et al., 2013).
+Users are encouraged to perform a pre-filtering process of the collapsed FASTA file to retain sequences between 18-25 nucleotides in length, corresponding to the average length of mature miRNAs, as well as based on secondary folding structure. The eMIRNA.Filter module could be used for this purpose. Subsequently, users must process these sequences with the eMIRNA.Features module, in order to obtain a Feature matrix representing those candidate sequences that will then be subjected to classification.
+
+We recommend using the motif corrected FASTA files for subsequent steps, taking into consideration that not all miRNAs would be processed following motif detection and thus some novel candidates may be missed. On the contrary, a much less accurate positioning for pre-miRNA candidates will be estimated and fewer successfully detected novel miRNA candidates should be expected.
 
 &nbsp;
 
-## eMIRNA.Hunter_denovo
+## eMIRNA.Structural.Pvalue
 
-The eMIRNA.Hunter_denovo module is a modified versión of eMIRNA.Hunter module, developed to obtain pre-miRNA candidate sequences to perform a *de novo* discovery of novel putative miRNAs from smallRNA-seq data.
-
-Users should provide a properly collapsed FASTA file with smallRNA-seq sequences from canonical FASTQ sequence files. The FASTQ files should be quality-check filtered and sequencing adaptor trimmed before running any available collapser tool, e.g. FASTQ collapser from FASTX-toolkit (http://hannonlab.cshl.edu/fastx_toolkit/index.html) for collapsing FASTQ files into FASTA files with uniquely represented sequences.
-
-Users are encouraged to perform a pre-filtering process of the collapsed FASTA file to retain sequences between 18-25 nucleotides in length, corresponding to the average length of mature miRNAs. The eMIRNA.Filter.by.Size module could be used for this purpose.
-
-A detailed explanation of each variable can be accessed with -h (help) option:
-
-```
-eMIRNA.Hunter_denovo Usage Instructions:
-eMIRNA.Hunter_denovo [options]
-Input:
-  -r                               PATH to Species of interest Genome Bowtie Index
-  -f                               PATH to Collapsed smallRNA-seq FASTA file
-  -o                               PATH to desired output folder
-  -x                               Desired Name string for output files
-  -u                               Upwards number of bases for pre-miRNA reconstruction (30-80 bp recommended, 70-80 for CNNC motif correction)
-  -b                               Backwards number of bases for pre-miRNA reconstruction (1-10 bp recommended, 20-30 for UG motif correction)
-  -h                               Display help page
-Output:
-  <x>.sam                          SAM file output from Bowtie miRNA alignment
-  <x>.log                          LOG file output from Bowtie miRNA alignment
-  <x>_miRNAs.bed                   BED file output with candidate pre-miRNAs for prediction
-  <x>_miRNAs.fa                    FASTA file output with candidate pre-miRNAs for prediction
-  <x>_miRNAs_corrected.bed         BED file output with motif corrected candidate pre-miRNAs for prediction
-  <x>_miRNAs_corrected.fa          FASTA file output with motif corrected candidate pre-miRNAs for prediction
-  
-  ```
-Example of usage:
-
-```
-
-bash eMIRNA.Hunter_denovo -r PATH_to_Bowtie_Index -f Small-RNAseq_collapsed_fastq.fa -o PATH_to_output_folder -x Candidates -u 70 -b 30
-
-```
 
 &nbsp;
  
