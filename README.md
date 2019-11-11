@@ -13,7 +13,7 @@ The eMIRNA pipeline is under active development, if you find any problem, doubt 
 
 - [Introduction](https://github.com/emarmolsanchez/eMIRNA/#introduction)
 - [Prerrequisites](https://github.com/emarmolsanchez/eMIRNA/#prerequisites)
-- [Positive, Negative and Unlabeled Data sets](https://github.com/emarmolsanchez/eMIRNA/#positive,-negative-and-unlabeled-data-sets)
+- [Positive, Negative and Unlabeled Data sets](https://github.com/emarmolsanchez/eMIRNA/#positive-negative-and-unlabeled-data-sets)
 - [eMIRNA.Filter](https://github.com/emarmolsanchez/eMIRNA/#emirnafilter)
 - [eMIRNA.Features](https://github.com/emarmolsanchez/eMIRNA/#emirnafeatures)
 - [eMIRNA.Train](https://github.com/emarmolsanchez/eMIRNA/#emirnatrain)
