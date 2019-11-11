@@ -53,9 +53,9 @@ The following R libraries are required for running the eMIRNA pipeline:
 
 The following software programs are required for running the eMIRNA pipeline:
 + [RNAfold] [[2]]
-+ BEDTools v2.27.0 [[3]]
-+ Bowtie [[4]]
-+ Fasta_ushuffle
++ [BEDTools v2.27.0] [[3]]
++ [Bowtie] [[4]]
++ [Fasta_ushuffle]
 
 
 All executables should be stored at computer `$PATH` in order to be run properly (Commonly located at `/usr/bin/` or `/usr/local/bin/` in UNIX systems).
