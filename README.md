@@ -44,17 +44,15 @@ The eMIRNA pipeline makes use of a Machine Learning approach based on semi-super
 
 The following R libraries are required for running the eMIRNA pipeline:
 + stringr (https://CRAN.R-project.org/package=stringr)
++ seqinr (https://CRAN.R-project.org/package=seqinr)
 + Biobase (https://bioconductor.org/packages/release/bioc/html/Biobase.html)
 + scales (https://CRAN.R-project.org/package=scales)
-+ caret (https://CRAN.R-project.org/package=caret)
-+ bimba (https://github.com/RomeroBarata/bimba)
-+ LiblineaR (https://CRAN.R-project.org/package=LiblineaR)
-+ biomaRt (https://bioconductor.org/packages/release/bioc/html/biomaRt.html)
++ miRNAss [1] (https://CRAN.R-project.org/package=miRNAss)
 
-The following programs are required for running the eMIRNA pipeline:
-+ RNAfold (Lorenz et al., 2011) (https://www.tbi.univie.ac.at/RNA/)
-+ BEDTools v2.27.0 (Quinland and Hall, 2010) (https://bedtools.readthedocs.io/en/latest/)
-+ Bowtie (Langmead et al., 2009) (https://mcardle.wisc.edu/mprime/help/bowtie/manual.html)
+The following software programs are required for running the eMIRNA pipeline:
++ RNAfold [2] (https://www.tbi.univie.ac.at/RNA/)
++ BEDTools v2.27.0 [3] (https://bedtools.readthedocs.io/en/latest/)
++ Bowtie [4] (https://mcardle.wisc.edu/mprime/help/bowtie/manual.html)
 + Fasta_ushuffle (https://github.com/agordon/fasta_ushuffle)
 
 
