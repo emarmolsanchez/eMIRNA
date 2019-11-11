@@ -142,7 +142,7 @@ Unlab <- eMIRNA.Features("~/eMIRNA/Filter_Results/Unlab_filtered.fa", "Unlab")
 
 ```
 
-Once the eMIRNA.Features has run, a new folder named `Features_Results/` will be created inside `eMIRNA/`, in which a .txt file called `Pos/Neg/Unlab.txt` will be generated with the results of running the function.
+Once the `eMIRNA.Features` has run, a new folder named `Features_Results/` will be created inside `eMIRNA/`, in which a .txt file called `Pos/Neg/Unlab.txt` will be generated with the results of running the function.
 
 The eMIRNA.Features function includes the calculation of a total of 6 Sequence Features, comprising 55 variables, 8 Secondary Structure Features, comprising 27 variables, and 17 Structural Statistics. 
 
@@ -189,10 +189,15 @@ Structural Statistics:
 &nbsp;
 
 ## eMIRNA.Hunter
+The eMIRNA.Hunter module is an auxiliar BASH script developed to obtain pre-miRNA candidate sequences, For doing so, users can choose either an homology-based recovery from previously annotated microRNAs in reference species, or the use of reads derived from small RNA-Seq experiments.
 
-Once we have trained our model for predicting new microRNA candidates, we will have to test its performance and discovery ability to classify non-previously annotated microRNAs in our species of interest. The eMIRNA.Hunter module is an auxiliar BASH script developed to obtain pre-miRNA candidate sequences, making use of a homology-based recovery from previously annotated microRNAs in reference species, in order to find orthologous sequences in our less annotated species under study.
+The eMIRNA.Hunter script implements Bowtie (Langmead et al., 2009) for the alignment of putative mature microRNA sequences against the reference assembly selected by the user, reconstructing pre-miRNA sequence candidates and generating a FASTA and BED files for the candidates to be subsequently classified.
 
-The eMIRNA.Hunter script implements Bowtie (Langmead et al., 2009) for the alignment of mature microRNA annotated sequences in reference species like humans or rodents, to find orthologous regions in the genome of our species of interest, reconstructing pre-miRNA sequences from mature microRNAs and generating a FASTA and BED files for the candidates to be classified by the previously trained SVM algorithm.
+Users should provide a properly collapsed FASTA file with small RNA-Seq sequences from canonical FASTQ sequence files, or a list of unique annotated mature miRNA sequences in FASTA format. The FASTQ files should be quality-check filtered and sequencing adaptor trimmed before running any available collapser tool, e.g. FASTQ collapser from [FASTX-Toolkit] for collapsing FASTQ files into FASTA files with uniquely represented sequences.
+
+Once the module has run, users can optionally perform an additional filter on generated FASTA pre-miRNA candidates according to their secondary folding structural stability by using the eMIRNA.Structural.Pvalue module.
+
+Users are encouraged to perform a pre-filtering process of the collapsed FASTA file to retain sequences between 18-25 nucleotides in length, corresponding to the average length of mature miRNAs. The eMIRNA.Filter.by.Size module could be used for this purpose.
 
 This module requires six arguments:
 
@@ -510,3 +515,4 @@ emilio.marmol@cragenomica.es
 [Ensembl repositories]:http://www.ensembl.org/info/data/ftp/index.html
 [HextractoR]:https://CRAN.R-project.org/package=HextractoR
 [CD-Hit]:http://weizhong-lab.ucsd.edu/cdhit_suite/cgi-bin/index.cgi
+[FASTX-Toolkit]:http://hannonlab.cshl.edu/fastx_toolkit/index.html
