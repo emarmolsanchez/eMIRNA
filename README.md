@@ -45,7 +45,7 @@ The eMIRNA pipeline makes use of a Machine Learning approach based on semi-super
 ## Prerequisites
 
 The following R libraries are required for running the eMIRNA pipeline:
-+ stringr (https://CRAN.R-project.org/package=stringr)
++ [stringr]
 + seqinr (https://CRAN.R-project.org/package=seqinr)
 + Biobase (https://bioconductor.org/packages/release/bioc/html/Biobase.html)
 + scales (https://CRAN.R-project.org/package=scales)
@@ -485,3 +485,4 @@ emilio.marmol@cragenomica.es
 [2]:https://almob.biomedcentral.com/articles/10.1186/1748-7188-6-26
 [3]:https://academic.oup.com/bioinformatics/article/26/6/841/244688
 [4]:https://genomebiology.biomedcentral.com/articles/10.1186/gb-2009-10-3-r25
+[stringr]:https://CRAN.R-project.org/package=stringr
