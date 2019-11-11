@@ -30,7 +30,7 @@ The eMIRNA pipeline is under active development, if you find any problem, doubt 
 
 ## Introduction
 
-The eMIRNA pipeline makes use of a Machine Learning approach based on semi-supervised transductive Graph-based algorithm [[1]] to assess whether putative candidate sequences can be predicted as pre-miRNA-like structures.
+The eMIRNA pipeline makes use of a Machine Learning approach based on semi-supervised transductive Graph-based algorithm [1] to assess whether putative candidate sequences can be predicted as pre-miRNA-like structures.
 
 &nbsp;
 
@@ -49,7 +49,7 @@ The following R libraries are required for running the eMIRNA pipeline:
 + seqinr (https://CRAN.R-project.org/package=seqinr)
 + Biobase (https://bioconductor.org/packages/release/bioc/html/Biobase.html)
 + scales (https://CRAN.R-project.org/package=scales)
-+ miRNAss [[1]] (https://CRAN.R-project.org/package=miRNAss)
++ miRNAss [1] (https://CRAN.R-project.org/package=miRNAss)
 
 The following software programs are required for running the eMIRNA pipeline:
 + RNAfold [2] (https://www.tbi.univie.ac.at/RNA/)
@@ -481,4 +481,4 @@ emilio.marmol@cragenomica.es
 
 
 
-[1]:https://academic.oup.com/bioinformatics/article/34/4/541/4222633
+[[1]]:https://academic.oup.com/bioinformatics/article/34/4/541/4222633
