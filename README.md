@@ -50,11 +50,15 @@ The following R libraries are required for running the eMIRNA pipeline:
 + [Biobase]
 + [scales]
 + [miRNAss] [[1]]
++ [PCIT] [[2]]
++ [NOISeq] [[3]]
++ [edgeR] [[4]]
++ [igraph] [[5]]
 
 The following software programs are required for running the eMIRNA pipeline:
-+ [RNAfold] [[2]]
-+ [BEDTools v2.27.0] [[3]]
-+ [Bowtie] [[4]]
++ [RNAfold] [[6]]
++ [BEDTools v2.27.0] [[7]]
++ [Bowtie] [[8]]
 + [Fasta_ushuffle]
 
 
@@ -88,7 +92,7 @@ where `in.fa` corresponds to multilinear FASTA file, and `out.fa` is the resulti
 
 The first eMIRNA module makes use of previous Positive, Negative and Unlabeled FASTA files to perform an initial filtering process based on sequence length. Typically, microRNA genes range from 50 to 150 nucleotides long. Our first aim would be to filter the selected sequences based on expected microRNA genes length. We will apply this function to each of the FASTA files. The Positive sequences should not experience any filtering upon this process, if correctly generated. For Negative and Unlabeled sequences, all long non-coding hairpin-like sequences will be removed, retaining only those sequences resembling microRNA genes in length, according to established thresholds. 
 
-Next, this module estimates the secondary folding structure of selected filtered sequences, thus filtering out all candidates that do not ressemble a pre-miRNA hairpin-like secondary structure. The eMIRNA.Filter function will make use of RNAfold software [[2]] to calculate the estimated secondary folding structure, which should be available in your computer `$PATH` to be correctly executed. Typically, microRNA genes have a characteristic secondary structure, composed by two stems joined by complementarity and one terminal loop, forming a hairpin-like secondary structure. Some bubbles or bulges can appear within the two stems, belonging to non-paired nucleotides in the sequence.
+Next, this module estimates the secondary folding structure of selected filtered sequences, thus filtering out all candidates that do not ressemble a pre-miRNA hairpin-like secondary structure. The eMIRNA.Filter function will make use of [RNAfold] software [[6]] to calculate the estimated secondary folding structure, which should be available in your computer `$PATH` to be correctly executed. Typically, microRNA genes have a characteristic secondary structure, composed by two stems joined by complementarity and one terminal loop, forming a hairpin-like secondary structure. Some bubbles or bulges can appear within the two stems, belonging to non-paired nucleotides in the sequence.
 
 This function requires four arguments:
 
@@ -119,7 +123,7 @@ Once the eMIRNA.Filter function has run, a new folder named `eMIRNA/` will be cr
 
 The third eMIRNA module aims to calculate a series of structural, statistical and sequence-derived features from each sequence that had passed previous filtering, in order to obtain an estimated representation of their structural characteristics. Subsequently, these feature matrices will be processed by the prediction software to discriminate between microRNAs and other type of sequences.
 
-A modified version of Triplet-SVM pipeline [[5]] is implemented in the eMIRNA.Features module. Triplet-SVM perl scripts 1 to 3 (available at `bin/`) should be located at computer `$PATH`, so that the function is properly executed. RNAfold executable must also be installed and available at `$PATH`. All Triplet-SVM perl scripts should have execution permission allowed, which can easily be set with command `chmod 777`. 
+A modified version of Triplet-SVM pipeline [[9]] is implemented in the eMIRNA.Features module. Triplet-SVM perl scripts 1 to 3 (available at `bin/`) should be located at computer `$PATH`, so that the function is properly executed. [RNAfold] executable must also be installed and available at `$PATH`. All Triplet-SVM perl scripts should have execution permission allowed, which can easily be set with command `chmod 777`. 
 
 The function requires two arguments:
 
@@ -482,15 +486,23 @@ emilio.marmol@cragenomica.es
 
 
 [1]:https://academic.oup.com/bioinformatics/article/34/4/541/4222633
-[2]:https://almob.biomedcentral.com/articles/10.1186/1748-7188-6-26
-[3]:https://academic.oup.com/bioinformatics/article/26/6/841/244688
-[4]:https://genomebiology.biomedcentral.com/articles/10.1186/gb-2009-10-3-r25
-[5]:https://bmcbioinformatics.biomedcentral.com/articles/10.1186/1471-2105-6-310
+[2]:https://academic.oup.com/bioinformatics/article/26/3/411/215002
+[3]:https://academic.oup.com/nar/article/43/21/e140/2468096
+[4]:https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2796818/
+[5]:https://igraph.org/
+[6]:https://almob.biomedcentral.com/articles/10.1186/1748-7188-6-26
+[7]:https://academic.oup.com/bioinformatics/article/26/6/841/244688
+[8]:https://genomebiology.biomedcentral.com/articles/10.1186/gb-2009-10-3-r25
+[9]:https://bmcbioinformatics.biomedcentral.com/articles/10.1186/1471-2105-6-310
 [stringr]:https://CRAN.R-project.org/package=stringr
 [seqinr]:https://CRAN.R-project.org/package=seqinr
 [Biobase]:https://bioconductor.org/packages/release/bioc/html/Biobase.html
 [scales]:https://CRAN.R-project.org/package=scales
 [miRNAss]:https://CRAN.R-project.org/package=miRNAss
+[PCIT]:https://CRAN.R-progect.org/package=PCIT
+[NOISeq]:https://bioconductor.org/packages/release/bioc/html/NOISeq.html
+[edgeR]:https://bioconductor.org/packages/release/bioc/html/edgeR.html
+[igraph]:https://CRAN.R-project.org/package=igraph
 [RNAfold]:https://www.tbi.univie.ac.at/RNA/
 [BEDTools v2.27.0]:https://bedtools.readthedocs.io/en/latest/
 [Bowtie]:https://mcardle.wisc.edu/mprime/help/bowtie/manual.html
