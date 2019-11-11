@@ -30,7 +30,7 @@ The eMIRNA pipeline is under active development, if you find any problem, doubt 
 
 ## Introduction
 
-The eMIRNA pipeline makes use of a Machine Learning approach based on semi-supervised transductive Graph-based algorithm [1] [1] to assess whether putative candidate sequences can be predicted as pre-miRNA-like structures.
+The eMIRNA pipeline makes use of a Machine Learning approach based on semi-supervised transductive Graph-based algorithm [[1]] to assess whether putative candidate sequences can be predicted as pre-miRNA-like structures.
 
 &nbsp;
 
