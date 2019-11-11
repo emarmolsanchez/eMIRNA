@@ -1,0 +1,126 @@
+#! usr/bin/sh
+
+while getopts :g:p:b:f:o:x:h option
+
+do
+
+case "${option}"
+
+in
+
+g) GTF=${OPTARG};;
+p) PRED=${OPTARG};;
+b) BED=${OPTARG};;
+f) FASTA=${OPTARG};;
+o) OUT=${OPTARG};;
+x) X=$OPTARG;;
+
+\?) echo ""
+echo "Invalid option -$OPTARG, please use -h to see instructions"
+    exit 1;;
+h|\?) echo ""
+echo "eMIRNA.Refiner Usage Instructions:
+
+eMIRNA.Refiner [options]
+
+Input:
+  -g                                        PATH to Species of interest Genome GTF Annotation file
+  -p                                        PATH to Table of Predicted microRNA candidates by eMIRNA.Predict
+  -b                                        PATH to BED microRNAs output file from eMIRNA.Hunter
+  -f					    PATH to FASTA microRNAs output file from eMIRNA.Hunter
+  -o                                        PATH to desired output folder
+  -x                                        Desired Name string for output files
+  -h                                        Display help page
+
+Output:
+  <x>_Predicted_miRNAs_annotated.bed        BED file output with eMIRNA Predicted already Annotated miRNAs
+  <x>_Predicted_miRNAs_NON_annotated.bed    BED file output with eMIRNA Predicted Novel miRNAs
+  <x>_Predicted_miRNAs_NON_annotated.fa     FASTA file output with eMIRNA Predicted Novel miRNAs"
+ 
+
+      exit 0;;
+
+esac
+
+done
+
+
+if [[ -z $GTF || -z $PRED || -z $BED || -z $FASTA || -z $OUT || -z $X ]]; then
+
+    echo "eMIRNA.Refiner Usage Instructions:
+
+eMIRNA.Refiner [options]
+
+Input:
+  -g                                        PATH to Species of interest Genome GTF Annotation file
+  -p                                        PATH to Table of Predicted microRNA candidates by eMIRNA.Predict
+  -b                                        PATH to BED microRNAs output file from eMIRNA.Hunter
+  -f					    PATH to FASTA microRNAs output file from eMIRNA.Structural.Pvalue (or eMIRNA.Hunter)
+  -o                                        PATH to desired output folder
+  -x                                        Desired Name string for output files
+  -h                                        Display help page
+
+Output:
+  <x>_Predicted_miRNAs_annotated.bed        BED file output with eMIRNA Predicted already Annotated miRNAs
+  <x>_Predicted_miRNAs_NON_annotated.bed    BED file output with eMIRNA Predicted Novel miRNAs
+  <x>_Predicted_miRNAs_NON_annotated.fa     FASTA file output with eMIRNA Predicted Novel miRNAs"
+ 
+
+    echo ""
+    echo "Error while executing eMiRNA.Refiner!! Argument missing or wrongly assigned."
+
+    exit 1;
+
+fi
+
+
+#Prepare GTF reference
+
+grep miRNA $GTF > $OUT${X}_temp1.gtf
+egrep -v "miRNA|snoRNA" $GTF > $OUT${X}_temp1.2.gtf
+awk '$3 == "exon" {print $0}' $OUT${X}_temp1.2.gtf > $OUT${X}_temp1.3.gtf
+awk '{FS="\t"}{OFS="\t"}{print $1,$4,$5,$9,1,$7}' $OUT${X}_temp1.3.gtf > $OUT${X}_temp1.4.bed
+awk '$3 == "gene" {print $0}' $OUT${X}_temp1.gtf > $OUT${X}_temp2.gtf
+sed 's/ /\t/g' $OUT${X}_temp2.gtf | awk '{FS=OFS="\t"}{print $1,$4,$5,$10,1,$7,$14}'| sed 's/"//g' | sed 's/;//g'  > $OUT${X}_temp3.bed
+
+
+# Generate .bed from predicted miRNAs
+
+awk '$3=="miRNA" {print $0}' $PRED > $OUT${X}_temp3.2.txt 
+
+awk 'NR==FNR{c[$1]++;next};c[$4]>0' $OUT${X}_temp3.2.txt $BED | sort -k1,1V -k2,2n > $OUT${X}_temp4.bed
+
+awk 'NR==FNR{c[$1]++;next};c[$4]>0' $PRED $BED > $OUT${X}_temp4.2.bed
+
+
+# Generate .bed for annotated and unannotated predicted miRNAs
+
+bedtools intersect -wa -wb -s -a $OUT${X}_temp4.2.bed -b $OUT${X}_temp3.bed | sort -k1,1V -k2,2n > $OUT${X}_temp4.5.bed
+
+bedtools intersect -wa -s -v -a $OUT${X}_temp4.bed -b $OUT${X}_temp3.bed | sort -k1,1V -k2,2n > $OUT${X}_temp5.bed
+
+bedtools intersect -wa -s -v -a $OUT${X}_temp5.bed -b $OUT${X}_temp1.4.bed | sort -k1,1V -k2,2n > $OUT${X}_temp6.bed
+
+awk '$1 != "MT" {print $0}' $OUT${X}_temp6.bed > $OUT${X}_temp6.2.bed
+
+
+# Generate FASTA file with predicted NON annotated miRNAs
+
+awk '{print ">"$4}' $OUT${X}_temp6.2.bed > $OUT${X}_temp7.txt
+
+grep -f "$OUT${X}_temp7.txt" "$FASTA" -A 1 | egrep -v '^--' > $OUT${X}_Predicted_miRNAs_NON_annotated.fa
+
+echo -e "Chr\tStart\tEnd\tStrand\tSeq" > $OUT${X}_temp8.txt
+
+awk '{FS=OFS="\t"}{print $1,$2,$3,$6,$4}' $OUT${X}_temp6.2.bed > $OUT${X}_temp9.bed
+
+cat $OUT${X}_temp8.txt $OUT${X}_temp9.bed > $OUT${X}_Predicted_miRNAs_NON_annotated.bed
+
+awk '{FS=OFS="\t"}{print $1,$2,$3,$6,$4,$10,$13}' $OUT${X}_temp4.5.bed | sed 's/-mock3p//g' | sed 's/-mock5p//g' | sed 's/ensembl//g' > $OUT${X}_temp10.bed
+
+echo -e "Chr\tStart\tEnd\tStrand\tSeq\tID\tmiRNA" > $OUT${X}_temp11.txt
+
+cat $OUT${X}_temp11.txt $OUT${X}_temp10.bed > $OUT${X}_Predicted_miRNAs_annotated.bed
+
+
+rm $OUT*temp*
