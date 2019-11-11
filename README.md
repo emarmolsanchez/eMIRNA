@@ -38,6 +38,10 @@ The eMIRNA pipeline makes use of a Machine Learning approach based on semi-super
 
 &nbsp;
 
+**(1)** Positive, negative and unlabeled data are filtered based on size and secondary folding structure and a set of features is extracted for each sequence. **(2)** Mature miRNA sequences from small RNA-Seq data or related reference species are mapped against the selected genome assembly and elongated to reconstruct putative pre-miRNA candidates. **(3)** Candidate precursors are filtered based on size and secondary folding structure and a set of features is extracted for each candidate sequence. Optionally, sequences showing unstable secondary structure are removed. **(4)** Candidate sequences are embedded in the semi-supervised transductive classifier and a list of putative miRNAs is predicted. **(5)** Predicted miRNAs are either assigned to already annotated miRNA loci in the selected reference assembly or classified as putative novel miRNA genes.
+
+&nbsp;
+
 ## Prerequisites
 
 The following R libraries are required for running the eMIRNA pipeline:
