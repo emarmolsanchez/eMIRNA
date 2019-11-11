@@ -46,16 +46,16 @@ The eMIRNA pipeline makes use of a Machine Learning approach based on semi-super
 
 The following R libraries are required for running the eMIRNA pipeline:
 + [stringr]
-+ seqinr (https://CRAN.R-project.org/package=seqinr)
-+ Biobase (https://bioconductor.org/packages/release/bioc/html/Biobase.html)
-+ scales (https://CRAN.R-project.org/package=scales)
-+ miRNAss [[1]] (https://CRAN.R-project.org/package=miRNAss)
++ [seqinr]
++ [Biobase]
++ [scales]
++ [miRNAss] [[1]]
 
 The following software programs are required for running the eMIRNA pipeline:
-+ RNAfold [[2]] (https://www.tbi.univie.ac.at/RNA/)
-+ BEDTools v2.27.0 [[3]] (https://bedtools.readthedocs.io/en/latest/)
-+ Bowtie [[4]] (https://mcardle.wisc.edu/mprime/help/bowtie/manual.html)
-+ Fasta_ushuffle (https://github.com/agordon/fasta_ushuffle)
++ [RNAfold] [[2]]
++ BEDTools v2.27.0 [[3]]
++ Bowtie [[4]]
++ Fasta_ushuffle
 
 
 All executables should be stored at computer `$PATH` in order to be run properly (Commonly located at `/usr/bin/` or `/usr/local/bin/` in UNIX systems).
@@ -486,3 +486,11 @@ emilio.marmol@cragenomica.es
 [3]:https://academic.oup.com/bioinformatics/article/26/6/841/244688
 [4]:https://genomebiology.biomedcentral.com/articles/10.1186/gb-2009-10-3-r25
 [stringr]:https://CRAN.R-project.org/package=stringr
+[seqinr]:https://CRAN.R-project.org/package=seqinr
+[Biobase]:https://bioconductor.org/packages/release/bioc/html/Biobase.html
+[scales]:https://CRAN.R-project.org/package=scales
+[miRNAss]:https://CRAN.R-project.org/package=miRNAss
+[RNAfold]:https://www.tbi.univie.ac.at/RNA/
+[BEDTools v2.27.0]:https://bedtools.readthedocs.io/en/latest/
+[Bowtie]:https://mcardle.wisc.edu/mprime/help/bowtie/manual.html
+[Fasta_ushuffle]:https://github.com/agordon/fasta_ushuffle
