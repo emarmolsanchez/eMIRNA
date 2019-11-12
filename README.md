@@ -480,6 +480,7 @@ emilio.marmol@cragenomica.es
 [9]:https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0163962
 [10]:https://bmcbioinformatics.biomedcentral.com/articles/10.1186/1471-2105-6-310
 [11]:https://bmcbioinformatics.biomedcentral.com/articles/10.1186/1471-2105-9-192
+[12]:https://www.sciencedirect.com/science/article/pii/S0092867418302861?via%3Dihub
 [stringr]:https://CRAN.R-project.org/package=stringr
 [seqinr]:https://CRAN.R-project.org/package=seqinr
 [Biobase]:https://bioconductor.org/packages/release/bioc/html/Biobase.html
