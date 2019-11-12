@@ -32,7 +32,7 @@ The eMIRNA pipeline is under active development, if you find any problem, doubt 
 
 ## Introduction
 
-The eMIRNA pipeline makes use of a Machine Learning approach based on semi-supervised transductive Graph-based algorithm, as reported by Yones *et al.* (2018) [[1]], in order to assess whether putative candidate sequences can be predicted as pre-miRNA-like structures.
+The eMIRNA pipeline makes use of a Machine Learning approach based on semi-supervised transductive Graph-based algorithm, as reported by Yones *et al.* (2018) [[1]], in order to assess whether putative candidate sequences can be predicted as novel miRNA genes. Additionally, target interactions with mRNA genes can be inferred to functionally annotate the novel miRNAs previously identified, making use of a system biology network approach.
 
 &nbsp;
 
@@ -67,6 +67,8 @@ The following software programs are required for running the eMIRNA pipeline:
 All executables should be stored at computer `$PATH` in order to be run properly (Commonly located at `/usr/bin/` or `/usr/local/bin/` in UNIX systems).
 
 &nbsp;
+
+# miRNA Prediction
 
 ## Positive, Negative and Unlabeled Data sets
 
@@ -372,6 +374,10 @@ After successfully running the eMIRNA.Refiner script, a BED file will have been 
 &nbsp;
 
 ## eMIRNA.Target
+
+Once novel miRNAs 
+
+This module implements a fast seed pattern search on 3'-UTR regions from targeted mRNA transcripts, in order to detect putative mRNA targets for annotated miRNAs.
 
 ## eMIRNA.Network
 
