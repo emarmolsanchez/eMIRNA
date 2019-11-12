@@ -432,14 +432,14 @@ After successfully running the eMIRNA.Target script, a `.txt` file will have bee
 Example output:
 
 ```
-gene_ID	            miRNA	           pattern	Start End
-ENSSSCT00000046027	ssc-miR-664-5p     CTAGCCT	137	  143
-ENSSSCT00000046027	ssc-miR-383	       TGCTGTG	43	   49
-ENSSSCT00000046027	ssc-miR-615	       GGCTCGG	74 	   80
-ENSSSCT00000046027	ssc-miR-2366	   GTGACCC	167	  173
-ENSSSCT00000046027	ssc-miR-129a-3p    AAGGGCT	410	  416
-ENSSSCT00000046027	ssc-miR-15b	       TGCTGCT	51	   57
-ENSSSCT00000046027	ssc-miR-15b	       TGCTGCT	54	   60
+gene_ID	            miRNA	           pattern	 Start    End
+ENSSSCT00000046027	ssc-miR-664-5p     CTAGCCT	 137      143
+ENSSSCT00000046027	ssc-miR-383        TGCTGTG	  43       49
+ENSSSCT00000046027	ssc-miR-615        GGCTCGG	  74       80
+ENSSSCT00000046027	ssc-miR-236        GTGACCC	 167      173
+ENSSSCT00000046027	ssc-miR-129a-3p    AAGGGCT	 410      416
+ENSSSCT00000046027	ssc-miR-15b        TGCTGCT	  51       57
+ENSSSCT00000046027	ssc-miR-15b        TGCTGCT	  54       60
 
 ```
 
