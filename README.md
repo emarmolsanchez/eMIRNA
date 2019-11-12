@@ -56,6 +56,7 @@ The following software programs are required for running the eMIRNA pipeline:
 + [BEDTools v2.27.0] [[7]]
 + [Bowtie] [[8]]
 + [Fasta_ushuffle]
++ [SeqKit Toolkit] [[9]] 
 
 
 All executables should be stored at computer `$PATH` in order to be run properly (Commonly located at `/usr/bin/` or `/usr/local/bin/` in UNIX systems).
@@ -131,7 +132,7 @@ Once the eMIRNA.Filter function has run, a new folder named `eMIRNA/` will be cr
 
 The third eMIRNA module aims to calculate a series of structural, statistical and sequence-derived features from each sequence that had passed previous filtering, in order to obtain an estimated representation of their structural characteristics. Subsequently, these feature matrices will be processed by the prediction software to discriminate between microRNAs and other type of sequences.
 
-A modified version of Triplet-SVM pipeline [[9]] is implemented in the eMIRNA.Features module. Triplet-SVM perl scripts 1 to 3 (available at `bin/`) should be located at computer `$PATH`, so that the function is properly executed. [RNAfold] executable must also be installed and available at `$PATH`. All Triplet-SVM perl scripts should have execution permission allowed, which can easily be set with command `chmod 777`. 
+A modified version of Triplet-SVM pipeline [[10]] is implemented in the eMIRNA.Features module. Triplet-SVM perl scripts 1 to 3 (available at `bin/`) should be located at computer `$PATH`, so that the function is properly executed. [RNAfold] executable must also be installed and available at `$PATH`. All Triplet-SVM perl scripts should have execution permission allowed, which can easily be set with command `chmod 777`. 
 
 The function requires two arguments:
 
@@ -270,7 +271,7 @@ We recommend using the motif corrected FASTA files for subsequent steps, taking 
 
 ## eMIRNA.Structural.Pvalue
 
-The eMIRNA.Structural.Pvalue module implements a n-randomization of provided sequences while maintaining *k*-let counts as described by Jiang *et al*. 2008 [[10]], using the [Fasta_ushuffle] package, which must be downloaded, compiled and stored at computer `PATH` in order to be run properly.
+The eMIRNA.Structural.Pvalue module implements a n-randomization of provided sequences while maintaining *k*-let counts as described by Jiang *et al*. 2008 [[11]], using the [Fasta_ushuffle] package, which must be downloaded, compiled and stored at computer `PATH` in order to be run properly.
 
 This module requires five arguments:
 
@@ -379,11 +380,13 @@ After successfully running the eMIRNA.Refiner script, a BED file will have been 
 
 # Functional Annotation
 
+Users can further infer the functional interactions putatively occurring between the novel predicted miRNA candidates and other mRNA target genes expressed in their experiments.
+
+&nbsp;
+
 ## eMIRNA.Target
 
-
-
-This module implements a fast seed pattern search on 3'-UTR regions from targeted mRNA transcripts, in order to detect putative mRNA targets for annotated miRNAs.
+This module implements a fast seed pattern search on 3'-UTR regions from targeted mRNA transcripts, in order to detect putative mRNA targets of the novel annotated miRNAs.
 
 ## eMIRNA.Network
 
@@ -431,8 +434,9 @@ emilio.marmol@cragenomica.es
 [6]:https://almob.biomedcentral.com/articles/10.1186/1748-7188-6-26
 [7]:https://academic.oup.com/bioinformatics/article/26/6/841/244688
 [8]:https://genomebiology.biomedcentral.com/articles/10.1186/gb-2009-10-3-r25
-[9]:https://bmcbioinformatics.biomedcentral.com/articles/10.1186/1471-2105-6-310
-[10]:https://bmcbioinformatics.biomedcentral.com/articles/10.1186/1471-2105-9-192
+[9]:https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0163962
+[10]:https://bmcbioinformatics.biomedcentral.com/articles/10.1186/1471-2105-6-310
+[11]:https://bmcbioinformatics.biomedcentral.com/articles/10.1186/1471-2105-9-192
 [stringr]:https://CRAN.R-project.org/package=stringr
 [seqinr]:https://CRAN.R-project.org/package=seqinr
 [Biobase]:https://bioconductor.org/packages/release/bioc/html/Biobase.html
@@ -450,3 +454,4 @@ emilio.marmol@cragenomica.es
 [HextractoR]:https://CRAN.R-project.org/package=HextractoR
 [CD-Hit]:http://weizhong-lab.ucsd.edu/cdhit_suite/cgi-bin/index.cgi
 [FASTX-Toolkit]:http://hannonlab.cshl.edu/fastx_toolkit/index.html
+[SeqKit Toolkit]:https://bioinf.shenwei.me/seqkit/
