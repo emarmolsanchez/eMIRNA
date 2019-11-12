@@ -478,6 +478,21 @@ Network <- eMIRNA.Network(mRNA, miRNA, Targets, cor=-0.5, type="pearson", normal
 
 ```
 
+Example output:
+
+```
+miRNA             mRNA            Correlation
+ssc-miR-148a-3p     ENSSSCG00000031262      -0.64
+ssc-miR-148a-3p	    ENSSSCG00000014156      -0.58
+ssc-miR-148a-3p	    ENSSSCG00000015334      -0.75
+ssc-miR-148a-3p     ENSSSCG00000015872      -0.56
+ssc-miR-148a-3p     ENSSSCG00000004332      -0.59
+ssc-miR-148a-3p     ENSSSCG00000010210      -0.70
+
+```
+
+Users should define mRNA and miRNA matrices with rownames as mRNA/miRNA names and colnames as sample names. The data.frame incorporating targets information should have mRNA names as first column.
+
 If `normalize=FALSE` is set, users should provided already filtered, normalized and log<sub>2</sub> transformed mRNA and miRNA expression matrices. Samples names (columns) must be the same in both mRNA and miRNA expression data and the exact same number of individuals must be included so as the function can be run properly. Please be aware that [PCIT] algorithm can escalate to high time and memmory consuming requirements if a huge amount of expression data is included in mRNA and miRNA matrices. 
 
 Tipically, the higher the number of genes, the better for [PCIT] inference. Default expression and normalization filters implemented are suited for a good representation of the miRNA-to-mRNA interaction network. For a fast running, users may focus on differentially expressed (DE) mRNA and miRNA genes, otherwise some hours should be expected for network inference with around 10 to 15 thousands of expressed genes, depending on computing resources.
@@ -517,6 +532,7 @@ RIF <- eMIRNA.RIF(mRNA, miRNA, design, Network, DElist, normalize=FALSE)
 
 ```
 
+Users should define mRNA and miRNA matrices with rownames as mRNA/miRNA names and colnames as sample names. The data.frame incorporating [PCIT] network information should have three columns with genes, miRNAs and correlation information, respectively.
 
 
 
