@@ -21,7 +21,7 @@ The eMIRNA pipeline is under active development, if you find any problem, doubt 
     - [eMIRNA.Structural.Pvalue](https://github.com/emarmolsanchez/eMIRNA/#emirnastructuralpvalue)
     - [eMIRNA.Predict](https://github.com/emarmolsanchez/eMIRNA/#emirnapredict)
     - [eMIRNA.Refiner](https://github.com/emarmolsanchez/eMIRNA/#emirnarefiner)
--[Functional Annotation](https://github.com/emarmolsanchez/eMIRNA/#functional-annotation)
+- [Functional Annotation](https://github.com/emarmolsanchez/eMIRNA/#functional-annotation)
     - [eMIRNA.Target](https://github.com/emarmolsanchez/eMIRNA/#emirnatarget)
     - [eMIRNA.Network](https://github.com/emarmolsanchez/eMIRNA/#emirnanetwork)
     - [eMIRNA.RIF](https://github.com/emarmolsanchez/eMIRNA/#emirnarif)
