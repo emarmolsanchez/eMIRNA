@@ -69,7 +69,7 @@ The next modules are implemented for predicting novel miRNA genes in our genome 
 
 &nbsp;
 
-![alt text](https://github.com/emarmolsanchez/eMIRNA/blob/master/bin/Figure1.jpg)
+![alt text](https://github.com/emarmolsanchez/eMIRNA/blob/master/bin/eMIRNA_flowchart1.jpg)
 
 **(1)** Positive, negative and unlabeled data are filtered based on size and secondary folding structure and a set of features is extracted for each sequence. **(2)** Mature miRNA sequences from small RNA-Seq data or related reference species are mapped against the selected genome assembly and elongated to reconstruct putative pre-miRNA candidates. **(3)** Candidate precursors are filtered based on size and secondary folding structure and a set of features is extracted for each candidate sequence. Optionally, sequences showing unstable secondary structure are removed. **(4)** Candidate sequences are embedded in the semi-supervised transductive classifier and a list of putative miRNAs is predicted. **(5)** Predicted miRNAs are either assigned to already annotated miRNA loci in the selected reference assembly or classified as putative novel miRNA genes.
 
@@ -383,6 +383,8 @@ After successfully running the eMIRNA.Refiner script, a BED file will have been 
 Users can further infer the functional interactions putatively occurring between the novel predicted miRNA candidates and other mRNA target genes expressed in their experiments.
 
 &nbsp;
+
+![alt text](https://github.com/emarmolsanchez/eMIRNA/blob/master/bin/eMIRNA_flowchart2.jpg)
 
 ## eMIRNA.Target
 
