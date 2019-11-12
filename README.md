@@ -9,10 +9,11 @@ The eMIRNA pipeline is under active development, if you find any problem, doubt 
 
 -------------------------------
 
-## Index
+# Index
 
 - [Introduction](https://github.com/emarmolsanchez/eMIRNA/#introduction)
 - [Prerrequisites](https://github.com/emarmolsanchez/eMIRNA/#prerequisites)
+- [miRNA Prediction](https://github.com/emarmolsanchez/eMIRNA/#miRNA-prediction)
 - [Positive, Negative and Unlabeled Data sets](https://github.com/emarmolsanchez/eMIRNA/#positive-negative-and-unlabeled-data-sets)
 - [eMIRNA.Filter](https://github.com/emarmolsanchez/eMIRNA/#emirnafilter)
 - [eMIRNA.Features](https://github.com/emarmolsanchez/eMIRNA/#emirnafeatures)
@@ -30,7 +31,7 @@ The eMIRNA pipeline is under active development, if you find any problem, doubt 
 &nbsp;
 &nbsp;
 
-## Introduction
+# Introduction
 
 The eMIRNA pipeline makes use of a Machine Learning approach based on semi-supervised transductive Graph-based algorithm, as reported by Yones *et al.* (2018) [[1]], in order to assess whether putative candidate sequences can be predicted as novel miRNA genes. Additionally, target interactions with mRNA genes can be inferred to functionally annotate the novel miRNAs previously identified, making use of a system biology network approach.
 
@@ -44,7 +45,7 @@ The eMIRNA pipeline makes use of a Machine Learning approach based on semi-super
 
 &nbsp;
 
-## Prerequisites
+# Prerequisites
 
 The following R libraries are required for running the eMIRNA pipeline:
 + [stringr]
