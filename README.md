@@ -571,7 +571,7 @@ Users should define mRNA and miRNA matrices with rownames as mRNA/miRNA names an
 
 10. [Jiang M. et al. (2008) uShuffle: A useful tool for shuffling biological sequences while preserving the k-let counts. *BMC Bioinformatics*, 9, 192.]
 
-11. [Bartel D.P. (2018) Metazoan microRNAs. *Cell, 173, 20-51.]
+11. [Bartel D.P. (2018) Metazoan microRNAs. *Cell*, 173, 20-51.]
 
 12. [Reverter A. et al. (2008) Combining partial correlation and an information theory approach to the reversed engineering of gene co-expression networks. *Bioinformatics*, 24, 2491-97.]
 
