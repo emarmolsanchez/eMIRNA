@@ -551,7 +551,7 @@ Users should define mRNA and miRNA matrices with rownames as mRNA/miRNA names an
 
 ## References
 
-[1] Yones C. et al. (2018) Genome-wide pre-miRNA discovery from few labeled examples. *Bioinformatics*, 34, 541–49.
+[Yones C. et al. (2018) Genome-wide pre-miRNA discovery from few labeled examples. *Bioinformatics*, 34, 541–49.]
 
 Jiang M. et al. (2008) uShuffle: A useful tool for shuffling biological sequences while preserving the k-let counts. *BMC Bioinformatics*, 9, 192.
 
