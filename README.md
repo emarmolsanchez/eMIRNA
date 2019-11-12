@@ -551,6 +551,8 @@ Users should define mRNA and miRNA matrices with rownames as mRNA/miRNA names an
 
 ## References
 
+[1] Yones C. et al. (2018) Genome-wide pre-miRNA discovery from few labeled examples. *Bioinformatics*, 34, 541–49.
+
 Jiang M. et al. (2008) uShuffle: A useful tool for shuffling biological sequences while preserving the k-let counts. *BMC Bioinformatics*, 9, 192.
 
 Langmead B. et al. (2009) Ultrafast and memory-efficient alignment of short DNA sequences to the human genome. *Genome Biol.*, 10, R25.
@@ -612,3 +614,4 @@ emilio.marmol@cragenomica.es
 [CD-Hit]:http://weizhong-lab.ucsd.edu/cdhit_suite/cgi-bin/index.cgi
 [FASTX-Toolkit]:http://hannonlab.cshl.edu/fastx_toolkit/index.html
 [SeqKit Toolkit]:https://bioinf.shenwei.me/seqkit/
+[Yones C. et al. (2018) Genome-wide pre-miRNA discovery from few labeled examples. *Bioinformatics*, 34, 541–49.]:https://academic.oup.com/bioinformatics/article/34/4/541/4222633
