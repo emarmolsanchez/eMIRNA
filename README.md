@@ -491,6 +491,8 @@ ssc-miR-148a-3p     ENSSSCG00000010210      -0.70
 
 ```
 
+&nbsp;
+
 Users should define mRNA and miRNA matrices with rownames as mRNA/miRNA names and colnames as sample names. The data.frame incorporating targets information should have mRNA names as first column.
 
 If `normalize=FALSE` is set, users should provided already filtered, normalized and log<sub>2</sub> transformed mRNA and miRNA expression matrices. Samples names (columns) must be the same in both mRNA and miRNA expression data and the exact same number of individuals must be included so as the function can be run properly. Please be aware that [PCIT] algorithm can escalate to high time and memmory consuming requirements if a huge amount of expression data is included in mRNA and miRNA matrices. 
@@ -532,9 +534,9 @@ RIF <- eMIRNA.RIF(mRNA, miRNA, design, Network, DElist, normalize=FALSE)
 
 ```
 
-Users should define mRNA and miRNA matrices with rownames as mRNA/miRNA names and colnames as sample names. The data.frame incorporating [PCIT] network information should have three columns with genes, miRNAs and correlation information, respectively.
+Users should define mRNA and miRNA matrices with rownames as mRNA/miRNA names and colnames as sample names. The data.frame incorporating [PCIT] network information should have three columns with genes, miRNAs and correlation information, respectively. The list of DE genes should have each gene ID in one defined column.
 
-
+&nbsp;
 
 ## References
 
