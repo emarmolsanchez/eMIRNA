@@ -386,6 +386,10 @@ Users can further infer the functional interactions putatively occurring between
 
 ![alt text](https://github.com/emarmolsanchez/eMIRNA/blob/master/bin/eMIRNA_flowchart2.jpg)
 
+**(6)** mature miRNA and 3'-UTR sequences are used for predicting miRNA-to-mRNA target interactions. **(7)** Expression data from miRNA and mRNA genes belonging to the same experimental conditions are used to predict significant miRNA-to-mRNA interactions based on a Partial Correlations and Information Theory (PCIT) approach. **(8)** The Regulatory Impact Factor (RIF) of each considered miRNA is calculated based on mRNA and miRNA expression data, as well as with significant PCIT interactions.
+
+&nbsp;
+
 ## eMIRNA.Target
 
 The mechanism of action of miRNAs within the cell metabolism has been thoroughly described in previous reports [[11]]. Most commonly, seed portions of mature miRNAs (5' 2<sup>nd</sup> to 7<sup>th</sup>/8<sup>th</sup> nucleotides) can join by complementarity to short matching sites of 3'-UTR regions of target mRNAs, hence triggering their degradation or difficulting their processing in the ribosomes, resulting in a downregulation of the production of proteins encoded by such targeted mRNAs.
