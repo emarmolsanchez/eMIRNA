@@ -637,6 +637,6 @@ emilio.marmol@cragenomica.es
 [Shen W. et al. (2016) SeqKit: A Cross-Platform and Ultrafast Toolkit for FASTA/Q File Manipulation. *PLoS ONE*, 11, e0163962.]:https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0163962
 [Xue C. et al. (2005) Classification of real and pseudo microRNA precursors using local structure-sequence features and support vector machine. *BMC Bioinformatics*, 6, 310.]:https://bmcbioinformatics.biomedcentral.com/articles/10.1186/1471-2105-6-310
 [Jiang M. et al. (2008) uShuffle: A useful tool for shuffling biological sequences while preserving the k-let counts. *BMC Bioinformatics*, 9, 192.]:https://bmcbioinformatics.biomedcentral.com/articles/10.1186/1471-2105-9-192
-[Bartel D.P. (2018) Metazoan microRNAs. *Cell, 173, 20-51.]:https://www.sciencedirect.com/science/article/pii/S0092867418302861?via%3Dihub
+[Bartel D.P. (2018) Metazoan microRNAs. *Cell*, 173, 20-51.]:https://www.sciencedirect.com/science/article/pii/S0092867418302861?via%3Dihub
 [Reverter A. et al. (2008) Combining partial correlation and an information theory approach to the reversed engineering of gene co-expression networks. *Bioinformatics*, 24, 2491-97.]:https://academic.oup.com/bioinformatics/article/24/21/2491/192682
 [Reverter A. et al. (2010) Regulatory impact factors: unraveling the transcriptional regulation of complex traits from expression data. *Bioinformatics*, 26, 896-904.]:https://academic.oup.com/bioinformatics/article/26/7/896/212064
