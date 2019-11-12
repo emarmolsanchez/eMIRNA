@@ -481,7 +481,7 @@ Network <- eMIRNA.Network(mRNA, miRNA, Targets, cor=-0.5, type="pearson", normal
 Example output:
 
 ```
-miRNA             mRNA            Correlation
+miRNA                    mRNA            Correlation
 ssc-miR-148a-3p     ENSSSCG00000031262      -0.64
 ssc-miR-148a-3p	    ENSSSCG00000014156      -0.58
 ssc-miR-148a-3p	    ENSSSCG00000015334      -0.75
