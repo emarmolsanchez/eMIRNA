@@ -491,7 +491,7 @@ emilio.marmol@cragenomica.es
 [Biobase]:https://bioconductor.org/packages/release/bioc/html/Biobase.html
 [scales]:https://CRAN.R-project.org/package=scales
 [miRNAss]:https://CRAN.R-project.org/package=miRNAss
-[PCIT]:https://CRAN.R-progect.org/package=PCIT
+[PCIT]:https://CRAN.R-project.org/package=PCIT
 [NOISeq]:https://bioconductor.org/packages/release/bioc/html/NOISeq.html
 [edgeR]:https://bioconductor.org/packages/release/bioc/html/edgeR.html
 [igraph]:https://CRAN.R-project.org/package=igraph
