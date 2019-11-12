@@ -463,14 +463,14 @@ Network <- eMIRNA.Network(mRNA, miRNA, Targets, cor=-0.5, type="pearson", normal
 
 ```
 
-If `normalize=FALSE` is set, users should provided already filtered, normalized and log<sub>2</sub> transformed mRNA and miRNA expression matrices. Samples (columns) names must be the same in both mRNA and miRNA expression data and the exact same number of individuals must be included so as the function can run properly. Please be aware that [PCIT] algorithm can escalate to high time and memmory consuming requirements if a huge amount of expression data is included in mRNA and miRNA matrices. Tipically, the higher the number of genes, the better for [PCIT] inference. Default expression and normalization filters implemented are suited for a good representation of the miRNA-to-mRNA interaction network. For a fast running, users should focus on differentially expressed (DE) mRNA and miRNA genes, otherwise some hours should be expected for network inference with aroun 10 to 15 thousands of expressed genes, depending on computing resources.
+If `normalize=FALSE` is set, users should provided already filtered, normalized and log<sub>2</sub> transformed mRNA and miRNA expression matrices. Samples names (columns) must be the same in both mRNA and miRNA expression data and the exact same number of individuals must be included so as the function can be run properly. Please be aware that [PCIT] algorithm can escalate to high time and memmory consuming requirements if a huge amount of expression data is included in mRNA and miRNA matrices. Tipically, the higher the number of genes, the better for [PCIT] inference. Default expression and normalization filters implemented are suited for a good representation of the miRNA-to-mRNA interaction network. For a fast running, users may focus on differentially expressed (DE) mRNA and miRNA genes, otherwise some hours should be expected for network inference with around 10 to 15 thousands of expressed genes, depending on computing resources.
 
 &nbsp;
 
 
 ## eMIRNA.RIF
 
-
+Once putative interactions have been inferred, users may want to estimate the relevance of each considered miRNA in regulating the expression of targeted mRNAs in their experimental conditions. For this purpose, we have implemented the eMIRNA.RIF module, which makes use of the Regulatory Impact Factor ([RIF]) algorithm described by Reverter *et al.* (2010) [[14]]. The [RIF] algorithm aims to identify regulator genes contributing to the observed differential expression in the analyzed contrasts. Its implementation results in two different and inter-connected RIF scores: while RIF1 score represents those transcriptional regulators that are most differentially co-expressed with the most highly abundant and highly DE genes, the RIF2 score highlights those regulators that show the most altered ability to act as predictors of the changes in the expression levels of DE genes [[14]]. Both [RIF] values capture different regulatory impact features and hence, they can be considered as two independent measurements of the putative relevance of miRNAs as gene expression regulators.
 
 
 
@@ -517,12 +517,14 @@ emilio.marmol@cragenomica.es
 [11]:https://bmcbioinformatics.biomedcentral.com/articles/10.1186/1471-2105-9-192
 [12]:https://www.sciencedirect.com/science/article/pii/S0092867418302861?via%3Dihub
 [13]:https://academic.oup.com/bioinformatics/article/24/21/2491/192682
+[14]:https://academic.oup.com/bioinformatics/article/26/7/896/212064
 [stringr]:https://CRAN.R-project.org/package=stringr
 [seqinr]:https://CRAN.R-project.org/package=seqinr
 [Biobase]:https://bioconductor.org/packages/release/bioc/html/Biobase.html
 [scales]:https://CRAN.R-project.org/package=scales
 [miRNAss]:https://CRAN.R-project.org/package=miRNAss
 [PCIT]:https://CRAN.R-project.org/package=PCIT
+[RIF]:https://academic.oup.com/bioinformatics/article/26/7/896/212064
 [NOISeq]:https://bioconductor.org/packages/release/bioc/html/NOISeq.html
 [edgeR]:https://bioconductor.org/packages/release/bioc/html/edgeR.html
 [igraph]:https://CRAN.R-project.org/package=igraph
