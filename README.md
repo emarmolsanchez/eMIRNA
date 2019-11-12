@@ -551,7 +551,13 @@ Users should define mRNA and miRNA matrices with rownames as mRNA/miRNA names an
 
 ## References
 
-[Yones C. et al. (2018) Genome-wide pre-miRNA discovery from few labeled examples. *Bioinformatics*, 34, 541–49.]
+1. [Yones C. et al. (2018) Genome-wide pre-miRNA discovery from few labeled examples. *Bioinformatics*, 34, 541–49.]
+
+2. [Watson-High N.S. et al. (2010) PCIT: an R package for weighted gene co-expression networks based on partial correlation and information theory approaches. *Bioinformatics*, 26, 411-13.]
+
+3. [Tarazona S. et al. (2015) Data quality aware analysis of differential expression in RNA-seq with NOISeq R/Bioc package. *Nucleic Acids Research*, 43, e140.]
+
+4. [Robinson M.D. et al. (2010) edgeR: a Bioconductor package for differential expression analysis of digital gene expression data. *Bioinformatics*, 26, 139-40.]
 
 Jiang M. et al. (2008) uShuffle: A useful tool for shuffling biological sequences while preserving the k-let counts. *BMC Bioinformatics*, 9, 192.
 
@@ -615,3 +621,6 @@ emilio.marmol@cragenomica.es
 [FASTX-Toolkit]:http://hannonlab.cshl.edu/fastx_toolkit/index.html
 [SeqKit Toolkit]:https://bioinf.shenwei.me/seqkit/
 [Yones C. et al. (2018) Genome-wide pre-miRNA discovery from few labeled examples. *Bioinformatics*, 34, 541–49.]:https://academic.oup.com/bioinformatics/article/34/4/541/4222633
+[Watson-High N.S. et al. (2010) PCIT: an R package for weighted gene co-expression networks based on partial correlation and information theory approaches. *Bioinformatics*, 26, 411-13.]:https://academic.oup.com/bioinformatics/article/26/3/411/215002
+[Tarazona S. et al. (2015) Data quality aware analysis of differential expression in RNA-seq with NOISeq R/Bioc package. *Nucleic Acids Research*, 43, e140.]:https://academic.oup.com/nar/article/43/21/e140/2468096
+[Robinson M.D. et al. (2010) edgeR: a Bioconductor package for differential expression analysis of digital gene expression data. *Bioinformatics*, 26, 139-40.]:https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2796818/
