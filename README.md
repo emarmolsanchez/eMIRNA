@@ -14,16 +14,17 @@ The eMIRNA pipeline is under active development, if you find any problem, doubt 
 - [Introduction](https://github.com/emarmolsanchez/eMIRNA/#introduction)
 - [Prerrequisites](https://github.com/emarmolsanchez/eMIRNA/#prerequisites)
 - [miRNA Prediction](https://github.com/emarmolsanchez/eMIRNA/#miRNA-prediction)
-- [Positive, Negative and Unlabeled Data sets](https://github.com/emarmolsanchez/eMIRNA/#positive-negative-and-unlabeled-data-sets)
-- [eMIRNA.Filter](https://github.com/emarmolsanchez/eMIRNA/#emirnafilter)
-- [eMIRNA.Features](https://github.com/emarmolsanchez/eMIRNA/#emirnafeatures)
-- [eMIRNA.Hunter](https://github.com/emarmolsanchez/eMIRNA/#emirnahunter)
-- [eMIRNA.Structural.Pvalue](https://github.com/emarmolsanchez/eMIRNA/#emirnastructuralpvalue)
-- [eMIRNA.Predict](https://github.com/emarmolsanchez/eMIRNA/#emirnapredict)
-- [eMIRNA.Refiner](https://github.com/emarmolsanchez/eMIRNA/#emirnarefiner)
-- [eMIRNA.Target](https://github.com/emarmolsanchez/eMIRNA/#emirnatarget)
-- [eMIRNA.Network](https://github.com/emarmolsanchez/eMIRNA/#emirnanetwork)
-- [eMIRNA.RIF](https://github.com/emarmolsanchez/eMIRNA/#emirnarif)
+    - [Positive, Negative and Unlabeled Data sets](https://github.com/emarmolsanchez/eMIRNA/#positive-negative-and-unlabeled-data-sets)
+    - [eMIRNA.Filter](https://github.com/emarmolsanchez/eMIRNA/#emirnafilter)
+    - [eMIRNA.Features](https://github.com/emarmolsanchez/eMIRNA/#emirnafeatures)
+    - [eMIRNA.Hunter](https://github.com/emarmolsanchez/eMIRNA/#emirnahunter)
+    - [eMIRNA.Structural.Pvalue](https://github.com/emarmolsanchez/eMIRNA/#emirnastructuralpvalue)
+    - [eMIRNA.Predict](https://github.com/emarmolsanchez/eMIRNA/#emirnapredict)
+    - [eMIRNA.Refiner](https://github.com/emarmolsanchez/eMIRNA/#emirnarefiner)
+-[Functional Annotation](https://github.com/emarmolsanchez/eMIRNA/#functional-annotation)
+    - [eMIRNA.Target](https://github.com/emarmolsanchez/eMIRNA/#emirnatarget)
+    - [eMIRNA.Network](https://github.com/emarmolsanchez/eMIRNA/#emirnanetwork)
+    - [eMIRNA.RIF](https://github.com/emarmolsanchez/eMIRNA/#emirnarif)
 - [References](https://github.com/emarmolsanchez/eMIRNA/#references)
 - [Contact](https://github.com/emarmolsanchez/eMIRNA/#contact)
 - [Notes](https://github.com/emarmolsanchez/eMIRNA/#notes)
@@ -373,6 +374,8 @@ bash eMIRNA.Refiner -g Sscrofa11.1.97.gtf -p Prediction_results.txt -b Candidate
 After successfully running the eMIRNA.Refiner script, a BED file will have been created at predefined output `PATH`, containing the most relevant putative novel non-annotated microRNAs, and their estimated positions, as well as FASTA file with the corresponding novel candidate sequences. Besides, a BED file containing already annotated detected candidates will be also generated.
 
 &nbsp;
+
+# Functional Annotation
 
 ## eMIRNA.Target
 
