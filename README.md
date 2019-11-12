@@ -433,6 +433,10 @@ After successfully running the eMIRNA.Target script, a `.txt` file will have bee
 
 ## eMIRNA.Network
 
+In the event that mRNA and miRNA expression profiles from same experimental conditions are available, users can implement a system biology interaction approach to further infer the significance and reliability of miRNA-to-mRNA interactions predicted in advance by eMIRNA.Target.
+
+To achive this purpose, we have implemented a network-oriented filtering criteria based on Partial Correlations and Information Theory ([PCIT]) approach as proposed by Reverter *et al.* (2008) [[13]]. By using first-order partial correlation coefficients estimated for each trio of genes along with an information theory approach, this tool identifies meaningful gene-to-gene nteractions. This approach aims to determine truly informative correlations between node pairs (genes in our context), once the influence of other nodes in the network has been considered.
+
 ## eMIRNA.RIF
 
 
@@ -481,6 +485,7 @@ emilio.marmol@cragenomica.es
 [10]:https://bmcbioinformatics.biomedcentral.com/articles/10.1186/1471-2105-6-310
 [11]:https://bmcbioinformatics.biomedcentral.com/articles/10.1186/1471-2105-9-192
 [12]:https://www.sciencedirect.com/science/article/pii/S0092867418302861?via%3Dihub
+[13]:https://academic.oup.com/bioinformatics/article/24/21/2491/192682
 [stringr]:https://CRAN.R-project.org/package=stringr
 [seqinr]:https://CRAN.R-project.org/package=seqinr
 [Biobase]:https://bioconductor.org/packages/release/bioc/html/Biobase.html
