@@ -116,11 +116,11 @@ Example of usage:
 
 ```r
 
-eMIRNA.Filter.by.Size("PATH to Positive FASTA file", "Pos", 50, 150)
+eMIRNA.Filter.by.Size("PATH_to_Positive_FASTA", "Pos", 50, 150)
 
-eMIRNA.Filter.by.Size("PATH to Negative FASTA file", "Neg", 50, 150)
+eMIRNA.Filter.by.Size("PATH_to_Negative_FASTA", "Neg", 50, 150)
 
-eMIRNA.Filter.by.Size("PATH to Unlabeled FASTA file", "Unlab", 50, 150)
+eMIRNA.Filter.by.Size("PATH_to_Unlabeled_FASTA", "Unlab", 50, 150)
 
 ```
 
@@ -386,7 +386,50 @@ Users can further infer the functional interactions putatively occurring between
 
 ## eMIRNA.Target
 
-This module implements a fast seed pattern search on 3'-UTR regions from targeted mRNA transcripts, in order to detect putative mRNA targets of the novel annotated miRNAs.
+The mechanism of action of miRNAs within the cell metabolism has been thoroughly described in previous reports [[12]]. Most commonly, seed portions of mature miRNAs (5' 2nd to 7th/8th nucleotides) can join by complementarity to short matching sites of 3'-UTR regions of target mRNAs, hence triggering their degradation or difficulting their processing in the ribosomes, resulting in a downregulation of the production of proteins encoded by such targeted mRNAs.
+
+eMIRNA.Target implements a fast seed pattern search on 3'-UTR regions from targeted mRNA transcripts, in order to detect putative mRNA targets of the novel annotated miRNAs. The [SeqKit Toolkit] is implemented for retrieveing 7mer/8mer short sequence sites inside mRNA 3'-UTR regions.
+
+This module requires five arguments:
+
++ PATH to FASTA file with 3'-UTR sequences of target mRNAs of interest.
++ PATH to FASTA file of mature miRNA sequences (annotated and/or novel).
++ Seed match pattern (6mer/7mer/8mer).
++ PATH to desired output.
++ Desired output prefix name.
+
+
+A detailed explanation of each variable can be accessed with -h (help) option:
+
+```
+eMIRNA.Target Usage Instructions:
+
+eMIRNA.Target [options]
+
+Input:
+  -m                                    PATH to mature miRNAs FASTA file
+  -t                                    PATH to 3'-UTRs FASTA file
+  -s                                    N-mer seed matching (7-8 recommended)
+  -o                                    PATH to desired output folder
+  -x                                    Desired Name string for output files
+  -h                                    Display help page
+
+Output:
+  <x>_targeted_UTRs.txt                 Targeted 3'-UTR transcripts file"
+  
+```
+
+Although any seed matching length could be defined, we recommend using 7mer and/or 8mer motif search (please consider that putative interaction with 8mer match will be far more stringent than 7mer interactions), as these interaction types have been described as the most reliable when assessing the true functionality of miRNAs on regulating target mRNAs.
+
+Example of usage:
+
+```
+bash eMIRNA.Target -m PATH_to_Positive_FASTA -t 3UTRs.fa -s 7 -o PATH_to_output_folder -x Targets
+
+```
+After successfully running the eMIRNA.Target script, a `.txt` file will have been created at predefined output `PATH`, containing putative interactions between each queried miRNA and all the mRNA 3'-UTR regions provided.
+
+&nbsp;
 
 ## eMIRNA.Network
 
