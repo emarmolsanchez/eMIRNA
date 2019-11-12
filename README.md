@@ -49,14 +49,14 @@ The following R libraries are required for running the eMIRNA pipeline:
 + [PCIT] [[2]]
 + [NOISeq] [[3]]
 + [edgeR] [[4]]
-+ [igraph] [[5]]
++ [igraph]
 
 The following software programs are required for running the eMIRNA pipeline:
-+ [RNAfold] [[6]]
-+ [BEDTools v2.27.0] [[7]]
-+ [Bowtie] [[8]]
++ [RNAfold] [[5]]
++ [BEDTools v2.27.0] [[6]]
++ [Bowtie] [[7]]
 + [Fasta_ushuffle]
-+ [SeqKit Toolkit] [[9]] 
++ [SeqKit Toolkit] [[8]] 
 
 
 All executables should be stored at computer `$PATH` in order to be run properly (Commonly located at `/usr/bin/` or `/usr/local/bin/` in UNIX systems).
@@ -101,7 +101,7 @@ where `in.fa` corresponds to multilinear FASTA file, and `out.fa` is the resulti
 
 The first eMIRNA module makes use of previous Positive, Negative and Unlabeled FASTA files to perform an initial filtering process based on sequence length. Typically, microRNA genes range from 50 to 150 nucleotides long. Our first aim would be to filter the selected sequences based on expected microRNA genes length. We will apply this function to each of the FASTA files. The Positive sequences should not experience any filtering upon this process, if correctly generated. For Negative and Unlabeled sequences, all long non-coding hairpin-like sequences will be removed, retaining only those sequences resembling microRNA genes in length, according to established thresholds. 
 
-Next, this module estimates the secondary folding structure of selected filtered sequences, thus filtering out all candidates that do not ressemble a pre-miRNA hairpin-like secondary structure. The eMIRNA.Filter function will make use of [RNAfold] software [[6]] to calculate the estimated secondary folding structure, which should be available in your computer `$PATH` to be correctly executed. Typically, microRNA genes have a characteristic secondary structure, composed by two stems joined by complementarity and one terminal loop, forming a hairpin-like secondary structure. Some bubbles or bulges can appear within the two stems, belonging to non-paired nucleotides in the sequence.
+Next, this module estimates the secondary folding structure of selected filtered sequences, thus filtering out all candidates that do not ressemble a pre-miRNA hairpin-like secondary structure. The eMIRNA.Filter function will make use of [RNAfold] software [[5]] to calculate the estimated secondary folding structure, which should be available in your computer `$PATH` to be correctly executed. Typically, microRNA genes have a characteristic secondary structure, composed by two stems joined by complementarity and one terminal loop, forming a hairpin-like secondary structure. Some bubbles or bulges can appear within the two stems, belonging to non-paired nucleotides in the sequence.
 
 This function requires four arguments:
 
@@ -132,7 +132,7 @@ Once the eMIRNA.Filter function has run, a new folder named `eMIRNA/` will be cr
 
 The third eMIRNA module aims to calculate a series of structural, statistical and sequence-derived features from each sequence that had passed previous filtering, in order to obtain an estimated representation of their structural characteristics. Subsequently, these feature matrices will be processed by the prediction software to discriminate between microRNAs and other type of sequences.
 
-A modified version of Triplet-SVM pipeline [[10]] is implemented in the eMIRNA.Features module. Triplet-SVM perl scripts 1 to 3 (available at `bin/`) should be located at computer `$PATH`, so that the function is properly executed. [RNAfold] executable must also be installed and available at `$PATH`. All Triplet-SVM perl scripts should have execution permission allowed, which can easily be set with command `chmod 777`. 
+A modified version of Triplet-SVM pipeline [[9]] is implemented in the eMIRNA.Features module. Triplet-SVM perl scripts 1 to 3 (available at `bin/`) should be located at computer `$PATH`, so that the function is properly executed. [RNAfold] executable must also be installed and available at `$PATH`. All Triplet-SVM perl scripts should have execution permission allowed, which can easily be set with command `chmod 777`. 
 
 The function requires two arguments:
 
@@ -200,7 +200,7 @@ Structural Statistics:
 ## eMIRNA.Hunter
 The eMIRNA.Hunter module is an auxiliar BASH script developed to obtain pre-miRNA candidate sequences, For doing so, users can choose either an homology-based recovery from previously annotated microRNAs in reference species, or the use of reads derived from small RNA-Seq experiments.
 
-The eMIRNA.Hunter script implements Bowtie [[8]] for the alignment of putative mature microRNA sequences against the reference assembly selected by the user, reconstructing pre-miRNA sequence candidates and generating a FASTA and BED files for the candidates to be subsequently classified.
+The eMIRNA.Hunter script implements Bowtie [[7]] for the alignment of putative mature microRNA sequences against the reference assembly selected by the user, reconstructing pre-miRNA sequence candidates and generating a FASTA and BED files for the candidates to be subsequently classified.
 
 Users should provide a properly collapsed FASTA file with small RNA-Seq sequences from canonical FASTQ sequence files, or a list of unique annotated mature miRNA sequences in FASTA format. The FASTQ files should be quality-check filtered and sequencing adaptor trimmed before running any available collapser tool, e.g. FASTQ collapser from [FASTX-Toolkit] for collapsing FASTQ files into FASTA files with uniquely represented sequences. We encourage to perform a pre-filtering process of the collapsed FASTA file to retain sequences between 18-25 nucleotides in length, corresponding to the average length of mature miRNAs.
 
@@ -271,7 +271,7 @@ We recommend using the motif corrected FASTA files for subsequent steps, taking 
 
 ## eMIRNA.Structural.Pvalue
 
-The eMIRNA.Structural.Pvalue module implements a n-randomization of provided sequences while maintaining *k*-let counts as described by Jiang *et al*. 2008 [[11]], using the [Fasta_ushuffle] package, which must be downloaded, compiled and stored at computer `PATH` in order to be run properly.
+The eMIRNA.Structural.Pvalue module implements a n-randomization of provided sequences while maintaining *k*-let counts as described by Jiang *et al*. 2008 [[10]], using the [Fasta_ushuffle] package, which must be downloaded, compiled and stored at computer `PATH` in order to be run properly.
 
 This module requires five arguments:
 
@@ -386,9 +386,9 @@ Users can further infer the functional interactions putatively occurring between
 
 ## eMIRNA.Target
 
-The mechanism of action of miRNAs within the cell metabolism has been thoroughly described in previous reports [[12]]. Most commonly, seed portions of mature miRNAs (5' 2<sup>nd</sup> to 7<sup>th</sup>/8<sup>th</sup> nucleotides) can join by complementarity to short matching sites of 3'-UTR regions of target mRNAs, hence triggering their degradation or difficulting their processing in the ribosomes, resulting in a downregulation of the production of proteins encoded by such targeted mRNAs.
+The mechanism of action of miRNAs within the cell metabolism has been thoroughly described in previous reports [[11]]. Most commonly, seed portions of mature miRNAs (5' 2<sup>nd</sup> to 7<sup>th</sup>/8<sup>th</sup> nucleotides) can join by complementarity to short matching sites of 3'-UTR regions of target mRNAs, hence triggering their degradation or difficulting their processing in the ribosomes, resulting in a downregulation of the production of proteins encoded by such targeted mRNAs.
 
-eMIRNA.Target implements a fast seed pattern search on 3'-UTR regions from targeted mRNA transcripts, in order to detect putative mRNA targets of the novel annotated miRNAs. The [SeqKit Toolkit] [[9]] is implemented for retrieveing 7mer/8mer short sequence sites inside mRNA 3'-UTR regions.
+eMIRNA.Target implements a fast seed pattern search on 3'-UTR regions from targeted mRNA transcripts, in order to detect putative mRNA targets of the novel annotated miRNAs. The [SeqKit Toolkit] [[8]] is implemented for retrieveing 7mer/8mer short sequence sites inside mRNA 3'-UTR regions.
 
 This module requires five arguments:
 
@@ -450,7 +450,7 @@ ENSSSCT00000046027	ssc-miR-15b        TGCTGCT	  54       60
 
 In the event that mRNA and miRNA expression profiles from same experimental conditions are available, users can implement a system biology interaction approach to further infer the significance and reliability of miRNA-to-mRNA interactions predicted in advance by eMIRNA.Target.
 
-To achive this purpose, we have implemented a network-oriented filtering criteria based on Partial Correlations and Information Theory ([PCIT]) approach as proposed by Reverter *et al.* (2008) [[13]]. By using first-order partial correlation coefficients estimated for each trio of genes along with an information theory approach, this tool identifies meaningful gene-to-gene nteractions. This approach aims to determine truly informative correlations between node pairs (genes in our context), once the influence of other nodes in the network has been considered.
+To achive this purpose, we have implemented a network-oriented filtering criteria based on Partial Correlations and Information Theory ([PCIT]) approach as proposed by Reverter *et al.* (2008) [[12]]. By using first-order partial correlation coefficients estimated for each trio of genes along with an information theory approach, this tool identifies meaningful gene-to-gene nteractions. This approach aims to determine truly informative correlations between node pairs (genes in our context), once the influence of other nodes in the network has been considered.
 
 This module recieves a total of eight arguments:
 
@@ -504,9 +504,9 @@ Tipically, the higher the number of genes, the better for [PCIT] inference. Defa
 
 ## eMIRNA.RIF
 
-Once putative interactions have been inferred, users may want to estimate the relevance of each considered miRNA in regulating the expression of targeted mRNAs in their experimental conditions. For this purpose, we have implemented the eMIRNA.RIF module, which makes use of the Regulatory Impact Factor ([RIF]) algorithm described by Reverter *et al.* (2010) [[14]]. 
+Once putative interactions have been inferred, users may want to estimate the relevance of each considered miRNA in regulating the expression of targeted mRNAs in their experimental conditions. For this purpose, we have implemented the eMIRNA.RIF module, which makes use of the Regulatory Impact Factor ([RIF]) algorithm described by Reverter *et al.* (2010) [[13]]. 
 
-The [RIF] algorithm aims to identify regulator genes contributing to the observed differential expression in the analyzed contrasts. Its implementation results in two different and inter-connected RIF scores: while RIF1 score represents those transcriptional regulators that are most differentially co-expressed with the most highly abundant and highly DE genes, the RIF2 score highlights those regulators that show the most altered ability to act as predictors of the changes in the expression levels of DE genes [[14]]. Both [RIF] values capture different regulatory impact features and hence, they can be considered as two independent measurements of the putative relevance of miRNAs as gene expression regulators.
+The [RIF] algorithm aims to identify regulator genes contributing to the observed differential expression in the analyzed contrasts. Its implementation results in two different and inter-connected RIF scores: while RIF1 score represents those transcriptional regulators that are most differentially co-expressed with the most highly abundant and highly DE genes, the RIF2 score highlights those regulators that show the most altered ability to act as predictors of the changes in the expression levels of DE genes [[13]]. Both [RIF] values capture different regulatory impact features and hence, they can be considered as two independent measurements of the putative relevance of miRNAs as gene expression regulators.
 
 This module recieves a total of eight arguments:
 
@@ -559,17 +559,23 @@ Users should define mRNA and miRNA matrices with rownames as mRNA/miRNA names an
 
 4. [Robinson M.D. et al. (2010) edgeR: a Bioconductor package for differential expression analysis of digital gene expression data. *Bioinformatics*, 26, 139-40.]
 
-Jiang M. et al. (2008) uShuffle: A useful tool for shuffling biological sequences while preserving the k-let counts. *BMC Bioinformatics*, 9, 192.
+5. [Lorenz R. et al. (2011) ViennaRNA Package 2.0. *Algorithms for Molecular Biology*, 6, 26.]
 
-Langmead B. et al. (2009) Ultrafast and memory-efficient alignment of short DNA sequences to the human genome. *Genome Biol.*, 10, R25.
+6. [Quinlan A.R. and Hall, I.M. (2010) BEDTools: a flexible suite of utilities for comparing genomic features. *Bioinformatics*, 26, 841–2.]
 
-Lorenz R. et al. (2011) ViennaRNA Package 2.0. *Algorithms Mol. Biol.*, 6, 26.
+7. [Langmead B. et al. (2009) Ultrafast and memory-efficient alignment of short DNA sequences to the human genome. *Genome Biology*, 10, R25.]
 
-Quinlan A.R. and Hall, I.M. (2010) BEDTools: a flexible suite of utilities for comparing genomic features. *Bioinformatics*, 26, 841–2.
+8. [Shen W. et al. (2016) SeqKit: A Cross-Platform and Ultrafast Toolkit for FASTA/Q File Manipulation. *PLoS ONE*, 11, e0163962.]
 
-Xue C. et al. (2005) Classification of real and pseudo microRNA precursors using local structure-sequence features and support vector machine. *BMC Bioinformatics*, 6, 310.
+9. [Xue C. et al. (2005) Classification of real and pseudo microRNA precursors using local structure-sequence features and support vector machine. *BMC Bioinformatics*, 6, 310.]
 
+10. [Jiang M. et al. (2008) uShuffle: A useful tool for shuffling biological sequences while preserving the k-let counts. *BMC Bioinformatics*, 9, 192.]
 
+11. [Bartel D.P. (2018) Metazoan microRNAs. *Cell, 173, 20-51.]
+
+12. [Reverter A. et al. (2008) Combining partial correlation and an information theory approach to the reversed engineering of gene co-expression networks. *Bioinformatics*, 24, 2491-97.]
+
+13. [Reverter A. et al. (2010) Regulatory impact factors: unraveling the transcriptional regulation of complex traits from expression data. *Bioinformatics*, 26, 896-904.]
 
 &nbsp;
 
@@ -581,6 +587,8 @@ emilio.marmol@cragenomica.es
 
 ## Notes
 
+- (11/11/2019) Updates modules for functional annotation have been incorporated.
+
 - (01/18/2019) Matrix calculation bug was reported for some UNIX systems. New eMIRNA.features module was successfully tested and updated accordingly.
 
 - (01/11/2019) The UNAfold software seems to be no longer available for free download. Provided this setback, features depending on UNAfold melt functions were removed from eMIRNA.Features module. SVM algorithm performance assesment reported no appreciable drawbacks due to UNAfold features removal.
@@ -591,16 +599,15 @@ emilio.marmol@cragenomica.es
 [2]:https://academic.oup.com/bioinformatics/article/26/3/411/215002
 [3]:https://academic.oup.com/nar/article/43/21/e140/2468096
 [4]:https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2796818/
-[5]:https://igraph.org/
-[6]:https://almob.biomedcentral.com/articles/10.1186/1748-7188-6-26
-[7]:https://academic.oup.com/bioinformatics/article/26/6/841/244688
-[8]:https://genomebiology.biomedcentral.com/articles/10.1186/gb-2009-10-3-r25
-[9]:https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0163962
-[10]:https://bmcbioinformatics.biomedcentral.com/articles/10.1186/1471-2105-6-310
-[11]:https://bmcbioinformatics.biomedcentral.com/articles/10.1186/1471-2105-9-192
-[12]:https://www.sciencedirect.com/science/article/pii/S0092867418302861?via%3Dihub
-[13]:https://academic.oup.com/bioinformatics/article/24/21/2491/192682
-[14]:https://academic.oup.com/bioinformatics/article/26/7/896/212064
+[5]:https://almob.biomedcentral.com/articles/10.1186/1748-7188-6-26
+[6]:https://academic.oup.com/bioinformatics/article/26/6/841/244688
+[7]:https://genomebiology.biomedcentral.com/articles/10.1186/gb-2009-10-3-r25
+[8]:https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0163962
+[9]:https://bmcbioinformatics.biomedcentral.com/articles/10.1186/1471-2105-6-310
+[10]:https://bmcbioinformatics.biomedcentral.com/articles/10.1186/1471-2105-9-192
+[11]:https://www.sciencedirect.com/science/article/pii/S0092867418302861?via%3Dihub
+[12]:https://academic.oup.com/bioinformatics/article/24/21/2491/192682
+[13]:https://academic.oup.com/bioinformatics/article/26/7/896/212064
 [stringr]:https://CRAN.R-project.org/package=stringr
 [seqinr]:https://CRAN.R-project.org/package=seqinr
 [Biobase]:https://bioconductor.org/packages/release/bioc/html/Biobase.html
@@ -624,3 +631,12 @@ emilio.marmol@cragenomica.es
 [Watson-High N.S. et al. (2010) PCIT: an R package for weighted gene co-expression networks based on partial correlation and information theory approaches. *Bioinformatics*, 26, 411-13.]:https://academic.oup.com/bioinformatics/article/26/3/411/215002
 [Tarazona S. et al. (2015) Data quality aware analysis of differential expression in RNA-seq with NOISeq R/Bioc package. *Nucleic Acids Research*, 43, e140.]:https://academic.oup.com/nar/article/43/21/e140/2468096
 [Robinson M.D. et al. (2010) edgeR: a Bioconductor package for differential expression analysis of digital gene expression data. *Bioinformatics*, 26, 139-40.]:https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2796818/
+[Lorenz R. et al. (2011) ViennaRNA Package 2.0. *Algorithms for Molecular Biology*, 6, 26.]:https://almob.biomedcentral.com/articles/10.1186/1748-7188-6-26
+[Quinlan A.R. and Hall, I.M. (2010) BEDTools: a flexible suite of utilities for comparing genomic features. *Bioinformatics*, 26, 841–2.]:https://academic.oup.com/bioinformatics/article/26/6/841/244688
+[Langmead B. et al. (2009) Ultrafast and memory-efficient alignment of short DNA sequences to the human genome. *Genome Biology*, 10, R25.]:https://genomebiology.biomedcentral.com/articles/10.1186/gb-2009-10-3-r25
+[Shen W. et al. (2016) SeqKit: A Cross-Platform and Ultrafast Toolkit for FASTA/Q File Manipulation. *PLoS ONE*, 11, e0163962.]:https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0163962
+[Xue C. et al. (2005) Classification of real and pseudo microRNA precursors using local structure-sequence features and support vector machine. *BMC Bioinformatics*, 6, 310.]:https://bmcbioinformatics.biomedcentral.com/articles/10.1186/1471-2105-6-310
+[Jiang M. et al. (2008) uShuffle: A useful tool for shuffling biological sequences while preserving the k-let counts. *BMC Bioinformatics*, 9, 192.]:https://bmcbioinformatics.biomedcentral.com/articles/10.1186/1471-2105-9-192
+[Bartel D.P. (2018) Metazoan microRNAs. *Cell, 173, 20-51.]:https://www.sciencedirect.com/science/article/pii/S0092867418302861?via%3Dihub
+[Reverter A. et al. (2008) Combining partial correlation and an information theory approach to the reversed engineering of gene co-expression networks. *Bioinformatics*, 24, 2491-97.]:https://academic.oup.com/bioinformatics/article/24/21/2491/192682
+[Reverter A. et al. (2010) Regulatory impact factors: unraveling the transcriptional regulation of complex traits from expression data. *Bioinformatics*, 26, 896-904.]:https://academic.oup.com/bioinformatics/article/26/7/896/212064
