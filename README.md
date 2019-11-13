@@ -51,7 +51,7 @@ The following R libraries are required for running the eMIRNA pipeline:
 + [edgeR] [[4]]
 + [igraph]
 
-The following software programs are required for running the eMIRNA pipeline:
+The following software tools are required for running the eMIRNA pipeline:
 + [RNAfold] [[5]]
 + [BEDTools v2.27.0] [[6]]
 + [Bowtie] [[7]]
