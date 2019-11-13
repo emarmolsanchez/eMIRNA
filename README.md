@@ -593,7 +593,9 @@ emilio.marmol@cragenomica.es
 
 ## Notes
 
-- (11/11/2019) Updates modules for functional annotation have been incorporated.
+- (11/11/2019) Update for functional annotation has been added.
+
+- (06/15/2019) Prediction algorithm has been updated.
 
 - (01/18/2019) Matrix calculation bug was reported for some UNIX systems. New eMIRNA.features module was successfully tested and updated accordingly.
 
