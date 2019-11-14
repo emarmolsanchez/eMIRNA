@@ -621,6 +621,7 @@ emilio.marmol@cragenomica.es
 [seqinr]:https://CRAN.R-project.org/package=seqinr
 [Biobase]:https://bioconductor.org/packages/release/bioc/html/Biobase.html
 [scales]:https://CRAN.R-project.org/package=scales
+[PRROC]:https://CRAN.R-project.org/package=PRROC
 [miRNAss]:https://CRAN.R-project.org/package=miRNAss
 [PCIT]:https://CRAN.R-project.org/package=PCIT
 [RIF]:https://academic.oup.com/bioinformatics/article/26/7/896/212064
