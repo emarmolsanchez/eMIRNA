@@ -45,6 +45,7 @@ The following R libraries are required for running the eMIRNA pipeline:
 + [seqinr]
 + [Biobase]
 + [scales]
++ [PRROC]
 + [miRNAss] [[1]]
 + [PCIT] [[2]]
 + [NOISeq] [[3]]
