@@ -537,6 +537,7 @@ eMIRNA.Structural.Pscore <- function(file, prefix, iterate=100, threshold=0.1, f
 
 eMIRNA.Predict <- function(pos, neg, unlab=NULL, target){
   suppressMessages(require(miRNAss))
+  suppressMessages(require(PRROC))
   message("Computing Performance...")
   
   #Performance
