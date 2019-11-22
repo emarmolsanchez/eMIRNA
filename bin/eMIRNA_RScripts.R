@@ -825,10 +825,10 @@ eMIRNA.RIF <- function(mRNA, miRNA, design, network, DElist,
   }
   
   design <- model.matrix(~0+design[,2])
-  n.1 <- length(which(design[,1]=="1"))
-  n.2 <- length(which(design[,2]=="1"))
-  exprs.1 <- exprs[,1:n.1]
-  exprs.2 <- exprs[,(n.1+1):(n.1+n.2)]
+  i1 <- as.vector(which(design[,1]==1))
+  i2 <- as.vector(which(design[,2]==1))
+  exprs.1 <- exprs[,i1]
+  exprs.2 <- exprs[,i2]
   
   #Filter data
   network1 <- data.frame(unique(network[,1]))
