@@ -519,12 +519,14 @@ This module recieves a total of eight arguments:
 
 + mRNA expression matrix (mRNA genes as rows and samples as columns).
 + miRNA expression matrix (miRNAs genes as rows and samples as columns).
-+ Experiment design matrix.
++ Experiment design.
 + PCIT Network data.frame from eMIRNA.Network.
 + List of DE mRNA genes.
 + Expression baseline threshold (1 CPM by default).
 + Sample expression ratio threshold (0.5 by default).
 + Boolean for performing normalization and expression filtering (TRUE/FALSE).
+
+Expression matrices should have gene identifiers and sample identifiers as row names and column names, respectively. The exact same samples should be available for mRNA and miRNA expression data. Binary comparison is supported by [RIF] algorithm, where control group is contrasted against treatment group. Experimental design should be a data.frame format with first row having the exact same sampe identifiers than expression matrices, and second row having group identification (either control or treatment). The list of DE mRNAs should be a data.frame with one column containing all the DE mRNA genes detected by any Differential Expression analysis performed previously by users. Gene identifiers should be the same than in expression matrices.
 
 Example of usage (filtering and normalizing):
 
