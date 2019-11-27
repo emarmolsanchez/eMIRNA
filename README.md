@@ -262,17 +262,17 @@ After successfully running eMIRNA.Hunter script, six files will have been create
 + BED file with motif corrected positions of reconstructed pre-miRNA candidates.
 + FASTA file with motif corrected reconstructed pre-miRNA candidates.
 
-Once the module has run, users can optionally perform an additional filter on generated FASTA pre-miRNA candidates according to their secondary folding structural stability by using the eMIRNA.Structural.Pvalue module.
-
-The eMIRNA.Filter module could be used for this purpose. Subsequently, users must process these sequences with the eMIRNA.Features module, in order to obtain a Feature matrix representing those candidate sequences that will then be subjected to classification.
+Once the module has run, users can optionally perform an additional filter on generated FASTA pre-miRNA candidates according to their secondary folding structural stability by using the eMIRNA.Structural.Pscore module. We only recommend to implement this step in the event that the number of candidate sequences to be analyzed do not surpass some hundreds or few thousands, as computing costs and time requeried for running multiple iterations for each sequence can escalate exponentially.
 
 We recommend using the motif corrected FASTA files for subsequent steps, taking into consideration that not all miRNAs would be processed following motif detection and thus some novel candidates may be missed. On the contrary, a much less accurate positioning for pre-miRNA candidates will be estimated and fewer successfully detected novel miRNA candidates should be expected.
+
+Next, candidate sequences derived from eMIRNA.Hunter directly or after eMIRNA.Structural.Pscore filtering, must be pre-processed as previously described. The eMIRNA.Filter module could be used for this purpose. Subsequently, users must process these sequences with the eMIRNA.Features module, in order to obtain a Feature matrix representing those candidate sequences that will then be subjected to classification.
 
 &nbsp;
 
 ## eMIRNA.Structural.Pscore
 
-The eMIRNA.Structural.Pscore module implements a n-randomization of provided sequences while maintaining *k*-let counts as described by Jiang *et al*. 2008 [[10]], using the [Fasta_ushuffle] package, which must be downloaded, compiled and stored at computer `PATH` in order to be run properly.
+The eMIRNA.Structural.Pscore module implements a n-randomization of provided sequences while maintaining *k*-let counts as described by Jiang *et al*. 2008 [[10]], using the [Fasta_ushuffle] package, which must be downloaded, compiled and stored at computer `PATH` in order to be run properly. Please be aware that this filtering step is optional and only useful when a small amount of candidate sequences need to be tested.
 
 This module requires five arguments:
 
@@ -286,11 +286,11 @@ Example of usage:
 
 ```r
 
-eMIRNA.Structural.Pvalues("~/eMIRNA/Structural_Results/Candidates_miRNAs_corrected.fa", "Candidates", iterate=100, threshold=0.1, filter=TRUE)
+eMIRNA.Structural.Pscore("~/eMIRNA/Structural_Results/Candidates_miRNAs_corrected.fa", "Candidates", iterate=100, threshold=0.1, filter=TRUE)
 
 ```
 
-By default, eMIRNA.Structural.Pvalues will perform 100 random shuffling iterations over each provided sequence. Users can set their desired number of iterations but should be aware of computing times required for iterating and folding of secondary structures for each sequence. As computing costs can exponentially increase with higher number of iterations, we encourage users to set their desired range of iterations between 100 and 1000, depending on the number of candidate sequences to be analyzed.
+By default, eMIRNA.Structural.Pscore will perform 100 random shuffling iterations over each provided sequence. Users can set their desired number of iterations but should be aware of computing times required for iterating and folding of secondary structures for each sequence. As computing costs can exponentially increase with higher number of iterations, we encourage users to set their desired range of iterations between 100 and 1000, depending on the number of candidate sequences to be analyzed.
 
 Once the eMIRNA.Structural.Pscore has run, a new .txt file called `Candidates_Structural_Pscore.txt` will be generated at `/Structural_Results` folder, containing estimated MFE *P*score for each candidates sequence. Besides, a new filtered FASTA file will be also generated at `/Structural_Results` folder, named `Candidates_filtered_Pscore.fa`, containing only those sequence candidates with structural *P*-scores < 0.1 (or the corresponding defined threshold).
 
