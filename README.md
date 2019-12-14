@@ -4,7 +4,7 @@ eMIRNA is a comprehensive and user-friendly pipeline for predicting and annotati
 
 If you implement this tool for miRNA prediction within your miRNA research projects, please cite:
 
-[Mármol-Sánchez E. et al (2019). Discovery and annotation of novel microRNAs in the porcine genome by using a semi-supervised transductive learning approach. *Genomics*, S0888-7543(19)30488-4. doi: 10.1016/j.ygeno.2019.12.005.]
+[Mármol-Sánchez E. et al. (2019). Discovery and annotation of novel microRNAs in the porcine genome by using a semi-supervised transductive learning approach. *Genomics*, S0888-7543(19)30488-4. doi: 10.1016/j.ygeno.2019.12.005.]
 
 The eMIRNA pipeline is under active development, if you find any problem, doubt or bug while running it, please contact emilio.marmol@cragenomica.es.
 
