@@ -2,6 +2,10 @@
 
 eMIRNA is a comprehensive and user-friendly pipeline for predicting and annotating the presence of known and novel microRNAs. This document is intended to give a technical supplementary description about how to run the eMIRNA pipeline through a detailed explanation of all the modules that form part of this tool.
 
+If you implement this tool for miRNA prediction within your miRNA research projects, please cite:
+
+[Mármol-Sánchez E. et al (2019). Discovery and annotation of novel microRNAs in the porcine genome by using a semi-supervised transductive learning approach. *Genomics*, S0888-7543(19)30488-4. doi: 10.1016/j.ygeno.2019.12.005.]
+
 The eMIRNA pipeline is under active development, if you find any problem, doubt or bug while running it, please contact emilio.marmol@cragenomica.es.
 
 &nbsp;
@@ -652,3 +656,4 @@ emilio.marmol@cragenomica.es
 [Bartel D.P. (2018) Metazoan microRNAs. *Cell*, 173, 20-51.]:https://www.sciencedirect.com/science/article/pii/S0092867418302861?via%3Dihub
 [Reverter A. et al. (2008) Combining partial correlation and an information theory approach to the reversed engineering of gene co-expression networks. *Bioinformatics*, 24, 2491-97.]:https://academic.oup.com/bioinformatics/article/24/21/2491/192682
 [Reverter A. et al. (2010) Regulatory impact factors: unraveling the transcriptional regulation of complex traits from expression data. *Bioinformatics*, 26, 896-904.]:https://academic.oup.com/bioinformatics/article/26/7/896/212064
+[Mármol-Sánchez E. et al (2019). Discovery and annotation of novel microRNAs in the porcine genome by using a semi-supervised transductive learning approach. *Genomics*, S0888-7543(19)30488-4. doi: 10.1016/j.ygeno.2019.12.005.]:https://www.sciencedirect.com/science/article/pii/S0888754319304884?via%3Dihub
