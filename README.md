@@ -558,7 +558,7 @@ ssc-miR-542-3p	    1.2969      -2.0613
  ```
 
 
-Users should define mRNA and miRNA matrices with rownames as mRNA/miRNA names and colnames as sample names. The data.frame incorporating [PCIT] network information should have three columns with genes, miRNAs and correlation information, respectively. The list of DE genes should have each gene ID in one defined column.
+Users should define mRNA and miRNA matrices with rownames as mRNA/miRNA names and colnames as sample names. The data.frame incorporating [PCIT] network information should have three columns with genes, miRNAs and correlation information, respectively. The list of DE genes should have each gene ID in one column variable.
 
 &nbsp;
 
