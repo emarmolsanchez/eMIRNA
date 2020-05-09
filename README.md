@@ -420,7 +420,7 @@ eMIRNA.Target [options]
 Input:
   -m                                    PATH to mature miRNAs FASTA file
   -t                                    PATH to 3'-UTRs FASTA file
-  -s                                    N-mer seed matching (7-8 recommended)
+  -s                                    N-mer seed matching (6,7,8)
   -o                                    PATH to desired output folder
   -x                                    Desired Name string for output files
   -h                                    Display help page
