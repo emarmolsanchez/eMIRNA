@@ -74,7 +74,7 @@ Output:
   <x>_targeted_UTRs.txt                 Targeted 3'-UTR transcripts file"
 
     echo ""
-    echo "Error while executing eMiRNA.Target!! Please supply correct numbers for seed match."
+    echo "Error while executing eMiRNA.Target!! Please supply correct numbers for seed match (6, 7 or 8)."
 
     exit 1;
 
