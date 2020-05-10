@@ -11,7 +11,7 @@ in
 
 m) MIRNA=${OPTARG};;
 t) UTR=${OPTARG};;
-s) SEED=$OPTARG;;
+s) SEED=${OPTARG};;
 o) OUT=${OPTARG};;
 x) X=$OPTARG;;
 
@@ -24,7 +24,7 @@ eMIRNA.Target [options]
 Input:
   -m                                    PATH to mature miRNAs FASTA file
   -t                                    PATH to 3'-UTRs FASTA file
-  -s                                    N-mer seed matching (6,7,8)
+  -s                                    N-mer seed matching (7mer-m8 or 8mer recommended)
   -o                                    PATH to desired output folder
   -x                                    Desired Name string for output files
   -h                                    Display help page
@@ -45,7 +45,7 @@ eMIRNA.Target [options]
 Input:
   -m                                    PATH to mature miRNAs FASTA file
   -t                                    PATH to 3'-UTRs FASTA file
-  -s                                    N-mer seed matching (6,7,8)
+  -s                                    N-mer seed matching (7mer-m8 or 8mer recommended)
   -o                                    PATH to desired output folder
   -x                                    Desired Name string for output files
   -h                                    Display help page
@@ -59,14 +59,14 @@ echo ""
 
 fi 
 
-if [[ $SEED != [6-8] ]]; then
+if [[ "$SEED" != "6mer" && "$SEED" != "7mer-A1" && "$SEED" != "7mer-m8" && "$SEED" != "8mer" ]]; then
 
     echo "eMIRNA.Target Usage Instructions:
 eMIRNA.Target [options]
 Input:
   -m                                    PATH to mature miRNAs FASTA file
   -t                                    PATH to 3'-UTRs FASTA file
-  -s                                    N-mer seed matching (6,7,8)
+  -s                                    N-mer seed matching (7mer-m8 or 8mer recommended)
   -o                                    PATH to desired output folder
   -x                                    Desired Name string for output files
   -h                                    Display help page
@@ -74,18 +74,18 @@ Output:
   <x>_targeted_UTRs.txt                 Targeted 3'-UTR transcripts file"
 
     echo ""
-    echo "Error while executing eMiRNA.Target!! Please supply correct numbers for seed match (6, 7 or 8)."
+    echo "Error while executing eMiRNA.Target!! Please supply correct numbers for seed match (6mer, 7mer-A1, 7mer-m8 or 8mer)."
 
     exit 1;
 
 fi 
 
 
-if [[ $SEED == [6-7] ]]; then
+if [[ "$SEED" == "6mer" ]]; then
 
 #Convert mature miRNAs to targeting seeds.
 
-awk -v n=$SEED '{if($1 ~ /^[A,C,G,T]/) print substr($1,2,n); else print $1}' $MIRNA > $OUT${X}_temp1.txt
+awk  '{if($1 ~ /^[A,C,G,T]/) print substr($1,2,6); else print $1}' $MIRNA > $OUT${X}_temp1.txt
 
 fastx_reverse_complement -i $OUT${X}_temp1.txt -o $OUT${X}_temp2.txt
 
@@ -104,7 +104,53 @@ cat $OUT${X}_temp5.txt $OUT${X}_temp4.txt > $OUT${X}_targeted_UTRs.txt
 rm $OUT${X}_temp*
 
 
-else
+elif [[ "$SEED" == "7mer-A1" ]]; then
+
+#Convert mature miRNAs to targeting seeds.
+
+awk  '{if($1 ~ /^[A,C,G,T]/) print "T"substr($1,2,6); else print $1}' $MIRNA > $OUT${X}_temp1.txt
+
+fastx_reverse_complement -i $OUT${X}_temp1.txt -o $OUT${X}_temp2.txt
+
+
+#Use seqkit software to match targeting seeds with 3'-UTRs
+
+seqkit locate -P -f $OUT${X}_temp2.txt $UTR > $OUT${X}_temp3.txt
+
+awk '{FS=OFS="\t"}{print $1,$2,$3,$5,$6}' $OUT${X}_temp3.txt | tail -n +2 > $OUT${X}_temp4.txt
+
+echo -e "gene_ID\tmiRNA\tpattern\tStart\tEnd" > $OUT${X}_temp5.txt
+
+cat $OUT${X}_temp5.txt $OUT${X}_temp4.txt > $OUT${X}_targeted_UTRs.txt
+
+
+rm $OUT${X}_temp*
+
+
+elif [[ "$SEED" == "7mer-m8" ]]; then
+
+#Convert mature miRNAs to targeting seeds.
+
+awk  '{if($1 ~ /^[A,C,G,T]/) print substr($1,2,7); else print $1}' $MIRNA > $OUT${X}_temp1.txt
+
+fastx_reverse_complement -i $OUT${X}_temp1.txt -o $OUT${X}_temp2.txt
+
+
+#Use seqkit software to match targeting seeds with 3'-UTRs
+
+seqkit locate -P -f $OUT${X}_temp2.txt $UTR > $OUT${X}_temp3.txt
+
+awk '{FS=OFS="\t"}{print $1,$2,$3,$5,$6}' $OUT${X}_temp3.txt | tail -n +2 > $OUT${X}_temp4.txt
+
+echo -e "gene_ID\tmiRNA\tpattern\tStart\tEnd" > $OUT${X}_temp5.txt
+
+cat $OUT${X}_temp5.txt $OUT${X}_temp4.txt > $OUT${X}_targeted_UTRs.txt
+
+
+rm $OUT${X}_temp*
+
+
+elif [[ "$SEED" == "8mer" ]]; then
 
 #Convert mature miRNAs to targeting seeds.
 
