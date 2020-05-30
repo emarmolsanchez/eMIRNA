@@ -10,8 +10,7 @@ The eMIRNA pipeline is under active development, if you find any problem, doubt 
 
 &nbsp;
 &nbsp;
-
--------------------------------
+&nbsp;
 
 
 # Index
@@ -562,28 +561,29 @@ ssc-miR-542-3p	    1.2969      -2.0613
 Users should define mRNA and miRNA matrices with rownames as mRNA/miRNA names and colnames as sample names. The data.frame incorporating [PCIT] network information should have three columns with genes, miRNAs and correlation information, respectively. The list of DE genes should have each gene ID in one column variable.
 
 &nbsp;
+&nbsp;
+&nbsp;
 
------------------------------------------------------
 
 ## References
 
-1. [Yones C. et al. (2018) Genome-wide pre-miRNA discovery from few labeled examples. *Bioinformatics*, 34, 541–49.]
+ 1. [Yones C. et al. (2018) Genome-wide pre-miRNA discovery from few labeled examples. *Bioinformatics*, 34, 541–49.]
 
-2. [Watson-High N.S. et al. (2010) PCIT: an R package for weighted gene co-expression networks based on partial correlation and information theory approaches. *Bioinformatics*, 26, 411-13.]
+ 2. [Watson-High N.S. et al. (2010) PCIT: an R package for weighted gene co-expression networks based on partial correlation and information theory approaches. *Bioinformatics*, 26, 411-13.]
 
-3. [Tarazona S. et al. (2015) Data quality aware analysis of differential expression in RNA-seq with NOISeq R/Bioc package. *Nucleic Acids Research*, 43, e140.]
+ 3. [Tarazona S. et al. (2015) Data quality aware analysis of differential expression in RNA-seq with NOISeq R/Bioc package. *Nucleic Acids Research*, 43, e140.]
 
-4. [Robinson M.D. et al. (2010) edgeR: a Bioconductor package for differential expression analysis of digital gene expression data. *Bioinformatics*, 26, 139-40.]
+ 4. [Robinson M.D. et al. (2010) edgeR: a Bioconductor package for differential expression analysis of digital gene expression data. *Bioinformatics*, 26, 139-40.]
 
-5. [Lorenz R. et al. (2011) ViennaRNA Package 2.0. *Algorithms for Molecular Biology*, 6, 26.]
+ 5. [Lorenz R. et al. (2011) ViennaRNA Package 2.0. *Algorithms for Molecular Biology*, 6, 26.]
 
-6. [Quinlan A.R. and Hall, I.M. (2010) BEDTools: a flexible suite of utilities for comparing genomic features. *Bioinformatics*, 26, 841–2.]
+ 6. [Quinlan A.R. and Hall, I.M. (2010) BEDTools: a flexible suite of utilities for comparing genomic features. *Bioinformatics*, 26, 841–2.]
 
-7. [Langmead B. et al. (2009) Ultrafast and memory-efficient alignment of short DNA sequences to the human genome. *Genome Biology*, 10, R25.]
+ 7. [Langmead B. et al. (2009) Ultrafast and memory-efficient alignment of short DNA sequences to the human genome. *Genome Biology*, 10, R25.]
 
-8. [Shen W. et al. (2016) SeqKit: A Cross-Platform and Ultrafast Toolkit for FASTA/Q File Manipulation. *PLoS ONE*, 11, e0163962.]
+ 8. [Shen W. et al. (2016) SeqKit: A Cross-Platform and Ultrafast Toolkit for FASTA/Q File Manipulation. *PLoS ONE*, 11, e0163962.]
 
-9. [Xue C. et al. (2005) Classification of real and pseudo microRNA precursors using local structure-sequence features and support vector machine. *BMC Bioinformatics*, 6, 310.]
+ 9. [Xue C. et al. (2005) Classification of real and pseudo microRNA precursors using local structure-sequence features and support vector machine. *BMC Bioinformatics*, 6, 310.]
 
 10. [Jiang M. et al. (2008) uShuffle: A useful tool for shuffling biological sequences while preserving the k-let counts. *BMC Bioinformatics*, 9, 192.]
 
