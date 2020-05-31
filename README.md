@@ -397,7 +397,7 @@ Users can further infer the functional interactions putatively occurring between
 
 ## eMIRNA.Target
 
-The mechanism of action of miRNAs within the cell metabolism has been thoroughly described in previous reports [[11]]. Usually, seed portions of mature miRNAs (5' 2<sup>nd</sup> to 7<sup>th</sup>/8<sup>th</sup> nucleotides) are able to bind to short matching sites of 3'-UTR regions of target mRNAs by perfect or imperfect complementarity, hence triggering their degradation or difficulting their processing in the ribosomes and resulting in a downregulation of the production of proteins encoded by such targeted mRNAs.
+The mechanism of action of miRNAs within the cell metabolism has been thoroughly described in previous reports [[11]]. Usually, seed portions of mature miRNAs (5'-2<sup>nd</sup> to -7<sup>th</sup>/8<sup>th</sup> nucleotides) are able to bind to short matching sites of 3'-UTR regions of target mRNAs by perfect or imperfect complementarity, hence triggering their degradation or difficulting their processing in the ribosomes and resulting in a downregulation of the production of proteins encoded by such targeted mRNAs.
 
 eMIRNA.Target implements a fast seed pattern search on 3'-UTR regions from targeted mRNA transcripts, in order to detect putative mRNA targets of the novel annotated miRNAs. The [SeqKit Toolkit] [[8]] is implemented for retrieveing short sequence sites inside mRNA 3'-UTR regions of type 6mer, 7mer-A1, 7mer-m8 and 8mer.
 
