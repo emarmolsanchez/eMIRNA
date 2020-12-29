@@ -6,7 +6,7 @@ If you implement this tool for miRNA prediction within your miRNA research proje
 
 [Mármol-Sánchez E. et al. (2019) Discovery and annotation of novel microRNAs in the porcine genome by using a semi-supervised transductive learning approach. *Genomics*, 112:2107-2118. doi: 10.1016/j.ygeno.2019.12.005.]
 
-The eMIRNA pipeline is under active development, if you find any problem, doubt or bug while running it, please contact emilio.marmol@cragenomica.es.
+The eMIRNA pipeline is under active development, if you find any problem, doubt or bug while running it, please contact emilio.marmol@scilifelab.se.
 
 &nbsp;
 &nbsp;
