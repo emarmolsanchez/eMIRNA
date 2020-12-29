@@ -70,7 +70,7 @@ All executables should be stored at computer `$PATH` in order to be run properly
 
 # miRNA Prediction
 
-The next modules are implemented for predicting novel miRNA genes in our genome of interest. All required steps are thoroughly explained and exemplified as follows:
+The following modules are implemented for predicting novel miRNA genes in our genome of interest. All required steps are thoroughly explained and exemplified as follows:
 
 &nbsp;
 
