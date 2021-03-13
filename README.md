@@ -632,7 +632,7 @@ emilio.marmol@cragenomica.es
 [scales]:https://CRAN.R-project.org/package=scales
 [PRROC]:https://CRAN.R-project.org/package=PRROC
 [miRNAss]:https://CRAN.R-project.org/package=miRNAss
-[PCIT]:https://CRAN.R-project.org/package=PCIT
+[PCIT]:https://github.com/nathanhaigh/pcit
 [RIF]:https://academic.oup.com/bioinformatics/article/26/7/896/212064
 [NOISeq]:https://bioconductor.org/packages/release/bioc/html/NOISeq.html
 [edgeR]:https://bioconductor.org/packages/release/bioc/html/edgeR.html
