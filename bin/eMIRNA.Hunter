@@ -80,38 +80,6 @@ Output:
 fi
 
 
-if [[ $UP != [0-9]? || $BACK != [0-9]? ]]; then
-
-    echo "eMIRNA.Hunter Usage Instructions:
-
-eMIRNA.Hunter [options]
-
-Input:
-  -r                                     PATH to Species of interest Genome Bowtie Index
-  -f                                     PATH to FASTA file with sequences to query
-  -o                                     PATH to desired output folder
-  -x                                     Desired Name string for output files
-  -u                                     Upwards number of bases for pre-miRNA reconstruction (60-80 recommended)
-  -b                                     Backwards number of bases for pre-miRNA reconstruction (15-30 recommended)
-  -m                                     eMIRNA.Hunter Mode (homology or denovo)
-  -h                                     Display help page
-
-Output:
-  <x>.sam                                SAM file output from Bowtie miRNA alignment
-  <x>.log                                LOG file output from Bowtie miRNA alignment
-  <x>_miRNAs.bed                         BED file output with candidate pre-miRNAs for prediction
-  <x>_miRNAs.fa                          FASTA file output with candidate pre-miRNAs for prediction
-  <x>_miRNAs_corrected.bed               BED file output with motif corrected candidate pre-miRNAs for prediction
-  <x>_miRNAs_corrected.fa                FASTA file output with motif corrected candidate pre-miRNAs for prediction"
-
-    echo ""
-    echo "Error while executing eMiRNA.Hunter!! Please supply correct numbers for elongation."
-
-    exit 1;
-
-fi 
-
-
 #Alignig miRNA sequences with Reference Genome Bowtie Index
 
 bowtie -f -p 16 -n 2 -l 25 -m 50 -k 1 --best --strata $REF $FASTA -S $OUT$X.sam 2>$OUT$X.log
