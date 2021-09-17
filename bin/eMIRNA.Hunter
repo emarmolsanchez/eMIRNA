@@ -29,8 +29,8 @@ Input:
   -f                                     PATH to FASTA file with sequences to query
   -o                                     PATH to desired output folder
   -x                                     Desired Name string for output files
-  -u                                     Upwards number of bases for pre-miRNA reconstruction (60-80 recommended)
-  -b                                     Backwards number of bases for pre-miRNA reconstruction (15-30 recommended)
+  -u                                     Upwards number of bases for pre-miRNA reconstruction (50-70 recommended)
+  -b                                     Backwards number of bases for pre-miRNA reconstruction (1-20 recommended)
   -m                                     eMIRNA.Hunter Mode (homology or denovo)
   -h                                     Display help page
 
