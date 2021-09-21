@@ -542,7 +542,7 @@ eMIRNA.Predict <- function(pos, neg, unlab=NULL, target){
   
   #Performance
   
-  if(!is.null(unlab)==TRUE){
+  if(!is.null(unlab)==FALSE){
   Table <- rbind(pos, neg, unlab)
   labels <- c(rep(1,nrow(pos)), rep(-1,nrow(neg)), rep(0,nrow(unlab)))
   
