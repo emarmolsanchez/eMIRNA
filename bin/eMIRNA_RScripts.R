@@ -540,6 +540,7 @@ eMIRNA.Predict <- function(pos, neg, unlab=NULL, target){
   suppressMessages(require(PRROC))
   suppressMessages(require(ROCR))
   suppressMessages(require(dplyr))
+  suppressMessages(require(scales))
   message("Computing Performance...")
   
   #Performance
