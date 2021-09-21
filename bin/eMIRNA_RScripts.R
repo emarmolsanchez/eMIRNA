@@ -538,6 +538,8 @@ eMIRNA.Structural.Pscore <- function(file, prefix, iterate=100, threshold=0.1, f
 eMIRNA.Predict <- function(pos, neg, unlab=NULL, target){
   suppressMessages(require(miRNAss))
   suppressMessages(require(PRROC))
+  suppressMessages(require(ROCR))
+  suppressMessages(require(dplyr))
   message("Computing Performance...")
   
   #Performance
@@ -584,7 +586,7 @@ eMIRNA.Predict <- function(pos, neg, unlab=NULL, target){
   pos_p <- p_testing[1:(floor(nrow(pos)*0.25))]
   neg_p <- p_testing[(floor(nrow(pos)*0.25)+1):(floor(nrow(pos)*0.25)+floor(nrow(neg)*0.25))]
   prediction <- c(pos_p, neg_p)
-  test.label <- as.integer(recode(testing$class,"'miRNA'=1; 'Other'=0"))-1
+  test.label <- as.integer(recode(testing$class,'miRNA'=1, 'Other'=0))-1
   pred <- prediction(prediction, test.label)
   roc <- performance(pred, "tpr", "fpr")
   roc2 <- roc.curve(scores.class0 = pos_p, scores.class1 = neg_p, curve = T)
@@ -669,7 +671,7 @@ eMIRNA.Predict <- function(pos, neg, unlab=NULL, target){
     pos_p <- p_testing[1:(floor(nrow(pos)*0.25))]
     neg_p <- p_testing[(floor(nrow(pos)*0.25)+1):(floor(nrow(pos)*0.25)+floor(nrow(neg)*0.25))]
     prediction <- c(pos_p, neg_p)
-    test.label <- as.integer(recode(testing$class,"'miRNA'=1; 'Other'=0"))-1
+    test.label <- as.integer(recode(testing$class, 'miRNA'=1, 'Other'=0))-1
     pred <- prediction(prediction, test.label)
     roc <- performance(pred, "tpr", "fpr")
     roc2 <- roc.curve(scores.class0 = pos_p, scores.class1 = neg_p, curve = T)
