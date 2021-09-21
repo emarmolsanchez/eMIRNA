@@ -50,6 +50,8 @@ The following R libraries are required for running the eMIRNA pipeline:
 + [Biobase]
 + [scales]
 + [PRROC]
++ [ROCR]
++ [dplyr]
 + [miRNAss] [[1]]
 + [PCIT] [[2]]
 + [NOISeq] [[3]]
@@ -631,6 +633,8 @@ emilio.marmol@cragenomica.es
 [Biobase]:https://bioconductor.org/packages/release/bioc/html/Biobase.html
 [scales]:https://CRAN.R-project.org/package=scales
 [PRROC]:https://CRAN.R-project.org/package=PRROC
+[ROCR]:https://CRAN.R-project.org/package=ROCR
+[dplyr]:https://CRAN.R-project.org/package=dplyr
 [miRNAss]:https://CRAN.R-project.org/package=miRNAss
 [PCIT]:https://github.com/nathanhaigh/pcit
 [RIF]:https://academic.oup.com/bioinformatics/article/26/7/896/212064
